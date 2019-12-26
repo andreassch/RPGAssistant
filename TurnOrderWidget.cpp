@@ -6,13 +6,10 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QXmlStreamReader>
+#include <QXmlStreamWriter>
+#include <QMessageBox>
 #include <QtDebug>
 
-/**
- * @brief TurnOrderWidget::TurnOrderWidget
- * Constructor.
- * @param parent The parent widget.
- */
 TurnOrderWidget::TurnOrderWidget(QWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::TurnOrderWidget)
@@ -21,20 +18,28 @@ TurnOrderWidget::TurnOrderWidget(QWidget *parent)
     setupUi();
 }
 
-/**
- * @brief TurnOrderWidget::~TurnOrderWidget
- * Destructor.
- */
 TurnOrderWidget::~TurnOrderWidget()
 {
     delete m_ui;
 }
 
-/**
- * @brief TurnOrderWidget::setupUi
- * Setup the user interface.
- * This private function is called by the constructor.
- */
+void TurnOrderWidget::addEntry(const QString name, const float ini, const int le, const int lep)
+{
+    m_ui->tableTurnOrder->setSortingEnabled(false);
+    int new_row = m_ui->tableTurnOrder->rowCount();
+    m_ui->tableTurnOrder->insertRow(new_row);
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem(name));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI, createTableWidgetNumericItem<float>(ini));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI_MOD, createTableWidgetNumericItem<int>(0));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, createTableWidgetNumericItem<int>(le));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, createTableWidgetNumericItem<int>(lep));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, createTableWidgetNumericItem<int>(computeModifierTDE(lep, le)));
+    m_ui->tableTurnOrder->setSortingEnabled(true);
+    m_ui->buttonDelete->setEnabled(true);
+    m_ui->buttonStart->setEnabled(true);
+    return;
+}
+
 void TurnOrderWidget::setupUi()
 {
     m_ui->buttonDelete->setEnabled(false);
@@ -57,13 +62,6 @@ void TurnOrderWidget::setupUi()
     return;
 }
 
-/**
- * @brief TurnOrderWidget::createTableWidgetNumericItem
- * Private template helper function to create a TableWidgetItem with given contents of T
- * Typical examples for T are int or float.
- * @param number An object of type T that will be inserted in a QTableWidgetItem.
- * @return A QTableWidgetItem containing the entry of type T specified by the parameter number.
- */
 template<class T> QTableWidgetItem* TurnOrderWidget::createTableWidgetNumericItem(const T number) const
 {
     QTableWidgetItem *item = new QTableWidgetItem;
@@ -71,12 +69,6 @@ template<class T> QTableWidgetItem* TurnOrderWidget::createTableWidgetNumericIte
     return item;
 }
 
-/**
- * @brief TurnOrderWidget::activateEntry
- * Activate an entry in the turn order list.
- * This function encapsulates the design of an active entry.
- * @param number The row of the entry in the turn order list that shall be activated.
- */
 void TurnOrderWidget::activateEntry(const int number)
 {
     qDebug() << m_ui->tableTurnOrder->item(number, TurnOrderTableColumn::NAME)->background().color();
@@ -84,24 +76,12 @@ void TurnOrderWidget::activateEntry(const int number)
     return;
 }
 
-/**
- * @brief TurnOrderWidget::deactivateEntry
- * Deactivate an entry in the turn order list.
- * Undos the marking performed by activateEntry().
- * @param number The row of the entry in the turn order list that shall be deactivated.
- */
 void TurnOrderWidget::deactivateEntry(const int number)
 {
     m_ui->tableTurnOrder->item(number, TurnOrderTableColumn::NAME)->setBackgroundColor(QColor(1, 0, 0, 0));
     return;
 }
 
-/**
- * @brief TurnOrderWidget::activeEntry
- * Determines the active entry in the turn order list.
- * Uses knowledge about the marking performed by activateEntry.
- * @return (First) row with a marked entry, or -1 if no entry is marked.
- */
 int TurnOrderWidget::activeEntry() const
 {
     for (int row=0; row<m_ui->tableTurnOrder->rowCount(); row++) {
@@ -111,14 +91,16 @@ int TurnOrderWidget::activeEntry() const
     return -1;
 }
 
-/**
- * @brief TurnOrderWidget::computeModifierTDE
- * Compute modifier for the German rpg The Dark Eye ("Das Schwarze Auge"), fith edition.
- * @param lep Current hit points ("Lebenspunkte") of the character.
- * @param le Maximal hit points ("Lebensenergie") of the character.
- * @return Modificator due to bad health.
- */
-int TurnOrderWidget::computeModifierTDE(const int lep, const int le) const
+int TurnOrderWidget::selectedEntry() const
+{
+    QItemSelectionModel *select = m_ui->tableTurnOrder->selectionModel();
+    if (select->hasSelection())
+        return select->selectedIndexes()[0].row(); // Use first entry because the selection mode allows only one single selection.
+    else
+        return -1;
+}
+
+int TurnOrderWidget::computeModifierTDE(const int lep, const int le)
 {
     if (lep <= 5)
         return 4;
@@ -132,36 +114,17 @@ int TurnOrderWidget::computeModifierTDE(const int lep, const int le) const
         return 0;
 }
 
-/**
- * @brief TurnOrderWidget::onAddEntry
- * Adds an entry to the turn order list.
- */
 void TurnOrderWidget::onAddEntry()
 {
-    m_ui->tableTurnOrder->setSortingEnabled(false);
-    int new_row = m_ui->tableTurnOrder->rowCount();
-    m_ui->tableTurnOrder->insertRow(new_row);
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem(m_ui->editName->text()));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI, createTableWidgetNumericItem<float>(static_cast<float>(m_ui->spinBoxIni->value())));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI_MOD, createTableWidgetNumericItem<int>(0));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, createTableWidgetNumericItem<int>(m_ui->spinBoxLe->value()));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, createTableWidgetNumericItem<int>(m_ui->spinBoxLe->value()));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, createTableWidgetNumericItem<int>(0));
-    m_ui->tableTurnOrder->setSortingEnabled(true);
-    m_ui->buttonDelete->setEnabled(true);
-    m_ui->buttonStart->setEnabled(true);
+    addEntry(m_ui->editName->text(), static_cast<float>(m_ui->spinBoxIni->value()), m_ui->spinBoxLe->value(), m_ui->spinBoxLe->value());
     return;
 }
 
-/**
- * @brief TurnOrderWidget::onDeleteEntry
- * Deletes the currently selected entry from the turn order list.
- */
 void TurnOrderWidget::onDeleteEntry()
 {
-    int row = m_ui->tableTurnOrder->currentRow();
+    int row = selectedEntry();
     qDebug() << "onDeleteEntry: row" << row;
-    if (row < 0) // If no row is active (selected).
+    if (row < 0) // If no row is selected.
         return;
     m_ui->tableTurnOrder->removeRow(row);
     if (m_ui->tableTurnOrder->rowCount() == 0) {
@@ -172,12 +135,6 @@ void TurnOrderWidget::onDeleteEntry()
     return;
 }
 
-/**
- * @brief TurnOrderWidget::onChangeEntry
- * Callback executed when an entry in the turn order list is changed.
- * @param row The row of the entry that has been changed.
- * @param column The column of the entry that has been changed.
- */
 void TurnOrderWidget::onChangeEntry(const int row, const int column)
 {
     if ((m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::INI) == nullptr) ||
@@ -205,11 +162,6 @@ void TurnOrderWidget::onChangeEntry(const int row, const int column)
     return;
 }
 
-/**
- * @brief TurnOrderWidget::onStart
- * Starts a new turn-based event.
- * Starts with the highest initiative present and marks the first person is the turn order list.
- */
 void TurnOrderWidget::onStart()
 {
     if (m_ui->tableTurnOrder->rowCount() == 0)
@@ -235,10 +187,6 @@ void TurnOrderWidget::onStart()
     return;
 }
 
-/**
- * @brief TurnOrderWidget::onNext
- * Moves on the the next person in the turn order list.
- */
 void TurnOrderWidget::onNext()
 {
     if (m_ui->tableTurnOrder->rowCount() == 0)
@@ -261,20 +209,21 @@ void TurnOrderWidget::onNext()
             current_ini = next_ini;
             m_ui->labelCurrentIni->setText(QString("%1").arg(QString::number(current_ini)));
         }
+        m_ui->tableTurnOrder->clearSelection();
     }
     return;
 }
 
-/**
- * @brief TurnOrderWidget::onDamage
- * Give damage to the selected person.
- */
 void TurnOrderWidget::onDamage()
 {
-    int row = m_ui->tableTurnOrder->currentRow();
+    int row = selectedEntry();
+    if (row < 0) // If no row is selected.
+        row = activeEntry();
+    if (row < 0) { // If also no entry is active (which should not happen).
+        QMessageBox::information(this, tr("TurnOrderWidget"), tr("Please select the entry that shall be damaged."));
+        return;
+    }
     qDebug() << "onDamage: row" << row;
-    if (row < 0) // If no row is active (selected).
-        return; // Do nothing.
     int lep = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LeP)->data(Qt::DisplayRole).toInt();
     int damage = m_ui->spinBoxDamage->value();
     qDebug() << "onDamage()" << lep << damage;
@@ -284,19 +233,12 @@ void TurnOrderWidget::onDamage()
     return;
 }
 
-/**
- * @brief TurnOrderWidget::onClear
- * Clears the current turn order list.
- */
 void TurnOrderWidget::onClear()
 {
     m_ui->tableTurnOrder->setRowCount(0); // Delete all rows.
     return;
 }
-/**
- * @brief TurnOrderWidget::onLoad
- * Load a turn order list from an XML file.
- */
+
 void TurnOrderWidget::onLoad()
 {
     QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), tr("XML files (*.xml)")));
@@ -305,7 +247,7 @@ void TurnOrderWidget::onLoad()
         return;
     QFile file(filename);
     if(!file.open(QFile::ReadOnly | QFile::Text)) {
-        qDebug() << "Cannot open file for reading:" << file.errorString();
+        QMessageBox::critical(this, tr("TurnOrderWidget"), tr("Cannot open file %1 for reading.").arg(file.errorString()));
         return;
     }
     QXmlStreamReader xml_reader(&file);
@@ -374,6 +316,7 @@ void TurnOrderWidget::onLoad()
             else
                 xml_reader.raiseError(QObject::tr("Incorrect file"));
     }
+    file.close();
     if (xml_reader.hasError()) {
         // do error handling
         qDebug() << "Error reading file:" << xml_reader.lineNumber() << xml_reader.columnNumber() << xml_reader.errorString();
@@ -385,12 +328,30 @@ void TurnOrderWidget::onLoad()
     return;
 }
 
-/**
- * @brief TurnOrderWidget::onSave
- * Save the current turn order list to an XML file.
- */
 void TurnOrderWidget::onSave()
 {
-    // Not yet implemented.
+    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), tr("XML files (*.xml)")));
+    qDebug() << filename;
+    if (filename.isEmpty())
+        return;
+    QFile file(filename);
+    if(!file.open(QFile::WriteOnly | QFile::Text)) {
+        QMessageBox::critical(this, tr("TurnOrderWidget"), tr("Cannot open file %1 for writing.").arg(file.errorString()));
+        return;
+    }
+    QXmlStreamWriter xml_writer(&file);
+    xml_writer.setAutoFormatting(true);
+    xml_writer.writeStartDocument();
+    xml_writer.writeDTD(QStringLiteral("<!DOCTYPE XML>"));
+    xml_writer.writeStartElement(QStringLiteral("turnorderlist"));
+    for (int row = 0; row < m_ui->tableTurnOrder->rowCount(); row++) {
+        xml_writer.writeStartElement("entry");
+        xml_writer.writeTextElement("name", m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::NAME)->data(Qt::DisplayRole).toString());
+        xml_writer.writeTextElement("ini", m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::INI)->data(Qt::DisplayRole).toString());
+        xml_writer.writeTextElement("le", m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LE)->data(Qt::DisplayRole).toString());
+        xml_writer.writeEndElement();
+    }
+    xml_writer.writeEndDocument();
+    file.close();
     return;
 }
