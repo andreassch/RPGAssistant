@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <QFile>
+#include <QDir>
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QXmlStreamReader>
@@ -10,6 +11,7 @@
 #include <QMessageBox>
 #include <QtDebug>
 
+/* Public methods ************************************************************/
 TurnOrderWidget::TurnOrderWidget(QWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::TurnOrderWidget)
@@ -40,6 +42,7 @@ void TurnOrderWidget::addEntry(const QString name, const float ini, const int le
     return;
 }
 
+/* Private methods ***********************************************************/
 void TurnOrderWidget::setupUi()
 {
     m_ui->buttonDelete->setEnabled(false);
@@ -72,13 +75,13 @@ template<class T> QTableWidgetItem* TurnOrderWidget::createTableWidgetNumericIte
 void TurnOrderWidget::activateEntry(const int number)
 {
     qDebug() << m_ui->tableTurnOrder->item(number, TurnOrderTableColumn::NAME)->background().color();
-    m_ui->tableTurnOrder->item(number, TurnOrderTableColumn::NAME)->setBackgroundColor(color_active);
+    m_ui->tableTurnOrder->item(number, TurnOrderTableColumn::NAME)->setBackground(color_active);
     return;
 }
 
 void TurnOrderWidget::deactivateEntry(const int number)
 {
-    m_ui->tableTurnOrder->item(number, TurnOrderTableColumn::NAME)->setBackgroundColor(QColor(1, 0, 0, 0));
+    m_ui->tableTurnOrder->item(number, TurnOrderTableColumn::NAME)->setBackground(QColor(1, 0, 0, 0));
     return;
 }
 
@@ -114,6 +117,7 @@ int TurnOrderWidget::computeModifierTDE(const int lep, const int le)
         return 0;
 }
 
+/* Private slots *************************************************************/
 void TurnOrderWidget::onAddEntry()
 {
     addEntry(m_ui->editName->text(), static_cast<float>(m_ui->spinBoxIni->value()), m_ui->spinBoxLe->value(), m_ui->spinBoxLe->value());
@@ -241,7 +245,11 @@ void TurnOrderWidget::onClear()
 
 void TurnOrderWidget::onLoad()
 {
-    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), tr("XML files (*.xml)")));
+#ifdef ANDROID
+    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), tr("XML files (*.xml)"), 0, QFileDialog::DontUseNativeDialog));
+#else
+    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), tr("XML files (*.xml)")));
+#endif
     qDebug() << filename;
     if (filename.isEmpty())
         return;
@@ -330,7 +338,15 @@ void TurnOrderWidget::onLoad()
 
 void TurnOrderWidget::onSave()
 {
-    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), tr("XML files (*.xml)")));
+#ifdef ANDROID
+    if (!QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).exists()) {
+        qDebug() << "Creating Documents directory:" << QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+        QDir().mkdir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
+    }
+    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), tr("XML files (*.xml)"), 0, QFileDialog::DontUseNativeDialog));
+#else
+    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), tr("XML files (*.xml)")));
+#endif
     qDebug() << filename;
     if (filename.isEmpty())
         return;
