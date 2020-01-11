@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
+    <width>450</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>TurnOrderWidget</string>
+   <string>Turn Order List</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -32,7 +32,7 @@
       <bool>false</bool>
      </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>60</number>
+      <number>70</number>
      </attribute>
      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
       <bool>false</bool>

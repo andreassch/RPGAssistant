@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++1z
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -16,14 +16,43 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp \
-    TurnOrderWidget.cpp
+    Backend/DataXmlReader.cpp \
+    Backend/DiceFormula.cpp \
+    Backend/Names.cpp \
+    Backend/Race.cpp \
+    Backend/RacesXmlReader.cpp \
+    UI/MainWidget.cpp \
+    UI/TurnOrderWidget.cpp \
+    UI/NPCGeneratorWidget.cpp \
+    Backend/NamesXmlReader.cpp \
+    main.cpp
 
 HEADERS += \
-    TurnOrderWidget.h
+    Backend/DataXmlReader.h \
+    Backend/DiceFormula.h \
+    Backend/Names.h \
+    Backend/Race.h \
+    Backend/RacesXmlReader.h \
+    Backend/Species.h \
+    UI/MainWidget.h \
+    UI/NPCGeneratorWidget.h \
+    UI/TurnOrderWidget.h \
+    Backend/NamesXmlReader.h
 
 FORMS += \
-    TurnOrderWidget.ui
+    UI/MainWidget.ui \
+    UI/NPCGeneratorWidget.ui \
+    UI/TurnOrderWidget.ui
+
+# Setup 'make install' step
+android {
+    DATA_PATH=/assets/data
+} else {
+    DATA_PATH=data
+}
+data.path = $$DATA_PATH
+data.files = Data/names.xml Data/races.xml
+data.depends += FORCE
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -33,6 +62,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 android {
    DISTFILES += \
       android/AndroidManifest.xml
+   INSTALLS += data
 }
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

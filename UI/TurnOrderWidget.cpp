@@ -11,7 +11,7 @@
 #include <QMessageBox>
 #include <QtDebug>
 
-/* Public methods ************************************************************/
+/* Public constructors/desctructors ******************************************/
 TurnOrderWidget::TurnOrderWidget(QWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::TurnOrderWidget)
@@ -25,6 +25,7 @@ TurnOrderWidget::~TurnOrderWidget()
     delete m_ui;
 }
 
+/* Public methods ************************************************************/
 void TurnOrderWidget::addEntry(const QString name, const float ini, const int le, const int lep)
 {
     m_ui->tableTurnOrder->setSortingEnabled(false);
@@ -262,7 +263,6 @@ void TurnOrderWidget::onLoad()
     if (xml_reader.readNextStartElement()) {
             if (xml_reader.name() == "turnorderlist") {
                 qDebug() << "Reading turn order list from xml file.";
-                onClear();
                 m_ui->tableTurnOrder->setSortingEnabled(false);
                 while(xml_reader.readNextStartElement()){
                     if(xml_reader.name() == "entry") {
