@@ -17,14 +17,14 @@
    <item>
     <widget class="QPushButton" name="buttonTurnOrderList">
      <property name="text">
-      <string>Turn order list</string>
+      <string>&amp;Turn order list</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="buttonNPCGenerator">
      <property name="text">
-      <string>NPC Generator</string>
+      <string>&amp;NPC Generator</string>
      </property>
     </widget>
    </item>

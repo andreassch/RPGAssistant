@@ -128,6 +128,12 @@ void TurnOrderWidget::onAddEntry()
 void TurnOrderWidget::onDeleteEntry()
 {
     int row = selectedEntry();
+    if (row < 0) // If no row is selected.
+        row = activeEntry();
+    if (row < 0) { // If also no entry is active.
+        QMessageBox::information(this, tr("Turn Order List"), tr("Please select the entry that shall be deleted."));
+        return;
+    }
     qDebug() << "onDeleteEntry: row" << row;
     if (row < 0) // If no row is selected.
         return;
@@ -224,8 +230,8 @@ void TurnOrderWidget::onDamage()
     int row = selectedEntry();
     if (row < 0) // If no row is selected.
         row = activeEntry();
-    if (row < 0) { // If also no entry is active (which should not happen).
-        QMessageBox::information(this, tr("TurnOrderWidget"), tr("Please select the entry that shall be damaged."));
+    if (row < 0) { // If also no entry is active.
+        QMessageBox::information(this, tr("Turn Order List"), tr("Please select the entry that shall be damaged."));
         return;
     }
     qDebug() << "onDamage: row" << row;
@@ -256,7 +262,7 @@ void TurnOrderWidget::onLoad()
         return;
     QFile file(filename);
     if(!file.open(QFile::ReadOnly | QFile::Text)) {
-        QMessageBox::critical(this, tr("TurnOrderWidget"), tr("Cannot open file %1 for reading.").arg(file.errorString()));
+        QMessageBox::critical(this, tr("Turn Order List"), tr("Cannot open file %1 for reading.").arg(file.errorString()));
         return;
     }
     QXmlStreamReader xml_reader(&file);
@@ -322,7 +328,7 @@ void TurnOrderWidget::onLoad()
                 m_ui->tableTurnOrder->setSortingEnabled(true);
             }
             else
-                xml_reader.raiseError(QObject::tr("Incorrect file"));
+                xml_reader.raiseError(QObject::tr("Incorrect turn order XML file."));
     }
     file.close();
     if (xml_reader.hasError()) {
@@ -352,7 +358,7 @@ void TurnOrderWidget::onSave()
         return;
     QFile file(filename);
     if(!file.open(QFile::WriteOnly | QFile::Text)) {
-        QMessageBox::critical(this, tr("TurnOrderWidget"), tr("Cannot open file %1 for writing.").arg(file.errorString()));
+        QMessageBox::critical(this, tr("Turn Order List"), tr("Cannot open file %1 for writing.").arg(file.errorString()));
         return;
     }
     QXmlStreamWriter xml_writer(&file);

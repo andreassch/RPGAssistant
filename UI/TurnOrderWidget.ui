@@ -63,7 +63,7 @@
      </column>
      <column>
       <property name="text">
-       <string>LeP</string>
+       <string>cHP</string>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
@@ -71,7 +71,7 @@
      </column>
      <column>
       <property name="text">
-       <string>LE</string>
+       <string>HP</string>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
@@ -107,7 +107,7 @@
      <item>
       <widget class="QPushButton" name="buttonNext">
        <property name="text">
-        <string>Next</string>
+        <string>Ne&amp;xt</string>
        </property>
       </widget>
      </item>
@@ -117,21 +117,21 @@
      <item>
       <widget class="QPushButton" name="buttonDamage">
        <property name="text">
-        <string>Damage</string>
+        <string>Da&amp;mage</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonDelete">
        <property name="text">
-        <string>Delete</string>
+        <string>&amp;Delete</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonStart">
        <property name="text">
-        <string>Start</string>
+        <string>New &amp;round</string>
        </property>
       </widget>
      </item>
@@ -142,7 +142,10 @@
      <item>
       <widget class="QLabel" name="labelName">
        <property name="text">
-        <string>Name</string>
+        <string>&amp;Name</string>
+       </property>
+       <property name="buddy">
+        <cstring>editName</cstring>
        </property>
       </widget>
      </item>
@@ -152,7 +155,10 @@
      <item>
       <widget class="QLabel" name="labelIni">
        <property name="text">
-        <string>INI</string>
+        <string>&amp;INI</string>
+       </property>
+       <property name="buddy">
+        <cstring>spinBoxIni</cstring>
        </property>
       </widget>
      </item>
@@ -162,7 +168,10 @@
      <item>
       <widget class="QLabel" name="labelLe">
        <property name="text">
-        <string>LE</string>
+        <string>&amp;HP</string>
+       </property>
+       <property name="buddy">
+        <cstring>spinBoxLe</cstring>
        </property>
       </widget>
      </item>
@@ -172,7 +181,7 @@
      <item>
       <widget class="QPushButton" name="buttonAdd">
        <property name="text">
-        <string>Add</string>
+        <string>&amp;Add</string>
        </property>
       </widget>
      </item>
@@ -183,21 +192,21 @@
      <item>
       <widget class="QPushButton" name="buttonLoad">
        <property name="text">
-        <string>Load list</string>
+        <string>&amp;Load list</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonSave">
        <property name="text">
-        <string>Save list</string>
+        <string>&amp;Save list</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonClear">
        <property name="text">
-        <string>Clear list</string>
+        <string>&amp;Clear list</string>
        </property>
       </widget>
      </item>

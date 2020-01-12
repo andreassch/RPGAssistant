@@ -29,14 +29,14 @@ void NPCGeneratorWidget::setupUi()
 #ifdef ANDROID
     QDir data_dir("assets:/data");
 #else
-    QDir data_dir = QDir("../rpgassistant/Data"); // TODO: don't hardcode path
+    QDir data_dir = QDir("."); // TODO: don't hardcode path
 #endif
     qDebug() << data_dir;
     // Read name lists and fill region combo box.
     QFile names_file(data_dir.filePath("names.xml"));
     qDebug() << names_file;
     if(!names_file.open(QFile::ReadOnly | QFile::Text)) {
-        QMessageBox::critical(this, tr("NPCGeneratorWidget"), tr("Cannot open file %1 for reading.").arg(names_file.errorString()));
+        QMessageBox::critical(this, tr("NPC Generator"), tr("Cannot open file %1 for reading: %2").arg(names_file.fileName()).arg(names_file.errorString()));
         return;
     }
     NamesXmlReader name_reader(&m_namelists);
@@ -50,7 +50,7 @@ void NPCGeneratorWidget::setupUi()
     QFile races_file(data_dir.filePath("races.xml"));
     qDebug() << races_file;
     if(!races_file.open(QFile::ReadOnly | QFile::Text)) {
-        QMessageBox::critical(this, tr("NPCGeneratorWidget"), tr("Cannot open file %1 for reading.").arg(races_file.errorString()));
+        QMessageBox::critical(this, tr("NPC Generator"), tr("Cannot open file %1 for reading: %2").arg(races_file.fileName()).arg(races_file.errorString()));
         return;
     }
     RacesXmlReader race_reader(&m_species);

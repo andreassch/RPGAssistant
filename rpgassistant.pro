@@ -44,15 +44,19 @@ FORMS += \
     UI/NPCGeneratorWidget.ui \
     UI/TurnOrderWidget.ui
 
+TRANSLATIONS += Translations/rpgassistant_de.ts
+
 # Setup 'make install' step
 android {
     DATA_PATH=/assets/data
 } else {
-    DATA_PATH=data
+    DATA_PATH=.
 }
 data.path = $$DATA_PATH
 data.files = Data/names.xml Data/races.xml
 data.depends += FORCE
+
+INSTALLS += data
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -62,7 +66,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 android {
    DISTFILES += \
       android/AndroidManifest.xml
-   INSTALLS += data
 }
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
