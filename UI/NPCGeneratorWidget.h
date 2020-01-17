@@ -47,6 +47,11 @@ private slots:
      */
     void onChangeSpecies(const int index);
 
+    void onChangeRandomRegion(const int state);
+    void onChangeRandomSpecies(const int state);
+    void onChangeRandomRace(const int state);
+    void onChangeRandomGender(const int state);
+
 private:
     Ui::NPCGeneratorWidget* m_ui;
     std::vector<Names> m_namelists;

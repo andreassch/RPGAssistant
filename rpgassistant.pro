@@ -44,19 +44,45 @@ FORMS += \
     UI/NPCGeneratorWidget.ui \
     UI/TurnOrderWidget.ui
 
-TRANSLATIONS += Translations/rpgassistant_de.ts
+LANGUAGES = de
+
+defineReplace(prependAll) {
+ for(a,$$1):result += $$2$${a}$$3
+ return($$result)
+}
+TRANSLATIONS = $$prependAll(LANGUAGES, $$PWD/Translations/rpgassistant_, .ts)
+
+TRANSLATIONS_FILES =
+qtPrepareTool(LRELEASE, lrelease)
+for(tsfile, TRANSLATIONS) {
+ qmfile = $$shadowed($$tsfile)
+ qmfile ~= s,.ts$,.qm,
+ qmdir = $$dirname(qmfile)
+ !exists($$qmdir) {
+ mkpath($$qmdir)|error("Aborting.")
+ }
+ command = $$LRELEASE -removeidentical $$tsfile -qm $$qmfile
+ system($$command)|error("Failed to run: $$command")
+ TRANSLATIONS_FILES += $$qmfile
+}
+
 
 # Setup 'make install' step
 android {
     DATA_PATH=/assets/data
+    LOCALE_PATH=/assets/translations
 } else {
-    DATA_PATH=.
+    DATA_PATH=/
+    LOCALE_PATH=/
 }
 data.path = $$DATA_PATH
 data.files = Data/names.xml Data/races.xml
 data.depends += FORCE
+locales.path = $$LOCALE_PATH
+locales.files = Translations/rpgassistant_de.qm
+locales.depends += FORCE
 
-INSTALLS += data
+INSTALLS += data locales
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -7,6 +7,7 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QtDebug>
+#include <QRandomGenerator>
 
 /* Public constructors/desctructors ******************************************/
 NPCGeneratorWidget::NPCGeneratorWidget(QWidget *parent) :
@@ -63,6 +64,10 @@ void NPCGeneratorWidget::setupUi()
         onChangeSpecies(0);
 
     connect(m_ui->comboSpecies, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &NPCGeneratorWidget::onChangeSpecies);
+    connect(m_ui->checkRandomRegion, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomRegion);
+    connect(m_ui->checkRandomSpecies, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomSpecies);
+    connect(m_ui->checkRandomRace, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomRace);
+    connect(m_ui->checkRandomGender, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomGender);
     connect(m_ui->buttonGenerate, &QPushButton::clicked, this, &NPCGeneratorWidget::onGenerate);
 
     return;
@@ -80,15 +85,72 @@ void NPCGeneratorWidget::onChangeSpecies(const int index)
     return;
 }
 
+void NPCGeneratorWidget::onChangeRandomRegion(const int state)
+{
+    if (m_ui->checkRandomRegion->isChecked())
+        m_ui->comboRegion->setEnabled(false);
+    else
+        m_ui->comboRegion->setEnabled(true);
+    return;
+}
+
+void NPCGeneratorWidget::onChangeRandomSpecies(const int state)
+{
+    if (m_ui->checkRandomSpecies->isChecked()) {
+        m_ui->comboSpecies->setEnabled(false);
+        if (!m_ui->checkRandomRace->isChecked())
+            m_ui->checkRandomRace->setChecked(true);
+    }
+    else
+        m_ui->comboSpecies->setEnabled(true);
+    return;
+}
+
+void NPCGeneratorWidget::onChangeRandomRace(const int state)
+{
+    if (m_ui->checkRandomRace->isChecked())
+        m_ui->comboRace->setEnabled(false);
+    else
+        m_ui->comboRace->setEnabled(true);
+    return;
+}
+
+void NPCGeneratorWidget::onChangeRandomGender(const int state)
+{
+    if (m_ui->checkRandomGender->isChecked())
+        m_ui->comboGender->setEnabled(false);
+    else
+        m_ui->comboGender->setEnabled(true);
+    return;
+}
+
 void NPCGeneratorWidget::onGenerate()
 {
-    int ind_region = m_ui->comboRegion->currentIndex();
-    Gender gender = (m_ui->comboGender->currentIndex() == 0) ? Gender::FEMALE : Gender::MALE;
+    int ind_region;
+    if (m_ui->checkRandomRegion->isChecked())
+        ind_region = QRandomGenerator::global()->bounded(static_cast<int>(m_namelists.size()));
+    else
+        ind_region = m_ui->comboRegion->currentIndex();
+    int ind_gender;
+    if (m_ui->checkRandomGender->isChecked())
+        ind_gender = QRandomGenerator::global()->bounded(2);
+    else
+        ind_gender = m_ui->comboGender->currentIndex();
+    qDebug() << "Gender" << ind_gender;
+    Gender gender = (ind_gender == 0) ? Gender::FEMALE : Gender::MALE;
     qDebug() << "Name region" << ind_region << m_namelists.at(ind_region).region();
     qDebug() << m_namelists.at(ind_region).surnamesCount() << m_namelists.at(ind_region).firstnamesCount(Gender::FEMALE) << m_namelists.at(ind_region).firstnamesCount(Gender::MALE);
     m_ui->lineName->setText(m_namelists.at(ind_region).randomName(gender));
-    int ind_species = m_ui->comboSpecies->currentIndex();
-    int ind_race = m_ui->comboRace->currentIndex();
+    int ind_species;
+    if (m_ui->checkRandomSpecies->isChecked())
+        ind_species = QRandomGenerator::global()->bounded(static_cast<int>(m_species.size()));
+    else
+        ind_species = m_ui->comboSpecies->currentIndex();
+    int ind_race;
+    if (m_ui->checkRandomRace->isChecked())
+        ind_race = QRandomGenerator::global()->bounded(static_cast<int>(m_species.at(ind_species).raceCount()));
+    else
+        ind_race = m_ui->comboRace->currentIndex();
     Species species = m_species.at(ind_species);
     qDebug() << "Species" << ind_species << species.name();
     Race race = species.race(ind_race);
