@@ -18,8 +18,10 @@ void MainWidget::SetupUi()
 {
     m_turn_order_widget = new TurnOrderWidget();
     m_npc_generator_widget = new NPCGeneratorWidget();
+    m_calendar_widget = new CalendarWidget();
     connect(m_ui->buttonTurnOrderList, &QPushButton::clicked, this, &MainWidget::onTurnOrder);
     connect(m_ui->buttonNPCGenerator, &QPushButton::clicked, this, &MainWidget::onNPCGenerator);
+    connect(m_ui->buttonCalendar, &QPushButton::clicked, this, &MainWidget::onCalendar);
 }
 
 void MainWidget::onTurnOrder()
@@ -31,5 +33,11 @@ void MainWidget::onTurnOrder()
 void MainWidget::onNPCGenerator()
 {
     m_npc_generator_widget->show();
+    return;
+}
+
+void MainWidget::onCalendar()
+{
+    m_calendar_widget->show();
     return;
 }

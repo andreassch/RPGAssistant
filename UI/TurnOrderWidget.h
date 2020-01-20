@@ -60,14 +60,6 @@ private:
     void setupUi();
 
     /**
-     * @brief Private template helper function to create a TableWidgetItem with given contents of T.
-     * Typical examples for T are int or float.
-     * @param number An object of type T that will be inserted in a QTableWidgetItem.
-     * @return A QTableWidgetItem containing the entry of type T specified by the parameter number.
-     */
-    template<class T> QTableWidgetItem* createTableWidgetNumericItem(const T number) const;
-
-    /**
      * @brief Activate an entry in the turn order list.
      * This function encapsulates the design of an active entry.
      * @param number The row of the entry in the turn order list that shall be activated.

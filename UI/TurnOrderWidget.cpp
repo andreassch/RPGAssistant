@@ -1,6 +1,7 @@
 #include "TurnOrderWidget.h"
 #include "ui_TurnOrderWidget.h"
 
+#include "Utils.h"
 #include <cmath>
 #include <QFile>
 #include <QDir>
@@ -32,11 +33,11 @@ void TurnOrderWidget::addEntry(const QString name, const float ini, const int le
     int new_row = m_ui->tableTurnOrder->rowCount();
     m_ui->tableTurnOrder->insertRow(new_row);
     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem(name));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI, createTableWidgetNumericItem<float>(ini));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI_MOD, createTableWidgetNumericItem<int>(0));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, createTableWidgetNumericItem<int>(le));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, createTableWidgetNumericItem<int>(lep));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, createTableWidgetNumericItem<int>(computeModifierTDE(lep, le)));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI, UiUtils::createTableWidgetNumericItem<float>(ini));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI_MOD, UiUtils::createTableWidgetNumericItem<int>(0));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, UiUtils::createTableWidgetNumericItem<int>(le));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<int>(lep));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, UiUtils::createTableWidgetNumericItem<int>(computeModifierTDE(lep, le)));
     m_ui->tableTurnOrder->setSortingEnabled(true);
     m_ui->buttonDelete->setEnabled(true);
     m_ui->buttonStart->setEnabled(true);
@@ -64,13 +65,6 @@ void TurnOrderWidget::setupUi()
     connect(m_ui->buttonSave, &QPushButton::clicked, this, &TurnOrderWidget::onSave);
 
     return;
-}
-
-template<class T> QTableWidgetItem* TurnOrderWidget::createTableWidgetNumericItem(const T number) const
-{
-    QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(Qt::EditRole, number);
-    return item;
 }
 
 void TurnOrderWidget::activateEntry(const int number)
@@ -282,15 +276,15 @@ void TurnOrderWidget::onLoad()
                             }
                             else if(xml_reader.name() == "ini") {
                                 QString str = xml_reader.readElementText();
-                                m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI, createTableWidgetNumericItem<float>(str.toFloat()));
+                                m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI, UiUtils::createTableWidgetNumericItem<float>(str.toFloat()));
                             }
                             else if(xml_reader.name() == "le") {
                                 QString str = xml_reader.readElementText();
-                                m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, createTableWidgetNumericItem<int>(str.toInt()));
+                                m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<int>(str.toInt()));
                             }
                             else if(xml_reader.name() == "lep") {
                                 QString str = xml_reader.readElementText();
-                                m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, createTableWidgetNumericItem<int>(str.toInt()));
+                                m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, UiUtils::createTableWidgetNumericItem<int>(str.toInt()));
                             }
                             else
                                 xml_reader.skipCurrentElement();
@@ -304,19 +298,19 @@ void TurnOrderWidget::onLoad()
                                     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem("[unknown]"));
                                     break;
                                 case TurnOrderTableColumn::INI:
-                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, createTableWidgetNumericItem<float>(0.));
+                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<float>(0.));
                                     break;
                                 case TurnOrderTableColumn::INI_MOD:
-                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI_MOD, createTableWidgetNumericItem<int>(0));
+                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI_MOD, UiUtils::createTableWidgetNumericItem<int>(0));
                                     break;
                                 case TurnOrderTableColumn::LE:
-                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, createTableWidgetNumericItem<int>(0));
+                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<int>(0));
                                     break;
                                 case TurnOrderTableColumn::LeP:
-                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, createTableWidgetNumericItem<int>((m_ui->tableTurnOrder->item(new_row, TurnOrderTableColumn::LE) == nullptr) ? 0 : m_ui->tableTurnOrder->item(new_row, TurnOrderTableColumn::LE)->data(Qt::DisplayRole).toInt()));
+                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, UiUtils::createTableWidgetNumericItem<int>((m_ui->tableTurnOrder->item(new_row, TurnOrderTableColumn::LE) == nullptr) ? 0 : m_ui->tableTurnOrder->item(new_row, TurnOrderTableColumn::LE)->data(Qt::DisplayRole).toInt()));
                                     break;
                                 case TurnOrderTableColumn::MOD:
-                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, createTableWidgetNumericItem<int>(0));
+                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, UiUtils::createTableWidgetNumericItem<int>(0));
                                     break;
                                 }
                             }

@@ -110,8 +110,11 @@ void NPCGeneratorWidget::onChangeRandomRace(const int state)
 {
     if (m_ui->checkRandomRace->isChecked())
         m_ui->comboRace->setEnabled(false);
-    else
+    else {
         m_ui->comboRace->setEnabled(true);
+        if (m_ui->checkRandomSpecies->isChecked())
+            m_ui->checkRandomSpecies->setChecked(false);
+    }
     return;
 }
 

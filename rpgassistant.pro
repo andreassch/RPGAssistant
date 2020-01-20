@@ -19,27 +19,31 @@ SOURCES += \
     Backend/DataXmlReader.cpp \
     Backend/DiceFormula.cpp \
     Backend/Names.cpp \
+    Backend/NamesXmlReader.cpp \
     Backend/Race.cpp \
     Backend/RacesXmlReader.cpp \
+    UI/CalendarWidget.cpp \
     UI/MainWidget.cpp \
     UI/TurnOrderWidget.cpp \
     UI/NPCGeneratorWidget.cpp \
-    Backend/NamesXmlReader.cpp \
     main.cpp
 
 HEADERS += \
     Backend/DataXmlReader.h \
     Backend/DiceFormula.h \
     Backend/Names.h \
+    Backend/NamesXmlReader.h \
     Backend/Race.h \
     Backend/RacesXmlReader.h \
     Backend/Species.h \
+    UI/CalendarWidget.h \
     UI/MainWidget.h \
     UI/NPCGeneratorWidget.h \
     UI/TurnOrderWidget.h \
-    Backend/NamesXmlReader.h
+    UI/Utils.h
 
 FORMS += \
+    UI/CalendarWidget.ui \
     UI/MainWidget.ui \
     UI/NPCGeneratorWidget.ui \
     UI/TurnOrderWidget.ui

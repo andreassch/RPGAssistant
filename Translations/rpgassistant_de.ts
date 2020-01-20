@@ -2,6 +2,179 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de">
 <context>
+    <name>CalendarWidget</name>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="14"/>
+        <source>Calendar</source>
+        <translation>Kalender</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="23"/>
+        <source>Praios</source>
+        <translation>Praios</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="28"/>
+        <source>Rondra</source>
+        <translation>Rondra</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="33"/>
+        <source>Efferd</source>
+        <translation>Efferd</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="38"/>
+        <source>Travia</source>
+        <translation>Travia</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="43"/>
+        <source>Boron</source>
+        <translation>Boron</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="48"/>
+        <source>Hesinde</source>
+        <translation>Hesinde</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="53"/>
+        <source>Firun</source>
+        <translation>Firun</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="58"/>
+        <source>Tsa</source>
+        <translation>Tsa</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="63"/>
+        <source>Phex</source>
+        <translation>Phex</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="68"/>
+        <source>Peraine</source>
+        <translation>Peraine</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="73"/>
+        <source>Ingerimm</source>
+        <translation>Ingerimm</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="78"/>
+        <source>Rahja</source>
+        <translation>Rahja</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="83"/>
+        <source>Nameless</source>
+        <translation>Namenlos</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="105"/>
+        <source>Hal</source>
+        <translation>Hal</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="119"/>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="124"/>
+        <source>2</source>
+        <translation>2</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="129"/>
+        <source>3</source>
+        <translation>3</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="134"/>
+        <source>4</source>
+        <translation>4</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="139"/>
+        <source>5</source>
+        <translation>5</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="144"/>
+        <source>6</source>
+        <translation>6</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="149"/>
+        <source>Wi</source>
+        <translation>Wi</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="157"/>
+        <source>Ea</source>
+        <translation>Er</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="189"/>
+        <source>Fi</source>
+        <translation>Fe</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="165"/>
+        <source>Ma</source>
+        <translation>Ma</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="173"/>
+        <source>Pr</source>
+        <translation>Pr</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="181"/>
+        <source>Ro</source>
+        <translation>Ro</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="197"/>
+        <source>Wa</source>
+        <translation>Wa</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="210"/>
+        <source>Moon phase</source>
+        <translation>Mondphase</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="217"/>
+        <source>Crescent</source>
+        <translation>Kelch</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.h" line="59"/>
+        <source>full</source>
+        <translation>Rad</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.h" line="59"/>
+        <source>waxing</source>
+        <translation>Kelch</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.h" line="59"/>
+        <source>waning</source>
+        <translation>Helm</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.h" line="59"/>
+        <source>new</source>
+        <translation>Tote Mada</translation>
+    </message>
+</context>
+<context>
     <name>MainWidget</name>
     <message>
         <location filename="../UI/MainWidget.ui" line="14"/>
@@ -18,79 +191,92 @@
         <source>&amp;NPC Generator</source>
         <translation>NSC-&amp;Generator</translation>
     </message>
+    <message>
+        <location filename="../UI/MainWidget.ui" line="34"/>
+        <source>&amp;Calendar</source>
+        <translation>&amp;Kalender</translation>
+    </message>
 </context>
 <context>
     <name>NPCGeneratorWidget</name>
     <message>
         <location filename="../UI/NPCGeneratorWidget.ui" line="14"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="39"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="53"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="40"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="54"/>
         <source>NPC Generator</source>
         <translation>NSC-Generator</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="59"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="23"/>
         <source>female</source>
         <translation>weiblich</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="64"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="28"/>
         <source>male</source>
         <translation>männlich</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="22"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="72"/>
         <source>&amp;Region:</source>
         <translation>&amp;Region:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="35"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="36"/>
         <source>R&amp;ace:</source>
         <translation>R&amp;asse:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="48"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="59"/>
         <source>G&amp;ender:</source>
         <translation>G&amp;eschlecht:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="75"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="49"/>
         <source>&amp;Species:</source>
         <translation>&amp;Spezies:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="87"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="85"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="92"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="99"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="106"/>
+        <source>?</source>
+        <translation>?</translation>
+    </message>
+    <message>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="115"/>
         <source>&amp;Generate</source>
         <translation>&amp;Generieren</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="96"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="124"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="106"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="134"/>
         <source>Hair colour:</source>
         <translation>Haarfarbe:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="116"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="144"/>
         <source>Eye colour:</source>
         <translation>Augenfarbe:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="135"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="163"/>
         <source>Size:</source>
         <translation>Größe:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="148"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="176"/>
         <source>Weight:</source>
         <translation>Gewicht:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="39"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="53"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="40"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="54"/>
         <source>Cannot open file %1 for reading: %2</source>
         <translation>Kann Datei %1 nicht zum Lesen öffnen: %2</translation>
     </message>
@@ -109,7 +295,7 @@ Line %2, column %3</source>
         <translation>%1\nZeile %2, Spalte %3</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="331"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="325"/>
         <source>Incorrect turn order XML file.</source>
         <translation>Keine korrekte Initiativlisten-XML-Datei.</translation>
     </message>
@@ -118,10 +304,10 @@ Line %2, column %3</source>
     <name>TurnOrderWidget</name>
     <message>
         <location filename="../UI/TurnOrderWidget.ui" line="14"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="134"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="234"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="265"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="361"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="128"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="228"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="259"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="355"/>
         <source>Turn Order List</source>
         <translation>Initiativliste</translation>
     </message>
@@ -216,42 +402,42 @@ Line %2, column %3</source>
         <translation>Liste l&amp;eeren</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="134"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="128"/>
         <source>Please select the entry that shall be deleted.</source>
         <translation>Bitte einen Eintrag selektieren, der gelöscht werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="234"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="228"/>
         <source>Please select the entry that shall be damaged.</source>
         <translation>Bitte einen Eintrag selektieren, der getroffen werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="256"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="258"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="250"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="252"/>
         <source>Open turn order list</source>
         <translation>Initiativliste öffnen</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="256"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="258"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="352"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="354"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="250"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="252"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="346"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="348"/>
         <source>XML files (*.xml)</source>
         <translation>XML Dateien (*.xml)</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="265"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="259"/>
         <source>Cannot open file %1 for reading.</source>
         <translation>Datei %1 kann nicht zum Lesen geöffnet werden.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="352"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="354"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="346"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="348"/>
         <source>Save turn order list</source>
         <translation>Initiativliste speichern</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="361"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="355"/>
         <source>Cannot open file %1 for writing.</source>
         <translation>Datei %1 kann nicht zum Schreiben geöffnet werden.</translation>
     </message>
