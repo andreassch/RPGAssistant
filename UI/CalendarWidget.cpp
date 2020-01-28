@@ -21,7 +21,18 @@ CalendarWidget::~CalendarWidget()
 /* Public methonds ***********************************************************/
 int CalendarWidget::day() const
 {
-    return m_ui->tableCalendar->currentItem()->data(Qt::DisplayRole).toInt();
+    QItemSelectionModel *select = m_ui->tableCalendar->selectionModel();
+    if (select->hasSelection()) {
+        int row = select->selectedIndexes()[0].row();
+        int col = select->selectedIndexes()[0].column();
+        QTableWidgetItem* item = m_ui->tableCalendar->item(row, col);
+        if (item)
+            return item->data(Qt::DisplayRole).toInt();
+        else
+            return (row == 0) ? -1 : -2;
+    }
+    else
+        return 0;
 }
 
 int CalendarWidget::month() const
@@ -39,26 +50,55 @@ int CalendarWidget::yearHal() const
     return year();
 }
 
-int CalendarWidget::daysInMonth(const int month) const
+void CalendarWidget::setDay(const int new_day)
 {
-    if (month == 13)
+    int col = dayOfWeek(new_day, month(), yearHal()) - 1;
+    int row = (dayOfWeek(1, month(), yearHal()) + new_day - 2) / 7;
+    QItemSelectionModel *selection_model = m_ui->tableCalendar->selectionModel();
+    QModelIndex index = m_ui->tableCalendar->model()->index(row, col);
+    selection_model->select(QItemSelection(index, index), QItemSelectionModel::ClearAndSelect);
+    return;
+}
+
+void CalendarWidget::setMonth(const int new_month)
+{
+    m_ui->comboMonth->setCurrentIndex(new_month-1);
+    return;
+}
+
+void CalendarWidget::setYear(const int new_year)
+{
+    m_ui->spinYear->setValue(new_year);
+    return;
+}
+
+int CalendarWidget::daysInMonth(const int month_no) const
+{
+    if (month_no == Month::NAMELESS)
         return 5;
     else
         return 30;
 }
 
+
 /* Private methods ***********************************************************/
 void CalendarWidget::setupUi()
 {
     m_ui->tableCalendar->setSelectionMode(QAbstractItemView::SingleSelection);
+    for (int col=0; col < m_ui->tableCalendar->columnCount(); col++)
+        m_ui->tableCalendar->horizontalHeader()->setSectionResizeMode(col, QHeaderView::Stretch);
     connect(m_ui->comboMonth, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &CalendarWidget::onChangeMonth);
     connect(m_ui->spinYear, QOverload<int>::of(&QSpinBox::valueChanged), this, &CalendarWidget::onChangeYear);
     connect(m_ui->tableCalendar, &QTableWidget::itemSelectionChanged, this, &CalendarWidget::onChangeDay);
+    connect(m_ui->buttonPreviousMonth, &QPushButton::clicked, this, &CalendarWidget::onPreviousMonth);
+    connect(m_ui->buttonPreviousDay, &QPushButton::clicked, this, &CalendarWidget::onPreviousDay);
+    connect(m_ui->buttonNextDay, &QPushButton::clicked, this, &CalendarWidget::onNextDay);
+    connect(m_ui->buttonNextMonth, &QPushButton::clicked, this, &CalendarWidget::onNextMonth);
     fillMonth(1, 1);
     return;
 }
 
-int CalendarWidget::dayBasis(const int day, const int month, const int year_hal)
+int CalendarWidget::dayBasis(const int day, const int month, const int year_hal) const
 {
     int year_basis = year_hal % 28;
     int month_basis = (month-1)*2;
@@ -66,27 +106,27 @@ int CalendarWidget::dayBasis(const int day, const int month, const int year_hal)
     return dow_basis;
 }
 
-int CalendarWidget::dayOfWeek(const int day_basis)
+int CalendarWidget::dayOfWeek(const int day_basis) const
 {
-    int dow = (day_basis+2) % 7;
+    int dow = (day_basis+1) % 7 + 1;
     return dow;
 }
 
-int CalendarWidget::moonPhase(const int day_basis)
-{
-    int moon_phase = ((day_basis % 28)-1)/7;
-    return moon_phase;
-}
-
-int CalendarWidget::dayOfWeek(const int day, const int month, const int year_hal)
+int CalendarWidget::dayOfWeek(const int day, const int month, const int year_hal) const
 {
     int dow_basis = dayBasis(day, month, year_hal);
     return dayOfWeek(dow_basis);
 }
 
-int CalendarWidget::moonPhase(const int day, const int month, const int year_halt)
+int CalendarWidget::moonPhase(const int day_basis) const
 {
-    int day_basis = dayBasis(day, month, year_halt);
+    int moon_phase = ((day_basis % 28)-1)/7;
+    return moon_phase;
+}
+
+int CalendarWidget::moonPhase(const int day, const int month, const int year_hal) const
+{
+    int day_basis = dayBasis(day, month, year_hal);
     return moonPhase(day_basis);
 }
 
@@ -155,5 +195,74 @@ void CalendarWidget::onChangeDay()
     else {
         m_ui->labelMoonPhaseText->setText("");
     }
+    return;
+}
+
+void CalendarWidget::onPreviousYear()
+{
+    setYear(year()-1);
+    return;
+}
+
+void CalendarWidget::onNextYear()
+{
+    setYear(year()+1);
+    return;
+}
+
+
+void CalendarWidget::onPreviousMonth()
+{
+    int new_month = month() - 1;
+    if (new_month < 1) {
+        onPreviousYear();
+        new_month = noOfMonths();
+    }
+    setMonth(new_month);
+    return;
+}
+
+void CalendarWidget::onNextMonth()
+{
+    int new_month = month() + 1;
+    if (new_month > noOfMonths()) {
+        onNextYear();
+        new_month = 1;
+    }
+    setMonth(new_month);
+    return;
+}
+
+void CalendarWidget::onPreviousDay()
+{
+    int new_day = day();
+    if (new_day == 0) // no day selected
+        return;
+    if (new_day < 0)
+        new_day = (new_day == -1) ? 0 : daysInMonth(month());
+    else
+        new_day--;
+    if (new_day < 1) {
+        onPreviousMonth();
+        new_day = daysInMonth(month());
+    }
+    setDay(new_day);
+    return;
+}
+
+void CalendarWidget::onNextDay()
+{
+    int new_day = day();
+    if (new_day == 0) // no day selected
+        return;
+    if (new_day < 0)
+        new_day = (new_day == -1) ? 1 : daysInMonth(month())+1;
+    else
+        new_day++;
+    if (new_day > daysInMonth(month())) {
+        onNextMonth();
+        new_day = 1;
+    }
+    setDay(new_day);
     return;
 }

@@ -1,3 +1,18 @@
+/**
+ * Non-Player Character (NPC) generator module for Role Playing Game Assistant.
+ *
+ * (c) Andreas Schneider andreas underscore schn at web dot de
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 3
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
 #pragma once
 
 #include <QWidget>
@@ -47,9 +62,32 @@ private slots:
      */
     void onChangeSpecies(const int index);
 
+    /**
+     * @brief Callback on changing the check box to select regions randomly.
+     * It enables/disbales the corresponding combo box.
+     * @param state The new state of the check box.
+     */
     void onChangeRandomRegion(const int state);
+
+    /**
+     * @brief Callback on changing the check box to select species randomly.
+     * It enables/disbales the corresponding combo box and updates the state of random race selection, if necessary.
+     * @param state The new state of the check box.
+     */
     void onChangeRandomSpecies(const int state);
+
+    /**
+     * @brief Callback on changing the check box to select races randomly.
+     * It enables/disbales the corresponding combo box and updates the state of random species selection, if necessary.
+     * @param state The new state of the check box.
+     */
     void onChangeRandomRace(const int state);
+
+    /**
+     * @brief Callback on changing the check box to select the gender randomly.
+     * It enables/disbales the corresponding combo box.
+     * @param state The new state of the check box.
+     */
     void onChangeRandomGender(const int state);
 
 private:

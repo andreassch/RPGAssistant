@@ -4,172 +4,197 @@
 <context>
     <name>CalendarWidget</name>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="14"/>
+        <location filename="../UI/CalendarWidget.ui" line="20"/>
         <source>Calendar</source>
         <translation>Kalender</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="23"/>
+        <location filename="../UI/CalendarWidget.ui" line="29"/>
         <source>Praios</source>
         <translation>Praios</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="28"/>
+        <location filename="../UI/CalendarWidget.ui" line="34"/>
         <source>Rondra</source>
         <translation>Rondra</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="33"/>
+        <location filename="../UI/CalendarWidget.ui" line="39"/>
         <source>Efferd</source>
         <translation>Efferd</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="38"/>
+        <location filename="../UI/CalendarWidget.ui" line="44"/>
         <source>Travia</source>
         <translation>Travia</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="43"/>
+        <location filename="../UI/CalendarWidget.ui" line="49"/>
         <source>Boron</source>
         <translation>Boron</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="48"/>
+        <location filename="../UI/CalendarWidget.ui" line="54"/>
         <source>Hesinde</source>
         <translation>Hesinde</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="53"/>
+        <location filename="../UI/CalendarWidget.ui" line="59"/>
         <source>Firun</source>
         <translation>Firun</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="58"/>
+        <location filename="../UI/CalendarWidget.ui" line="64"/>
         <source>Tsa</source>
         <translation>Tsa</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="63"/>
+        <location filename="../UI/CalendarWidget.ui" line="69"/>
         <source>Phex</source>
         <translation>Phex</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="68"/>
+        <location filename="../UI/CalendarWidget.ui" line="74"/>
         <source>Peraine</source>
         <translation>Peraine</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="73"/>
+        <location filename="../UI/CalendarWidget.ui" line="79"/>
         <source>Ingerimm</source>
         <translation>Ingerimm</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="78"/>
+        <location filename="../UI/CalendarWidget.ui" line="84"/>
         <source>Rahja</source>
         <translation>Rahja</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="83"/>
+        <location filename="../UI/CalendarWidget.ui" line="89"/>
         <source>Nameless</source>
         <translation>Namenlos</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="105"/>
+        <location filename="../UI/CalendarWidget.ui" line="111"/>
         <source>Hal</source>
         <translation>Hal</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="119"/>
+        <location filename="../UI/CalendarWidget.ui" line="143"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="124"/>
+        <location filename="../UI/CalendarWidget.ui" line="148"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="129"/>
+        <location filename="../UI/CalendarWidget.ui" line="153"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="134"/>
+        <location filename="../UI/CalendarWidget.ui" line="158"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="139"/>
+        <location filename="../UI/CalendarWidget.ui" line="163"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="144"/>
+        <location filename="../UI/CalendarWidget.ui" line="168"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="149"/>
+        <location filename="../UI/CalendarWidget.ui" line="173"/>
         <source>Wi</source>
         <translation>Wi</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="157"/>
+        <location filename="../UI/CalendarWidget.ui" line="181"/>
         <source>Ea</source>
         <translation>Er</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="189"/>
+        <location filename="../UI/CalendarWidget.ui" line="213"/>
         <source>Fi</source>
         <translation>Fe</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="165"/>
+        <location filename="../UI/CalendarWidget.ui" line="234"/>
+        <source>&amp;&lt; Month</source>
+        <translation>&amp;&lt; Monat</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="241"/>
+        <source>&amp;- Day</source>
+        <translation>&amp;- Tag</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="248"/>
+        <source>Day &amp;+</source>
+        <translation>Tag &amp;+</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="255"/>
+        <source>Month &amp;&gt;</source>
+        <translation>Monat &amp;&gt;</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="282"/>
+        <source>Holidays:</source>
+        <translation>Feiertage:</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="189"/>
         <source>Ma</source>
         <translation>Ma</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="173"/>
+        <location filename="../UI/CalendarWidget.ui" line="197"/>
         <source>Pr</source>
         <translation>Pr</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="181"/>
+        <location filename="../UI/CalendarWidget.ui" line="205"/>
         <source>Ro</source>
         <translation>Ro</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="197"/>
+        <location filename="../UI/CalendarWidget.ui" line="221"/>
         <source>Wa</source>
         <translation>Wa</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="210"/>
+        <location filename="../UI/CalendarWidget.ui" line="266"/>
         <source>Moon phase</source>
         <translation>Mondphase</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="217"/>
+        <location filename="../UI/CalendarWidget.ui" line="273"/>
         <source>Crescent</source>
         <translation>Kelch</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.h" line="59"/>
+        <location filename="../UI/CalendarWidget.h" line="117"/>
         <source>full</source>
         <translation>Rad</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.h" line="59"/>
+        <location filename="../UI/CalendarWidget.h" line="117"/>
         <source>waxing</source>
         <translation>Kelch</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.h" line="59"/>
+        <location filename="../UI/CalendarWidget.h" line="117"/>
         <source>waning</source>
         <translation>Helm</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.h" line="59"/>
+        <location filename="../UI/CalendarWidget.h" line="117"/>
         <source>new</source>
         <translation>Tote Mada</translation>
     </message>
