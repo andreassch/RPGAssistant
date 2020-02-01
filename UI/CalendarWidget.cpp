@@ -3,6 +3,7 @@
 
 #include "Utils.h"
 #include <QSettings>
+#include <QDir>
 #include <QtDebug>
 
 using namespace TDECalendar;
@@ -75,6 +76,13 @@ void CalendarWidget::setupUi()
     for (int month_no = 1; month_no <= Calendar::noOfMonths(); month_no++)
         m_ui->comboMonth->addItem(Calendar::monthName(month_no));
 
+    // Create table columns for week days.
+    m_ui->tableCalendar->setColumnCount(Calendar::daysInWeek());
+    qDebug() << m_ui->tableCalendar->columnCount();
+    for (int col = 0; col < m_ui->tableCalendar->columnCount(); col++) {
+        QTableWidgetItem* header = new QTableWidgetItem(Calendar::weekdayAbbreviation(col+1),QTableWidgetItem::Type);
+        m_ui->tableCalendar->setHorizontalHeaderItem(col, header);
+    }
     // Set resize mode in calendar table.
     m_ui->tableCalendar->setSelectionMode(QAbstractItemView::SingleSelection);
     for (int col=0; col < m_ui->tableCalendar->columnCount(); col++)
@@ -111,7 +119,7 @@ void CalendarWidget::setDaySpin(const int new_day)
 void CalendarWidget::setDayTab(const int new_day)
 {
     int col = Calendar::dayOfWeek(new_day, month(), yearStandardReckoning()) - 1;
-    int row = (Calendar::dayOfWeek(1, month(), yearStandardReckoning()) + new_day - 2) / 7;
+    int row = (Calendar::dayOfWeek(1, month(), yearStandardReckoning()) + new_day - 2) / Calendar::daysInWeek();
     {
     QSignalBlocker blocker(m_ui->tableCalendar);
     QItemSelectionModel *selection_model = m_ui->tableCalendar->selectionModel();
@@ -125,8 +133,6 @@ void CalendarWidget::fillMonth(const int month, const int year_hal)
 {
     int day = 1;
     int col = Calendar::dayOfWeek(day, month, year_hal)-1;
-    if (col < 0)
-        col += 7;
     qDebug() << "fillMonth" << year_hal << month << col << Calendar::daysInMonth(month);
     int row = 0;
     // Clear items before start.
@@ -197,8 +203,16 @@ void CalendarWidget::onChangeDayTab()
 
 void CalendarWidget::onChangeDate()
 {
-    int moon_phase = Calendar::moonPhase(day(), month(), year());
-    m_ui->labelMoonPhaseText->setText(Calendar::moonPhaseText(moon_phase));
+#ifdef ANDROID
+    QDir image_dir("assets:/images");
+#else
+    QDir image_dir = QDir("."); // TODO: don't hardcode path
+#endif
+    MoonPhase moon_phase(day(), month(), year());
+    m_ui->labelMoonPhaseText->setText(moon_phase.toString());
+    QString filename = image_dir.filePath(moon_phase.graphicsFilename());
+    qDebug() << filename;
+    m_ui->widgetMoonPhase->load(filename);
     return;
 }
 

@@ -9,194 +9,69 @@
         <translation>Kalender</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="29"/>
-        <source>Praios</source>
-        <translation>Praios</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="34"/>
-        <source>Rondra</source>
-        <translation>Rondra</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="39"/>
-        <source>Efferd</source>
-        <translation>Efferd</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="44"/>
-        <source>Travia</source>
-        <translation>Travia</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="49"/>
-        <source>Boron</source>
-        <translation>Boron</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="54"/>
-        <source>Hesinde</source>
-        <translation>Hesinde</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="59"/>
-        <source>Firun</source>
-        <translation>Firun</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="64"/>
-        <source>Tsa</source>
-        <translation>Tsa</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="69"/>
-        <source>Phex</source>
-        <translation>Phex</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="74"/>
-        <source>Peraine</source>
-        <translation>Peraine</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="79"/>
-        <source>Ingerimm</source>
-        <translation>Ingerimm</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="84"/>
-        <source>Rahja</source>
-        <translation>Rahja</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="89"/>
-        <source>Nameless</source>
-        <translation>Namenlos</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="111"/>
+        <location filename="../UI/CalendarWidget.ui" line="55"/>
         <source>Hal</source>
         <translation>Hal</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="143"/>
+        <location filename="../UI/CalendarWidget.ui" line="87"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="148"/>
+        <location filename="../UI/CalendarWidget.ui" line="92"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="153"/>
+        <location filename="../UI/CalendarWidget.ui" line="97"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="158"/>
+        <location filename="../UI/CalendarWidget.ui" line="102"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="163"/>
+        <location filename="../UI/CalendarWidget.ui" line="107"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="168"/>
+        <location filename="../UI/CalendarWidget.ui" line="112"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="173"/>
-        <source>Wi</source>
-        <translation>Wi</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="181"/>
-        <source>Ea</source>
-        <translation>Er</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="213"/>
-        <source>Fi</source>
-        <translation>Fe</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="234"/>
+        <location filename="../UI/CalendarWidget.ui" line="122"/>
         <source>&amp;&lt; Month</source>
         <translation>&amp;&lt; Monat</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="241"/>
+        <location filename="../UI/CalendarWidget.ui" line="129"/>
         <source>&amp;- Day</source>
         <translation>&amp;- Tag</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="248"/>
+        <location filename="../UI/CalendarWidget.ui" line="136"/>
         <source>Day &amp;+</source>
         <translation>Tag &amp;+</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="255"/>
+        <location filename="../UI/CalendarWidget.ui" line="143"/>
         <source>Month &amp;&gt;</source>
         <translation>Monat &amp;&gt;</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="282"/>
+        <location filename="../UI/CalendarWidget.ui" line="170"/>
+        <source>Moon phase:</source>
+        <translation>Mondphase:</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="186"/>
         <source>Holidays:</source>
         <translation>Feiertage:</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="189"/>
-        <source>Ma</source>
-        <translation>Ma</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="197"/>
-        <source>Pr</source>
-        <translation>Pr</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="205"/>
-        <source>Ro</source>
-        <translation>Ro</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="221"/>
-        <source>Wa</source>
-        <translation>Wa</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="266"/>
-        <source>Moon phase</source>
-        <translation>Mondphase</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="273"/>
-        <source>Crescent</source>
-        <translation>Kelch</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.h" line="117"/>
-        <source>full</source>
-        <translation>Rad</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.h" line="117"/>
-        <source>waxing</source>
-        <translation>Kelch</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.h" line="117"/>
-        <source>waning</source>
-        <translation>Helm</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.h" line="117"/>
-        <source>new</source>
-        <translation>Tote Mada</translation>
     </message>
 </context>
 <context>
@@ -323,6 +198,161 @@ Line %2, column %3</source>
         <location filename="../UI/TurnOrderWidget.cpp" line="325"/>
         <source>Incorrect turn order XML file.</source>
         <translation>Keine korrekte Initiativlisten-XML-Datei.</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="24"/>
+        <source>Praios</source>
+        <translation>Praios</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="24"/>
+        <source>Rondra</source>
+        <translation>Rondra</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="24"/>
+        <source>Efferd</source>
+        <translation>Efferd</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="24"/>
+        <source>Travia</source>
+        <translation>Travia</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="25"/>
+        <source>Boron</source>
+        <translation>Boron</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="25"/>
+        <source>Hesinde</source>
+        <translation>Hesinde</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="25"/>
+        <source>Firun</source>
+        <translation>Firun</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="25"/>
+        <source>Tsa</source>
+        <translation>Tsa</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="26"/>
+        <source>Phex</source>
+        <translation>Phex</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="26"/>
+        <source>Peraine</source>
+        <translation>Peraine</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="26"/>
+        <source>Ingerimm</source>
+        <translation>Ingerimm</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="26"/>
+        <source>Rahja</source>
+        <translation>Rahja</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="27"/>
+        <source>Nameless</source>
+        <translation>Namenlos</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="35"/>
+        <source>Windsday</source>
+        <translation>Windstag</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="35"/>
+        <source>Earthday</source>
+        <translation>Erdtag</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="35"/>
+        <source>Marketday</source>
+        <translation>Markttag</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="35"/>
+        <source>Praiosday</source>
+        <translation>Praiostag</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="36"/>
+        <source>Rohalsday</source>
+        <translation>Rohalstag</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="36"/>
+        <source>Fireday</source>
+        <translation>Feuertag</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="36"/>
+        <source>Waterday</source>
+        <translation>Wassertag</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <source>Wi</source>
+        <translation>Wi</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <source>Ea</source>
+        <translation>Er</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <source>Ma</source>
+        <translation>Ma</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <source>Pr</source>
+        <translation>Pr</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <source>Ro</source>
+        <translation>Ro</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <source>Fi</source>
+        <translation>Fe</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <source>Wa</source>
+        <translation>Wa</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="101"/>
+        <source>waxing</source>
+        <translation>Kelch</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="102"/>
+        <source>full</source>
+        <translation>Rad</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="101"/>
+        <source>waning</source>
+        <translation>Helm</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="102"/>
+        <source>new</source>
+        <translation>Tote Mada</translation>
     </message>
 </context>
 <context>

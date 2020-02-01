@@ -6,7 +6,7 @@
 namespace TDECalendar {
 
     /**
-     * Enumeration of the different months in the year.
+     * Enumeration of the different months in the year of the Aventurian calendar.
      */
     namespace Month {
         enum Month {
@@ -26,6 +26,9 @@ namespace TDECalendar {
         };
     }
 
+    /**
+     * @brief Calendar computations of the Aventurian calendar.
+     */
     class Calendar
     {
     public:
@@ -45,11 +48,31 @@ namespace TDECalendar {
         inline static int noOfMonths() { return 13; }
 
         /**
+         * @brief Gets the number of days in a week.
+         * @return Number of days in a week.
+         */
+        static int daysInWeek() { return 7; }
+
+        /**
          * @brief Get name of a given month.
          * @param month Number of the month (1-13).
          * @return Name of the given month.
          */
-        static QString monthName(int month);
+        static QString monthName(const int month);
+
+        /**
+         * @brief Get name of a day in the week.
+         * @param weekday Number of the day in the week.
+         * @return Name of the day in the week.
+         */
+        static QString weekdayName(const int weekday);
+
+        /**
+         * @brief Get abbreviation of a day in the week.
+         * @param weekday Number of the day in the week.
+         * @return Abbreviation of the day in the week.
+         */
+        static QString weekdayAbbreviation(const int weekday);
 
         /**
          * @brief Computes the day basis according to the Aventurian calendar.
@@ -76,28 +99,49 @@ namespace TDECalendar {
          * @return Day of the week (1 = Windsday, 7 = Waterday).
          */
         static int dayOfWeek(const int day, const int month, const int year_hal);
+    };
+
+    namespace MoonPhaseStatus {
+        enum MoonPhaseStatus {WAXING, WANING};
+    }
+
+    /**
+     * @brief Moon phases in Aventurica.
+     */
+    class MoonPhase
+    {
+    public:
+        MoonPhase(const int day_basis);
+        MoonPhase(const int day, const int month, const int year_hal);
 
         /**
          * @brief Compute moon phase from the day basis.
          * @param day_basis Day basis in the Aventurian calendar.
-         * @return Moon phase
          */
-        static int moonPhase(const int day_basis);
+        void setMoonPhase(const int day_basis);
 
         /**
          * @brief Compute moon phase from day, month and year.
          * @param day Day of the month (1-30)
          * @param month Month (1-13)
          * @param year_hal Year in Hal reckoning.
-         * @return Moon phase
          */
-        static int moonPhase(const int day, const int month, const int year_hal);
+        void setMoonPhase(const int day, const int month, const int year_hal);
 
         /**
          * @brief Textual name of moon phase.
-         * @param moon_phase Moon phase.
          * @return Text of moon phase.
          */
-        static QString moonPhaseText(const int moon_phase);
+        QString toString() const;
+
+        /**
+         * @brief Gets file name for graphics corresponding to the moon phase.
+         * @return File name.
+         */
+        QString graphicsFilename() const;
+
+    private:
+        MoonPhaseStatus::MoonPhaseStatus m_status;
+        int m_phase;
     };
 }

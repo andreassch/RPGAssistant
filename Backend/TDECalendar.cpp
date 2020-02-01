@@ -5,6 +5,7 @@
 
 namespace TDECalendar {
 
+    /* Implementation of Calendar class **************************************/
     Calendar::Calendar()
     {
     }
@@ -17,7 +18,7 @@ namespace TDECalendar {
             return 30;
     }
 
-    QString Calendar::monthName(int month)
+    QString Calendar::monthName(const int month)
     {
         const QString m_month_names[13] = {
             QObject::tr("Praios"), QObject::tr("Rondra"), QObject::tr("Efferd"), QObject::tr("Travia"),
@@ -26,6 +27,24 @@ namespace TDECalendar {
             QObject::tr("Nameless") };
         assert((month >= 1) && (month <= noOfMonths()));
         return m_month_names[month-1];
+    }
+
+    QString Calendar::weekdayName(const int weekday)
+    {
+        const QString weekday_names[7] = {
+            QObject::tr("Windsday"), QObject::tr("Earthday"), QObject::tr("Marketday"), QObject::tr("Praiosday"),
+            QObject::tr("Rohalsday"), QObject::tr("Fireday"), QObject::tr("Waterday")};
+        assert((weekday >= 1) && (weekday <= daysInWeek()));
+        return weekday_names[weekday-1];
+    }
+
+    QString Calendar::weekdayAbbreviation(const int weekday)
+    {
+        const QString weekday_abbreviations[7] = {
+            QObject::tr("Wi"), QObject::tr("Ea"), QObject::tr("Ma"), QObject::tr("Pr"), QObject::tr("Ro"), QObject::tr("Fi"), QObject::tr("Wa")
+        };
+        assert((weekday >= 1) && (weekday <= daysInWeek()));
+        return weekday_abbreviations[weekday-1];
     }
 
     int Calendar::dayBasis(const int day, const int month, const int year_hal)
@@ -48,23 +67,52 @@ namespace TDECalendar {
         return dayOfWeek(dow_basis);
     }
 
-    int Calendar::moonPhase(const int day_basis)
+
+    /* Implementation of MoonPhase class *************************************/
+    MoonPhase::MoonPhase(const int day_basis)
     {
-        int moon_phase = ((day_basis % 28)-1)/7;
-        return moon_phase;
+        setMoonPhase(day_basis);
     }
 
-    int Calendar::moonPhase(const int day, const int month, const int year_hal)
+    MoonPhase::MoonPhase(const int day, const int month, const int year_hal)
     {
-        int day_basis = dayBasis(day, month, year_hal);
-        return moonPhase(day_basis);
+        setMoonPhase(day, month, year_hal);
     }
 
-    QString Calendar::moonPhaseText(const int moon_phase)
+    void MoonPhase::setMoonPhase(const int day_basis)
     {
-        qDebug() << "moon phase" << moon_phase;
-        QString moon_phase_texts[4] = {QObject::tr("waxing"), QObject::tr("full"), QObject::tr("waning"), QObject::tr("new")};
-        assert((moon_phase >= 0) && (moon_phase < 4));
-        return moon_phase_texts[moon_phase];
+        int moon_phase_base = (day_basis-1) % 28;
+        int status = moon_phase_base / 14;
+        m_status = (status == 0) ? MoonPhaseStatus::WAXING : MoonPhaseStatus::WANING;
+        m_phase = moon_phase_base - 14*status;
+        qDebug() << "setMoonPhase" << status << m_phase;
+        return;
+    }
+
+    void MoonPhase::setMoonPhase(const int day, const int month, const int year_hal)
+    {
+        int day_basis = Calendar::dayBasis(day, month, year_hal);
+        setMoonPhase(day_basis);
+        return;
+    }
+
+    QString MoonPhase::toString() const
+    {
+        const QString status_texts[2] = {QObject::tr("waxing"), QObject::tr("waning")};
+        const QString full_texts[2] = {QObject::tr("full"), QObject::tr("new")};
+        if (m_phase == 13)
+            return full_texts[m_status];
+        else
+            return status_texts[m_status];
+    }
+
+    QString MoonPhase::graphicsFilename() const
+    {
+        QString status;
+        if (m_status == MoonPhaseStatus::WAXING)
+            status = "Waxing";
+        else
+            status = "Waning";
+        return QString("MoonPhase%1%2.svg").arg(status).arg(QString::number(m_phase+1));
     }
 }

@@ -21,7 +21,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="layoutDate">
      <item>
       <widget class="QSpinBox" name="spinDay">
        <property name="minimum">
@@ -112,66 +112,10 @@
        <string>6</string>
       </property>
      </row>
-     <column>
-      <property name="text">
-       <string>Wi</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Ea</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Ma</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Pr</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Ro</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Fi</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Wa</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-     </column>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="layoutNavigation">
      <item>
       <widget class="QPushButton" name="buttonPreviousMonth">
        <property name="text">
@@ -203,18 +147,34 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="labelMoonPhase">
-       <property name="text">
-        <string>Moon phase</string>
+    <layout class="QGridLayout" name="layoutMoonPhase">
+     <item row="0" column="1" rowspan="2">
+      <widget class="QSvgWidget" name="widgetMoonPhase" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>70</width>
+         <height>70</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>70</width>
+         <height>70</height>
+        </size>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelMoonPhase">
+       <property name="text">
+        <string>Moon phase:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
       <widget class="QLabel" name="labelMoonPhaseText">
        <property name="text">
-        <string>Crescent</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -232,6 +192,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QSvgWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">QSvgWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

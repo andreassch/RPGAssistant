@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -76,14 +76,19 @@ for(tsfile, TRANSLATIONS) {
 # Setup 'make install' step
 android {
     DATA_PATH=/assets/data
+    IMAGE_PATH=/assets/images
     LOCALE_PATH=/assets/translations
 } else {
     DATA_PATH=/
+    IMAGE_PATH=/
     LOCALE_PATH=/
 }
 data.path = $$DATA_PATH
 data.files = Data/names.xml Data/races.xml
 data.depends += FORCE
+images.path = $$IMAGE_PATH
+images.files = Data/MoonPhaseWa?ing*.svg
+images.depends += FORCE
 locales.path = $$LOCALE_PATH
 locales.files = Translations/rpgassistant_de.qm
 locales.depends += FORCE

@@ -26,6 +26,8 @@ namespace Ui {
 class CalendarWidget;
 }
 
+using namespace TDECalendar;
+
 class CalendarWidget : public QWidget
 {
     Q_OBJECT
@@ -109,6 +111,8 @@ private:
      * @param year_hal Year after Hal.
      */
     void fillMonth(const int month, const int year_hal);
+
+    void setMoonPhase(const MoonPhase moon_phase);
 
 private slots:
     /**
