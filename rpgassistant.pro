@@ -22,6 +22,7 @@ SOURCES += \
     Backend/NamesXmlReader.cpp \
     Backend/Race.cpp \
     Backend/RacesXmlReader.cpp \
+    Backend/TDECalendar.cpp \
     UI/CalendarWidget.cpp \
     UI/MainWidget.cpp \
     UI/TurnOrderWidget.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     Backend/Race.h \
     Backend/RacesXmlReader.h \
     Backend/Species.h \
+    Backend/TDECalendar.h \
     UI/CalendarWidget.h \
     UI/MainWidget.h \
     UI/NPCGeneratorWidget.h \

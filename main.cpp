@@ -7,6 +7,10 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+    QCoreApplication::setOrganizationName("Andreas Schneider");
+    QCoreApplication::setOrganizationDomain("andreasschneider.de");
+    QCoreApplication::setApplicationName("RPGAssistant");
+
     QTranslator app_translator;
 #ifdef ANDROID
     QString locale_name = "assets:/translations/rpgassistant_" + QLocale::system().name();

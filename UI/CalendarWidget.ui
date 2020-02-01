@@ -23,73 +23,17 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QComboBox" name="comboMonth">
-       <item>
-        <property name="text">
-         <string>Praios</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Rondra</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Efferd</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Travia</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Boron</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Hesinde</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Firun</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Tsa</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Phex</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Peraine</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Ingerimm</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Rahja</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Nameless</string>
-        </property>
-       </item>
+      <widget class="QSpinBox" name="spinDay">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>30</number>
+       </property>
       </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboMonth"/>
      </item>
      <item>
       <widget class="QSpinBox" name="spinYear">
