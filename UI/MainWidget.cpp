@@ -11,6 +11,9 @@ MainWidget::MainWidget(QWidget *parent) :
 
 MainWidget::~MainWidget()
 {
+    delete(m_turn_order_widget);
+    delete(m_npc_generator_widget);
+    delete(m_calendar_widget);
     delete m_ui;
 }
 

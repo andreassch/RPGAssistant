@@ -47,8 +47,37 @@ namespace TDECalendar {
         return weekday_abbreviations[weekday-1];
     }
 
-    int Calendar::dayBasis(const int day, const int month, const int year_hal)
+    QString Calendar::reckoningName(const Reckoning::Reckoning reckoning)
     {
+        const QString reckoning_names[Reckoning::RECKONING_COUNT] = {QObject::tr("Hal"), QObject::tr("Fall of Bosparan")};
+        return reckoning_names[reckoning];
+    }
+
+    QString Calendar::reckoningAbbreviation(const Reckoning::Reckoning reckoning)
+    {
+        const QString reckoning_abbreviations[Reckoning::RECKONING_COUNT] = {QObject::tr("Hal"), QObject::tr("BoF")};
+        return reckoning_abbreviations[reckoning];
+    }
+
+    QString Calendar::reckoningSymbolicName(const Reckoning::Reckoning reckoning)
+    {
+        const char* reckoning_symbolic_names[Reckoning::RECKONING_COUNT] = {"Hal", "BF"};
+        return reckoning_symbolic_names[reckoning];
+    }
+
+    Reckoning::Reckoning Calendar::parseReckoning(const QString &reckoning_symbolic_name)
+    {
+        for (int reckoning_no = 0; reckoning_no < noOfReckonings(); reckoning_no++) {
+            if (QString::compare(reckoning_symbolic_name, reckoningSymbolicName(static_cast<Reckoning::Reckoning>(reckoning_no)), Qt::CaseInsensitive) == 0)
+                return static_cast<Reckoning::Reckoning>(reckoning_no);
+        }
+        qDebug() << "Unknown reckoning" << reckoning_symbolic_name << "reverting to Hal";
+        return Reckoning::HAL;
+    }
+
+    int Calendar::dayBasis(const int day, const int month, const int year, const Reckoning::Reckoning reckoning)
+    {
+        int year_hal = toStandardReckoning(year, reckoning);
         int year_basis = year_hal % 28;
         int month_basis = (month-1)*2;
         int dow_basis = year_basis + month_basis + day;
@@ -61,10 +90,46 @@ namespace TDECalendar {
         return dow;
     }
 
-    int Calendar::dayOfWeek(const int day, const int month, const int year_hal)
+    int Calendar::dayOfWeek(const int day, const int month, const int year, const Reckoning::Reckoning reckoning)
     {
-        int dow_basis = dayBasis(day, month, year_hal);
+        int dow_basis = dayBasis(day, month, year, reckoning);
         return dayOfWeek(dow_basis);
+    }
+
+    int Calendar::fromStandardReckoning(const int year_hal, const Reckoning::Reckoning reckoning)
+    {
+        int year;
+        switch(reckoning) {
+            case Reckoning::HAL:
+                year = year_hal;
+                break;
+            case Reckoning::FALL_OF_BOSPARAN:
+                year = year_hal + 993;
+                break;
+        }
+        return year;
+    }
+
+    int Calendar::toStandardReckoning(const int year, const Reckoning::Reckoning reckoning)
+    {
+        int year_hal;
+        switch(reckoning) {
+            case Reckoning::HAL:
+                year_hal = year;
+                break;
+            case Reckoning::FALL_OF_BOSPARAN:
+                year_hal = year - 993;
+                break;
+        }
+        return year_hal;
+    }
+
+    int Calendar::convertReckoning(const int year, const Reckoning::Reckoning old_reckoning, const Reckoning::Reckoning new_reckoning)
+    {
+        if (old_reckoning == new_reckoning)
+            return year;
+        int year_hal = toStandardReckoning(year, old_reckoning);
+        return fromStandardReckoning(year_hal, new_reckoning);
     }
 
 
@@ -74,9 +139,9 @@ namespace TDECalendar {
         setMoonPhase(day_basis);
     }
 
-    MoonPhase::MoonPhase(const int day, const int month, const int year_hal)
+    MoonPhase::MoonPhase(const int day, const int month, const int year, const Reckoning::Reckoning reckoning)
     {
-        setMoonPhase(day, month, year_hal);
+        setMoonPhase(day, month, year, reckoning);
     }
 
     void MoonPhase::setMoonPhase(const int day_basis)
@@ -89,9 +154,9 @@ namespace TDECalendar {
         return;
     }
 
-    void MoonPhase::setMoonPhase(const int day, const int month, const int year_hal)
+    void MoonPhase::setMoonPhase(const int day, const int month, const int year, const Reckoning::Reckoning reckoning)
     {
-        int day_basis = Calendar::dayBasis(day, month, year_hal);
+        int day_basis = Calendar::dayBasis(day, month, year, reckoning);
         setMoonPhase(day_basis);
         return;
     }

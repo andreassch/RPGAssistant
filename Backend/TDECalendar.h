@@ -26,6 +26,11 @@ namespace TDECalendar {
         };
     }
 
+    namespace Reckoning {
+        enum Reckoning {HAL,FALL_OF_BOSPARAN};
+        const int RECKONING_COUNT = 2;
+    }
+
     /**
      * @brief Calendar computations of the Aventurian calendar.
      */
@@ -75,14 +80,49 @@ namespace TDECalendar {
         static QString weekdayAbbreviation(const int weekday);
 
         /**
+         * @brief Get name of a reckoning.
+         * @param reckoning Reckoning enum entry.
+         * @return Name of the reckoning.
+         */
+        static QString reckoningName(const Reckoning::Reckoning reckoning);
+
+        /**
+         * @brief Get the abbreviation of a reckoning.
+         * @param reckoning Reckoning enum entry.
+         * @return Abbreviation of the reckoning.
+         */
+        static QString reckoningAbbreviation(const Reckoning::Reckoning reckoning);
+
+        /**
+         * @brief Get symbolic name of a reckoning. This is independent of locale.
+         * @return Symbolic name of a reckoning
+         */
+        static QString reckoningSymbolicName(const Reckoning::Reckoning reckoning);
+
+        /**
+         * @brief Obtain a reckoning from a string.
+         * @param reckoning_name String describing a reckoning (one of the reckoning symbolic names).
+         * @return The reckoning as Reckoning enum entry.
+         */
+        static Reckoning::Reckoning parseReckoning(const QString& reckoning_name);
+
+        /**
+         * @brief Get number of different reckonings supported by the calendar.
+         * This should coincide with the number of entries in the Reckoning enum.
+         * @return Number of reckonings.
+         */
+        inline static int noOfReckonings() { return Reckoning::RECKONING_COUNT; }
+
+        /**
          * @brief Computes the day basis according to the Aventurian calendar.
          * This is used to compute days of the week and moon phases.
          * @param day Day of the month (1-30)
          * @param month Month (1-13)
-         * @param year_hal Year after Hal.
+         * @param year Year.
+         * @param reckoning Reckoning.
          * @return Day basis.
          */
-        static int dayBasis(const int day, const int month, const int year_hal);
+        static int dayBasis(const int day, const int month, const int year, const Reckoning::Reckoning reckoning);
 
         /**
          * @brief Computes the day of the week (starting at Windsday) from the day basis.
@@ -95,10 +135,36 @@ namespace TDECalendar {
          * @brief Computes the day of the week (starting at Windsday) from day, month and year.
          * @param day Day of the month (1-30).
          * @param month Month number (1-13).
-         * @param year_hal Year after Hal.
+         * @param year Year.
+         * @param reckoning Reckoning.
          * @return Day of the week (1 = Windsday, 7 = Waterday).
          */
-        static int dayOfWeek(const int day, const int month, const int year_hal);
+        static int dayOfWeek(const int day, const int month, const int year, const Reckoning::Reckoning reckoning);
+
+        /**
+         * @brief Convert year from standard reckoning (Hal) to given reckoning.
+         * @param year Year in the standard reckoning (Hal).
+         * @param reckoning Reckoning to convert to.
+         * @return Year in the given reckoning.
+         */
+        static int fromStandardReckoning(const int year_hal, const Reckoning::Reckoning reckoning);
+
+        /**
+         * @brief Convert year from given reckoning to standard reckoning (Hal).
+         * @param year Year in the given reckoning.
+         * @param reckoning Reckoning the year is given in.
+         * @return Year in standard reckoning (Hal).
+         */
+        static int toStandardReckoning(const int year, const Reckoning::Reckoning reckoning);
+
+        /**
+         * @brief Convert year from one reckoning to another.
+         * @param year A year in the old reckoning.
+         * @param old_reckoning The reckoning to convert from.
+         * @param new_reckoning The reckoning to convert to.
+         * @return The year in the new reckoning.
+         */
+        static int convertReckoning(const int year, const Reckoning::Reckoning old_reckoning, const Reckoning::Reckoning new_reckoning);
     };
 
     namespace MoonPhaseStatus {
@@ -112,7 +178,7 @@ namespace TDECalendar {
     {
     public:
         MoonPhase(const int day_basis);
-        MoonPhase(const int day, const int month, const int year_hal);
+        MoonPhase(const int day, const int month, const int year, const Reckoning::Reckoning reckoning);
 
         /**
          * @brief Compute moon phase from the day basis.
@@ -124,9 +190,10 @@ namespace TDECalendar {
          * @brief Compute moon phase from day, month and year.
          * @param day Day of the month (1-30)
          * @param month Month (1-13)
-         * @param year_hal Year in Hal reckoning.
+         * @param year Year.
+         * @param reckoning Reckoning.
          */
-        void setMoonPhase(const int day, const int month, const int year_hal);
+        void setMoonPhase(const int day, const int month, const int year, const Reckoning::Reckoning reckoning);
 
         /**
          * @brief Textual name of moon phase.

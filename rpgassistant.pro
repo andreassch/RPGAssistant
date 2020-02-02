@@ -76,24 +76,24 @@ for(tsfile, TRANSLATIONS) {
 # Setup 'make install' step
 android {
     DATA_PATH=/assets/data
-    IMAGE_PATH=/assets/images
+    GRAPHICS_PATH=/assets/graphics
     LOCALE_PATH=/assets/translations
 } else {
     DATA_PATH=/
-    IMAGE_PATH=/
+    GRAPHICS_PATH=/
     LOCALE_PATH=/
 }
 data.path = $$DATA_PATH
 data.files = Data/names.xml Data/races.xml
 data.depends += FORCE
-images.path = $$IMAGE_PATH
-images.files = Data/MoonPhaseWa?ing*.svg
-images.depends += FORCE
+graphics.path = $$GRAPHICS_PATH
+graphics.files = Graphics/MoonPhaseWa?ing*.svg
+graphics.depends += FORCE
 locales.path = $$LOCALE_PATH
 locales.files = Translations/rpgassistant_de.qm
 locales.depends += FORCE
 
-INSTALLS += data locales
+INSTALLS += data locales graphics
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

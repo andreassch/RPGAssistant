@@ -63,10 +63,10 @@ public:
     int year() const;
 
     /**
-     * @brief Get the current year in the Hal reckoning.
-     * @return Current year in Hal reckoning.
+     * @brief Get the current reckoning.
+     * @return Current reckoning.
      */
-    int yearStandardReckoning() const;
+    Reckoning::Reckoning reckoning() const;
 
     /**
      * @brief Set the current day of the month.
@@ -85,6 +85,12 @@ public:
      * @param new_year New year.
      */
     void setYear(const int new_year);
+
+    /**
+     * @brief Set the current reckoning.
+     * @param new_reckoning New reckoning.
+     */
+    void setReckoning(const Reckoning::Reckoning new_reckoning);
 
 private:
     /**
@@ -108,24 +114,35 @@ private:
     /**
      * @brief Fills in days of a month into the weekday table.
      * @param month Month (1-13)
-     * @param year_hal Year after Hal.
+     * @param year Year.
+     * @param reckoning Reckoning.
      */
-    void fillMonth(const int month, const int year_hal);
+    void fillMonth(const int month, const int year, const Reckoning::Reckoning reckoning);
 
-    void setMoonPhase(const MoonPhase moon_phase);
+    /**
+     * @brief Saves the current date in the settings for persistant storage.
+     */
+    void saveSettings() const;
 
 private slots:
     /**
-     * @brief Slot activated when the month is changed. It re-fills the calendar view accordingly.
-     * @param index The new index selected in the combo box.
+     * @brief Slot activated when the reckoning is changed.
+     * It recomputes the year in the new reckoning so that the overall date stays the same.
+     * @param index
      */
-    void onChangeMonth(const int index);
+    void onChangeReckoning(const int index);
 
     /**
      * @brief Slot activated when the year is changed. It re-fills the calendar view accordingly.
      * @param year The new number selected in the spin box.
      */
     void onChangeYear(const int year);
+
+    /**
+     * @brief Slot activated when the month is changed. It re-fills the calendar view accordingly.
+     * @param index The new index selected in the combo box.
+     */
+    void onChangeMonth(const int index);
 
     /**
      * @brief Callback activated when the current day is changed via the spin box.
@@ -174,4 +191,5 @@ private slots:
 
 private:
     Ui::CalendarWidget *m_ui;
+    Reckoning::Reckoning m_reckoning = Reckoning::HAL;
 };

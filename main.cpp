@@ -7,9 +7,9 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QCoreApplication::setOrganizationName("Andreas Schneider");
+    QCoreApplication::setOrganizationName("andreas_schn");
     QCoreApplication::setOrganizationDomain("andreasschneider.de");
-    QCoreApplication::setApplicationName("RPGAssistant");
+    QCoreApplication::setApplicationName("rpgassistant");
 
     QTranslator app_translator;
 #ifdef ANDROID

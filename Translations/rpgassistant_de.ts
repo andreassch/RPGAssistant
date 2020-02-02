@@ -9,67 +9,62 @@
         <translation>Kalender</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="55"/>
-        <source>Hal</source>
-        <translation>Hal</translation>
-    </message>
-    <message>
-        <location filename="../UI/CalendarWidget.ui" line="87"/>
+        <location filename="../UI/CalendarWidget.ui" line="81"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="92"/>
+        <location filename="../UI/CalendarWidget.ui" line="86"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="97"/>
+        <location filename="../UI/CalendarWidget.ui" line="91"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="102"/>
+        <location filename="../UI/CalendarWidget.ui" line="96"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="107"/>
+        <location filename="../UI/CalendarWidget.ui" line="101"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="112"/>
+        <location filename="../UI/CalendarWidget.ui" line="106"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="122"/>
+        <location filename="../UI/CalendarWidget.ui" line="116"/>
         <source>&amp;&lt; Month</source>
         <translation>&amp;&lt; Monat</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="129"/>
+        <location filename="../UI/CalendarWidget.ui" line="123"/>
         <source>&amp;- Day</source>
         <translation>&amp;- Tag</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="136"/>
+        <location filename="../UI/CalendarWidget.ui" line="130"/>
         <source>Day &amp;+</source>
         <translation>Tag &amp;+</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="143"/>
+        <location filename="../UI/CalendarWidget.ui" line="137"/>
         <source>Month &amp;&gt;</source>
         <translation>Monat &amp;&gt;</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="170"/>
+        <location filename="../UI/CalendarWidget.ui" line="164"/>
         <source>Moon phase:</source>
         <translation>Mondphase:</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="186"/>
+        <location filename="../UI/CalendarWidget.ui" line="180"/>
         <source>Holidays:</source>
         <translation>Feiertage:</translation>
     </message>
@@ -335,22 +330,38 @@ Line %2, column %3</source>
         <translation>Wa</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="101"/>
+        <location filename="../Backend/TDECalendar.cpp" line="52"/>
+        <location filename="../Backend/TDECalendar.cpp" line="58"/>
+        <source>Hal</source>
+        <translation>Hal</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="52"/>
+        <source>Fall of Bosparan</source>
+        <translation>Bosparans Fall</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="58"/>
+        <source>BoF</source>
+        <translation>BF</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="166"/>
         <source>waxing</source>
         <translation>Kelch</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="102"/>
+        <location filename="../Backend/TDECalendar.cpp" line="167"/>
         <source>full</source>
         <translation>Rad</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="101"/>
+        <location filename="../Backend/TDECalendar.cpp" line="166"/>
         <source>waning</source>
         <translation>Helm</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="102"/>
+        <location filename="../Backend/TDECalendar.cpp" line="167"/>
         <source>new</source>
         <translation>Tote Mada</translation>
     </message>
