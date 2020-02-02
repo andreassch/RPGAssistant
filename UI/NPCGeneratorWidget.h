@@ -47,9 +47,14 @@ private:
     void setupUi();
 
     /**
-     * @brief Loads names and races from XML data files.
+     * @brief Saves current selections to settings.
      */
-    void loadData();
+    void saveSettings();
+
+    /**
+     * @brief Loads selections from settings.
+     */
+    void loadSettings();
 
 private slots:
     /**

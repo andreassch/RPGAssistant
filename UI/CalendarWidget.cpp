@@ -112,10 +112,10 @@ void CalendarWidget::setupUi()
 
     // Recover last viewed date from settings.
     QSettings settings;
-    int curr_day = settings.value("calendar/day", QVariant(1)).toInt();
-    int curr_month = settings.value("calendar/month", QVariant(1)).toInt();
-    int curr_year = settings.value("calendar/year", QVariant(1)).toInt();
-    QString curr_reckoning_str = settings.value("calendar/reckoning", QVariant("Hal")).toString();
+    int curr_day = settings.value("Calendar/day", QVariant(1)).toInt();
+    int curr_month = settings.value("Calendar/month", QVariant(1)).toInt();
+    int curr_year = settings.value("Calendar/year", QVariant(1)).toInt();
+    QString curr_reckoning_str = settings.value("Calendar/reckoning", QVariant("Hal")).toString();
     Reckoning::Reckoning curr_reckoning = Calendar::parseReckoning(curr_reckoning_str);
     fillMonth(curr_month, curr_year, curr_reckoning);
     setReckoning(curr_reckoning);
@@ -183,10 +183,10 @@ void CalendarWidget::fillMonth(const int month, const int year, const Reckoning:
 void CalendarWidget::saveSettings() const
 {
     QSettings settings;
-    settings.setValue("calendar/day", day());
-    settings.setValue("calendar/month", month());
-    settings.setValue("calendar/year", year());
-    settings.setValue("calendar/reckoning", Calendar::reckoningSymbolicName(reckoning()));
+    settings.setValue("Calendar/day", day());
+    settings.setValue("Calendar/month", month());
+    settings.setValue("Calendar/year", year());
+    settings.setValue("Calendar/reckoning", Calendar::reckoningSymbolicName(reckoning()));
     settings.sync();
     return;
 }

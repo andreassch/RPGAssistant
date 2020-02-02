@@ -6,8 +6,9 @@
 #include <QFile>
 #include <QDir>
 #include <QMessageBox>
-#include <QtDebug>
 #include <QRandomGenerator>
+#include <QSettings>
+#include <QtDebug>
 
 /* Public constructors/desctructors ******************************************/
 NPCGeneratorWidget::NPCGeneratorWidget(QWidget *parent) :
@@ -20,6 +21,7 @@ NPCGeneratorWidget::NPCGeneratorWidget(QWidget *parent) :
 
 NPCGeneratorWidget::~NPCGeneratorWidget()
 {
+    saveSettings();
     delete m_ui;
 }
 
@@ -70,6 +72,47 @@ void NPCGeneratorWidget::setupUi()
     connect(m_ui->checkRandomGender, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomGender);
     connect(m_ui->buttonGenerate, &QPushButton::clicked, this, &NPCGeneratorWidget::onGenerate);
 
+    loadSettings();
+
+    return;
+}
+
+void NPCGeneratorWidget::saveSettings()
+{
+    QSettings settings;
+    settings.setValue("NPCGenerator/region", m_ui->comboRegion->currentIndex());
+    settings.setValue("NPCGenerator/randomRegion", m_ui->checkRandomRegion->isChecked());
+    settings.setValue("NPCGenerator/species", m_ui->comboSpecies->currentIndex());
+    settings.setValue("NPCGenerator/randomSpecies", m_ui->checkRandomSpecies->isChecked());
+    settings.setValue("NPCGenerator/race", m_ui->comboRace->currentIndex());
+    settings.setValue("NPCGenerator/randomRace", m_ui->checkRandomRace->isChecked());
+    settings.setValue("NPCGenerator/gender", m_ui->comboGender->currentIndex());
+    settings.setValue("NPCGenerator/randomGender", m_ui->checkRandomGender->isChecked());
+    settings.sync();
+    qDebug() << "NPCGenerator::saveSettings";
+    return;
+}
+
+void NPCGeneratorWidget::loadSettings()
+{
+    QSettings settings;
+    int ind_region = settings.value("NPCGenerator/region", 0).toInt();
+    if ((ind_region >= 0) && (ind_region < m_ui->comboRegion->count()))
+        m_ui->comboRegion->setCurrentIndex(ind_region);
+    int ind_species = settings.value("NPCGenerator/species", 0).toInt();
+    if ((ind_species >= 0) && (ind_species < m_ui->comboSpecies->count()))
+        m_ui->comboSpecies->setCurrentIndex(ind_species);
+    int ind_race = settings.value("NPCGenerator/race", 0).toInt();
+    if ((ind_race >= 0) && (ind_race < m_ui->comboRace->count()))
+        m_ui->comboRace->setCurrentIndex(ind_race);
+    int ind_gender = settings.value("NPCGenerator/gender", 0).toInt();
+    if ((ind_gender >= 0) && (ind_gender <= m_ui->comboGender->count()))
+        m_ui->comboGender->setCurrentIndex(ind_gender);
+    qDebug() << "NPCGeneratorWidget::loadSettings" << ind_region << ind_species << ind_race << ind_gender;
+    m_ui->checkRandomRegion->setChecked(settings.value("NPCGenerator/randomRegion", false).toBool());
+    m_ui->checkRandomSpecies->setChecked(settings.value("NPCGenerator/randomSpecies", false).toBool());
+    m_ui->checkRandomRace->setChecked(settings.value("NPCGenerator/randomRace", false).toBool());
+    m_ui->checkRandomGender->setChecked(settings.value("NPCGenerator/randomGender", false).toBool());
     return;
 }
 
@@ -166,5 +209,8 @@ void NPCGeneratorWidget::onGenerate()
     int weight = race.weight();
     m_ui->lineSize->setText(QString::number(size));
     m_ui->lineWeight->setText(QString::number(weight));
+#ifdef ANDROID
+    saveSettings();
+#endif
     return;
 }
