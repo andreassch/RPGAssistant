@@ -65,6 +65,11 @@ void NPCGeneratorWidget::setupUi()
     if (m_species.size() > 0)
         onChangeSpecies(0);
 
+    // Fill gender combo box.
+    for (std::underlying_type_t<Gender> gval = 0; gval <= static_cast<std::underlying_type_t<Gender>>(Gender::MALE); gval++)
+        m_ui->comboGender->addItem(Names::genderString(static_cast<Gender>(gval)));
+
+    // Connect signals and slots.
     connect(m_ui->comboSpecies, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &NPCGeneratorWidget::onChangeSpecies);
     connect(m_ui->checkRandomRegion, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomRegion);
     connect(m_ui->checkRandomSpecies, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomSpecies);
@@ -72,6 +77,7 @@ void NPCGeneratorWidget::setupUi()
     connect(m_ui->checkRandomGender, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomGender);
     connect(m_ui->buttonGenerate, &QPushButton::clicked, this, &NPCGeneratorWidget::onGenerate);
 
+    // Load settings.
     loadSettings();
 
     return;
@@ -183,10 +189,11 @@ void NPCGeneratorWidget::onGenerate()
     else
         ind_gender = m_ui->comboGender->currentIndex();
     qDebug() << "Gender" << ind_gender;
-    Gender gender = (ind_gender == 0) ? Gender::FEMALE : Gender::MALE;
+    Gender gender = static_cast<Gender>(ind_gender);
     qDebug() << "Name region" << ind_region << m_namelists.at(ind_region).region();
     qDebug() << m_namelists.at(ind_region).surnamesCount() << m_namelists.at(ind_region).firstnamesCount(Gender::FEMALE) << m_namelists.at(ind_region).firstnamesCount(Gender::MALE);
     m_ui->lineName->setText(m_namelists.at(ind_region).randomName(gender));
+    m_ui->lineGender->setText(Names::genderString(gender));
     int ind_species;
     if (m_ui->checkRandomSpecies->isChecked())
         ind_species = QRandomGenerator::global()->bounded(static_cast<int>(m_species.size()));

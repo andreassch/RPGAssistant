@@ -96,82 +96,77 @@
     <name>NPCGeneratorWidget</name>
     <message>
         <location filename="../UI/NPCGeneratorWidget.ui" line="14"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="40"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="54"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="42"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="56"/>
         <source>NPC Generator</source>
         <translation>NSC-Generator</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="23"/>
-        <source>female</source>
-        <translation>weiblich</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="28"/>
-        <source>male</source>
-        <translation>männlich</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="72"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="61"/>
         <source>&amp;Region:</source>
         <translation>&amp;Region:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="36"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="25"/>
         <source>R&amp;ace:</source>
         <translation>R&amp;asse:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="59"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="48"/>
         <source>G&amp;ender:</source>
         <translation>G&amp;eschlecht:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="49"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="38"/>
         <source>&amp;Species:</source>
         <translation>&amp;Spezies:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="85"/>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="92"/>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="99"/>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="106"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="74"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="81"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="88"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="95"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="115"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="104"/>
         <source>&amp;Generate</source>
         <translation>&amp;Generieren</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="124"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="113"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="134"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="123"/>
         <source>Hair colour:</source>
         <translation>Haarfarbe:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="144"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="133"/>
         <source>Eye colour:</source>
         <translation>Augenfarbe:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="163"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="152"/>
         <source>Size:</source>
         <translation>Größe:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="176"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="165"/>
         <source>Weight:</source>
         <translation>Gewicht:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="40"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="54"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="178"/>
+        <source>Gender:</source>
+        <translation>Geschlecht:</translation>
+    </message>
+    <message>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="42"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="56"/>
         <source>Cannot open file %1 for reading: %2</source>
         <translation>Kann Datei %1 nicht zum Lesen öffnen: %2</translation>
     </message>
@@ -180,7 +175,7 @@
     <name>QObject</name>
     <message>
         <location filename="../Backend/DataXmlReader.cpp" line="26"/>
-        <source>The file does not a valid XML data file.</source>
+        <source>The file is not a valid XML data file.</source>
         <translation>Diese Datei enthält keine gültigen XML-Daten.</translation>
     </message>
     <message>
@@ -364,6 +359,21 @@ Line %2, column %3</source>
         <location filename="../Backend/TDECalendar.cpp" line="167"/>
         <source>new</source>
         <translation>Tote Mada</translation>
+    </message>
+    <message>
+        <location filename="../Backend/Names.cpp" line="14"/>
+        <source>female</source>
+        <translation>weiblich</translation>
+    </message>
+    <message>
+        <location filename="../Backend/Names.cpp" line="16"/>
+        <source>male</source>
+        <translation>männlich</translation>
+    </message>
+    <message>
+        <location filename="../Backend/NamesXmlReader.cpp" line="60"/>
+        <source>The surname tag for region %1 does not contain a valid type attribute.</source>
+        <translation>Der surname-Tag in Region %1 enthält kein gültiges type-Attribut.</translation>
     </message>
 </context>
 <context>

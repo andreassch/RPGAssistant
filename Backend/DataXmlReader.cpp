@@ -23,7 +23,7 @@ bool DataXmlReader::read(QIODevice* device)
                 }
             }
         } else {
-            m_xml_reader.raiseError(QObject::tr("The file does not a valid XML data file."));
+            m_xml_reader.raiseError(QObject::tr("The file is not a valid XML data file."));
         }
     }
 

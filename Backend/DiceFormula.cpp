@@ -26,7 +26,6 @@ DiceFormula::DiceFormula(const QString& string)
 
 bool DiceFormula::fromString(const QString& string)
 {
-    qDebug() << "Parsing dice formula" << string;
     const auto items = string.split("+");
     m_formula.clear();
     QRegExp constant("[0-9]+");
@@ -39,12 +38,10 @@ bool DiceFormula::fromString(const QString& string)
             if (count == 0)
                 count = 1;
             int faces = dice.cap(2).toInt();
-            qDebug() << "dices" << item << "count" << count << "faces" << faces;
             m_formula.emplace_back(Dices(faces, count));
         }
         else if (constant.indexIn(item) > -1)
         {
-            qDebug() << "const" << item;
             m_formula.emplace_back(item.toInt());
         }
         else

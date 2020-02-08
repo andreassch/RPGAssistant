@@ -1,11 +1,16 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Extract information from race files in DSAWiege's ASCII format to RPGAssistant's XML format.
+
 Created on Tue Dec 31 15:45:09 2019
-@author: Andreas Schneider
+@author: Andreas Schneider <andreas underscore schn at web dot de>
+
+This script is licensed under the GNU General Public License (GPL) version 3
+as published by the Free Software Foundation.
 """
 
-import xml.etree.ElementTree as ET
+from lxml import etree as ET
 from sys import argv
 import os
 

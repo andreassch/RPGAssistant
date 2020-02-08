@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Convert name lists in DSASuite's ASCII format (with some extensions) to RPGAssistant's XML format.
+
 Created on Tue Dec 31 14:08:25 2019
-@author: Andreas Schneider
+@author: Andreas Schneider <andreas underscore schn at web dot de>
+
+This script is licensed under the GNU General Public License (GPL) version 3
+as published by the Free Software Foundation.
 """
 
-import xml.etree.ElementTree as ET
+from lxml import etree as ET
 from sys import argv
 import os
 from glob import glob
@@ -17,6 +22,7 @@ def dsasuitename2xml(xmlroot, filename, encoding='iso8859-1'):
     cat = None
     with open(filename, 'r') as fd:
         for line in fd:
+            line = line.decode(encoding)
             if line.endswith('\n'):
                 line = line[:-1]
             if line.endswith('\r'):
@@ -24,18 +30,46 @@ def dsasuitename2xml(xmlroot, filename, encoding='iso8859-1'):
             if line.startswith('---'): # start of new category
                 category = line[3:-3]
                 if category == 'Nachnamen':
-                    cat = ET.SubElement(namelist, 'surnames')
+                    cat = ET.SubElement(namelist, 'surnames', attrib={'type': 'none'})
                 elif category == 'MVornamen':
                     cat = ET.SubElement(namelist, 'firstnames', attrib={'gender': 'male'})
                 elif category == 'WVornamen':
                     cat = ET.SubElement(namelist, 'firstnames', attrib={'gender': 'female'})
                 else:
-                    cat = ET.SubElement(namelist, category.decode(encoding))
+                    cat = ET.SubElement(namelist, category)
+                subcat = cat
+            elif line.startswith('--'): # start of new subcategory
+                subcategory = line[2:-2]
+                if subcategory == 'Startteil':
+                    subcat = ET.SubElement(cat, 'namePart', attrib={'place': 'beginning'})
+                    cat.attrib['type'] = 'parts'
+                elif subcategory == 'Endteil':
+                    subcat = ET.SubElement(cat, 'namePart', attrib={'place': 'end'})
+                    cat.attrib['type'] = 'parts'
+                else:
+                    subcat = ET.SubElement(namelist, subcategory)
+            elif line.startswith('*prefix'):
+                elem = ET.SubElement(cat, 'prefix', attrib={'gender': 'male' if line[7]=='M' else 'female'})
+                elem.text = line[9:]
+                cat.attrib['type'] = 'parentname'
+            elif line.startswith('*postfix'):
+                elem = ET.SubElement(cat, 'postfix', attrib={'gender': 'male' if line[8]=='M' else 'female'})
+                elem.text = line[10:]
+                cat.attrib['type'] = 'parentname'
             else: # it's a name
                 if cat is None:
                     return False
-                elem = ET.SubElement(cat, 'n')
-                elem.text = line.decode(encoding)
+                if subcat.tag == 'surnames': # if no subcategory is present
+                    cat.attrib['type'] = 'list'
+                if ', ' in line:
+                    names = line.split(', ')
+                else:
+                    names = [line]
+                for name in names:
+                    if ('place' in subcat.attrib) and (subcat.attrib['place'] == 'end') and name.startswith('-'):
+                        name = name[1:] # remove leading dash in end parts
+                    elem = ET.SubElement(subcat, 'n')
+                    elem.text = name
     return True
 
 
@@ -45,10 +79,11 @@ if __name__ == '__main__':
         exit()
 
     root = ET.Element('namelists')
-    if os.path.isdir(argv[1]):
-        filelist = sorted(glob(os.path.join(argv[1],'*.dat')))
-        for filename in filelist:
-            success = dsasuitename2xml(root, filename)
-    else:
-        dsasuitename2xml(root, argv[1])
+    for path in argv[1:]:
+        if os.path.isdir(path):
+            filelist = sorted(glob(os.path.join(path,'*.dat')))
+            for filename in filelist:
+                success = dsasuitename2xml(root, filename)
+        else:
+            dsasuitename2xml(root, path)
     ET.dump(root)

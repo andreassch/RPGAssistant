@@ -18,8 +18,13 @@ private:
     inline QString entryName(){ return QStringLiteral("namelist"); }
     static inline QString regionAttribute() { return QStringLiteral("region"); }
     static inline QString surnamesName() { return QStringLiteral("surnames"); }
+    static inline QString typeAttribute() { return QStringLiteral("type"); }
     static inline QString firstnamesName() { return QStringLiteral("firstnames"); }
     static inline QString genderAttribute() { return QStringLiteral("gender"); }
+    static inline QString partsName() { return QStringLiteral("namePart"); }
+    static inline QString partPlaceAttribute() { return QStringLiteral("place"); }
+    static inline QString prefixName() { return QStringLiteral("prefix"); }
+    static inline QString postfixName() { return QStringLiteral("postfix"); }
     static inline QString nameName() { return QStringLiteral("n"); }
 
     std::vector<Names>* m_namelists;

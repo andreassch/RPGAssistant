@@ -4,13 +4,17 @@
 This is a small tool to assist a role playing game master. It contains the following modules:
 
 * Turn order list: Manage turn order and NPCs during combat.
+* NPC Generator: Randomly generate non-player characters from different region, race, etc.
+* Calendar: A calendar with moon phases, taylored to the system The Dark Eye.
+  As the calendar computations are separated from the GUI, it can easily be adapted to other systems.
 * more modules to come ...
 
 ## Compilation
 
-Configure and compile with the following steps:
+The preferred way to build is using QtCreator. Just open rpgassistant.pro and click on build.
+
+You can also configure and compile on the command line with the following steps:
 
     qmake
     make
 
-You can also open rpgassistant.pro in QtCreator.
