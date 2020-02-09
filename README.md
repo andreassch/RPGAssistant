@@ -18,3 +18,6 @@ You can also configure and compile on the command line with the following steps:
     qmake
     make
 
+Data files are currently not included. However, included are scripts to convert DSASuite's data files, which can be obtained from the web archive at
+[https://web.archive.org/web/20010419203408/http://www.dirkoz.de/dsa/tools/bin/_daten.EXE](URL).
+See also: [https://web.archive.org/web/20010307023059/http://www.dirkoz.de/dsa/tools/index.htm](URL)

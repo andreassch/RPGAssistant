@@ -42,13 +42,17 @@ HEADERS += \
     UI/MainWidget.h \
     UI/NPCGeneratorWidget.h \
     UI/TurnOrderWidget.h \
-    UI/Utils.h
+    UI/Utils.h \
+    version.h
 
 FORMS += \
     UI/CalendarWidget.ui \
     UI/MainWidget.ui \
     UI/NPCGeneratorWidget.ui \
     UI/TurnOrderWidget.ui
+
+RESOURCES += \
+    icons.qrc
 
 LANGUAGES = de
 
@@ -102,7 +106,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 android {
    DISTFILES += \
-      android/AndroidManifest.xml
+      android/AndroidManifest.xml \
+      android/res/drawable-ldpi/icon.png \
+      android/res/drawable-mdpi/icon.png \
+      android/res/drawable-hdpi/icon.png \
+      android/res/drawable-xhdpi/icon.png \
+      android/res/drawable-xxhdpi/icon.png \
+      android/res/drawable-xxxhdpi/icon.png
 }
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

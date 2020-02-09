@@ -91,6 +91,11 @@
         <source>&amp;Calendar</source>
         <translation>&amp;Kalender</translation>
     </message>
+    <message>
+        <location filename="../UI/MainWidget.cpp" line="24"/>
+        <source>Version </source>
+        <translation>Version </translation>
+    </message>
 </context>
 <context>
     <name>NPCGeneratorWidget</name>

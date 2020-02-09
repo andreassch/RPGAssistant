@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>200</width>
-    <height>101</height>
+    <height>145</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,6 +32,13 @@
     <widget class="QPushButton" name="buttonCalendar">
      <property name="text">
       <string>&amp;Calendar</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelVersion">
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </item>

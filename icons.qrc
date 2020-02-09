@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons"/>
+    <qresource prefix="/">
+        <file>Graphics/rpgassistant.ico</file>
+    </qresource>
+</RCC>

@@ -1,10 +1,12 @@
 #include "MainWidget.h"
 #include "ui_MainWidget.h"
+#include "../version.h"
 
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
     m_ui(new Ui::MainWidget)
 {
+    setWindowIcon(QIcon(":/icons/Images/rpgassistant.ico"));
     m_ui->setupUi(this);
     SetupUi();
 }
@@ -19,6 +21,7 @@ MainWidget::~MainWidget()
 
 void MainWidget::SetupUi()
 {
+    m_ui->labelVersion->setText(tr("Version ").append(VERSION_STR));
     m_turn_order_widget = new TurnOrderWidget();
     m_npc_generator_widget = new NPCGeneratorWidget();
     m_calendar_widget = new CalendarWidget();

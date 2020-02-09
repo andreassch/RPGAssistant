@@ -97,6 +97,10 @@ void CalendarWidget::setupUi()
     // On Android, change height of calendar table.
 #ifdef ANDROID
     m_ui->tableCalendar->setMinimumSize(700, 400);
+#elif _WIN32
+    m_ui->tableCalendar->setMinimumSize(350, 205);
+#else
+    m_ui->tableCalendar->setMinimumSize(350, 203);
 #endif
 
     // Connect signals and slots.
