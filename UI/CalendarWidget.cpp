@@ -1,10 +1,14 @@
 #include "CalendarWidget.h"
 #include "ui_CalendarWidget.h"
+#include "../Backend/HolidaysXmlReader.h"
 
 #include "Utils.h"
 #include <QSettings>
 #include <QDir>
+#include <QFile>
+#include <QMessageBox>
 #include <QtDebug>
+#include <cassert>
 
 using namespace TDECalendar;
 
@@ -30,9 +34,11 @@ int CalendarWidget::day() const
     return m_ui->spinDay->value();
 }
 
-int CalendarWidget::month() const
+Month CalendarWidget::month() const
 {
-    return m_ui->comboMonth->currentIndex()+1;
+    int month_no = m_ui->comboMonth->currentIndex()+1;
+    assert((month_no >= 1) && (month_no <= Calendar::noOfMonths()));
+    return static_cast<Month>(month_no);
 }
 
 int CalendarWidget::year() const
@@ -40,9 +46,9 @@ int CalendarWidget::year() const
     return m_ui->spinYear->value();
 }
 
-Reckoning::Reckoning CalendarWidget::reckoning() const
+Reckoning CalendarWidget::reckoning() const
 {
-    return static_cast<Reckoning::Reckoning>(m_ui->comboReckoning->currentIndex());
+    return static_cast<Reckoning>(m_ui->comboReckoning->currentIndex());
 }
 
 void CalendarWidget::setDay(const int new_day)
@@ -53,9 +59,10 @@ void CalendarWidget::setDay(const int new_day)
     return;
 }
 
-void CalendarWidget::setMonth(const int new_month)
+void CalendarWidget::setMonth(const Month new_month)
 {
-    m_ui->comboMonth->setCurrentIndex(new_month-1);
+    assert(m_ui->comboMonth->count() <= Calendar::noOfMonths());
+    m_ui->comboMonth->setCurrentIndex(static_cast<int>(new_month)-1);
     return;
 }
 
@@ -65,7 +72,7 @@ void CalendarWidget::setYear(const int new_year)
     return;
 }
 
-void CalendarWidget::setReckoning(const Reckoning::Reckoning new_reckoning)
+void CalendarWidget::setReckoning(const Reckoning new_reckoning)
 {
     m_ui->comboReckoning->setCurrentIndex(static_cast<int>(new_reckoning));
     return;
@@ -77,11 +84,11 @@ void CalendarWidget::setupUi()
 {
     // Fill combo box with month names.
     for (int month_no = 1; month_no <= Calendar::noOfMonths(); month_no++)
-        m_ui->comboMonth->addItem(Calendar::monthName(month_no));
+        m_ui->comboMonth->addItem(Calendar::monthName(static_cast<Month>(month_no)));
 
     // Fill combo box with reckoning names.
     for (int reckoning_no = 0; reckoning_no < Calendar::noOfReckonings(); reckoning_no++)
-        m_ui->comboReckoning->addItem(Calendar::reckoningName(static_cast<Reckoning::Reckoning>(reckoning_no)));
+        m_ui->comboReckoning->addItem(Calendar::reckoningName(static_cast<Reckoning>(reckoning_no)));
 
     // Create table columns for week days.
     m_ui->tableCalendar->setColumnCount(Calendar::daysInWeek());
@@ -103,6 +110,22 @@ void CalendarWidget::setupUi()
     m_ui->tableCalendar->setMinimumSize(350, 203);
 #endif
 
+    // Read holidays from XML file.
+#ifdef ANDROID
+    QDir data_dir("assets:/data");
+#else
+    QDir data_dir = QDir("."); // TODO: don't hardcode path
+#endif
+    QFile holidays_file(data_dir.filePath("holidays.xml"));
+    if(!holidays_file.open(QFile::ReadOnly | QFile::Text)) {
+        QMessageBox::critical(this, tr("Calendar"), tr("Cannot open file %1 for reading: %2").arg(holidays_file.fileName()).arg(holidays_file.errorString()));
+        return;
+    }
+    HolidaysXmlReader holidays_reader(&m_holidays);
+    holidays_reader.read(&holidays_file);
+    holidays_file.close();
+    qDebug() << m_holidays.size() << "holidays read.";
+
     // Connect signals and slots.
     connect(m_ui->comboReckoning, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &CalendarWidget::onChangeReckoning);
     connect(m_ui->spinYear, QOverload<int>::of(&QSpinBox::valueChanged), this, &CalendarWidget::onChangeYear);
@@ -117,10 +140,12 @@ void CalendarWidget::setupUi()
     // Recover last viewed date from settings.
     QSettings settings;
     int curr_day = settings.value("Calendar/day", QVariant(1)).toInt();
-    int curr_month = settings.value("Calendar/month", QVariant(1)).toInt();
+    int curr_month_no = settings.value("Calendar/month", QVariant(1)).toInt();
+    assert((curr_month_no >= 1) && (curr_month_no <= Calendar::noOfMonths()));
+    Month curr_month = static_cast<Month>(curr_month_no);
     int curr_year = settings.value("Calendar/year", QVariant(1)).toInt();
     QString curr_reckoning_str = settings.value("Calendar/reckoning", QVariant("Hal")).toString();
-    Reckoning::Reckoning curr_reckoning = Calendar::parseReckoning(curr_reckoning_str);
+    Reckoning curr_reckoning = Calendar::parseReckoning(curr_reckoning_str);
     fillMonth(curr_month, curr_year, curr_reckoning);
     setReckoning(curr_reckoning);
     setYear(curr_year);
@@ -149,7 +174,7 @@ void CalendarWidget::setDayTab(const int new_day)
     return;
 }
 
-void CalendarWidget::fillMonth(const int month, const int year, const Reckoning::Reckoning reckoning)
+void CalendarWidget::fillMonth(const Month month, const int year, const Reckoning reckoning)
 {
     int day = 1;
     int col = Calendar::dayOfWeek(day, month, year, reckoning)-1;
@@ -188,7 +213,7 @@ void CalendarWidget::saveSettings() const
 {
     QSettings settings;
     settings.setValue("Calendar/day", day());
-    settings.setValue("Calendar/month", month());
+    settings.setValue("Calendar/month", static_cast<int>(month()));
     settings.setValue("Calendar/year", year());
     settings.setValue("Calendar/reckoning", Calendar::reckoningSymbolicName(reckoning()));
     settings.sync();
@@ -198,7 +223,7 @@ void CalendarWidget::saveSettings() const
 /* Private slots *************************************************************/
 void CalendarWidget::onChangeReckoning(const int index)
 {
-    Reckoning::Reckoning new_reckoning = static_cast<Reckoning::Reckoning>(index);
+    Reckoning new_reckoning = static_cast<Reckoning>(index);
     int new_year = Calendar::convertReckoning(year(), m_reckoning, new_reckoning);
     setYear(new_year);
     m_reckoning = new_reckoning;
@@ -215,7 +240,7 @@ void CalendarWidget::onChangeYear(const int year)
 
 void CalendarWidget::onChangeMonth(const int index)
 {
-    int new_month = index+1; // index is zero based
+    Month new_month = static_cast<Month>(index+1); // index is zero based
     fillMonth(new_month, year(), reckoning());
     m_ui->spinDay->setRange(1, Calendar::daysInMonth(new_month));
     onChangeDaySpin(day());
@@ -244,6 +269,7 @@ void CalendarWidget::onChangeDayTab()
 
 void CalendarWidget::onChangeDate()
 {
+    // Change moon phase text and graphics.
 #ifdef ANDROID
     QDir image_dir("assets:/graphics");
 #else
@@ -254,6 +280,15 @@ void CalendarWidget::onChangeDate()
     QString filename = image_dir.filePath(moon_phase.graphicsFilename());
     qDebug() << filename;
     m_ui->widgetMoonPhase->load(filename);
+
+    // Check holidays and fill them in the text field.
+    m_ui->textHolidays->clear();
+    for (std::size_t ind = 0; ind < m_holidays.size(); ind++) {
+        if (m_holidays.at(ind).isAtDate(day(), month(), year(), reckoning()))
+            m_ui->textHolidays->append(m_holidays.at(ind).name());
+    }
+
+    // Under Android, save current date.
 #ifdef ANDROID
     saveSettings(); // Save current date all the time under Android, as app can always be killed.
 #endif
@@ -276,23 +311,23 @@ void CalendarWidget::onNextYear()
 
 void CalendarWidget::onPreviousMonth()
 {
-    int new_month = month() - 1;
+    int new_month = static_cast<int>(month()) - 1;
     if (new_month < 1) {
         onPreviousYear();
         new_month = Calendar::noOfMonths();
     }
-    setMonth(new_month);
+    setMonth(static_cast<Month>(new_month));
     return;
 }
 
 void CalendarWidget::onNextMonth()
 {
-    int new_month = month() + 1;
+    int new_month = static_cast<int>(month()) + 1;
     if (new_month > Calendar::noOfMonths()) {
         onNextYear();
         new_month = 1;
     }
-    setMonth(new_month);
+    setMonth(static_cast<Month>(new_month));
     return;
 }
 

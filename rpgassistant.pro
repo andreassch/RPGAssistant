@@ -18,6 +18,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Backend/DataXmlReader.cpp \
     Backend/DiceFormula.cpp \
+    Backend/Holiday.cpp \
+    Backend/HolidaysXmlReader.cpp \
     Backend/Names.cpp \
     Backend/NamesXmlReader.cpp \
     Backend/Race.cpp \
@@ -32,6 +34,8 @@ SOURCES += \
 HEADERS += \
     Backend/DataXmlReader.h \
     Backend/DiceFormula.h \
+    Backend/Holiday.h \
+    Backend/HolidaysXmlReader.h \
     Backend/Names.h \
     Backend/NamesXmlReader.h \
     Backend/Race.h \
@@ -52,7 +56,7 @@ FORMS += \
     UI/TurnOrderWidget.ui
 
 RESOURCES += \
-    icons.qrc
+    graphics.qrc
 
 LANGUAGES = de
 
@@ -88,7 +92,7 @@ android {
     LOCALE_PATH=/
 }
 data.path = $$DATA_PATH
-data.files = Data/names.xml Data/races.xml
+data.files = Data/names.xml Data/races.xml Data/holidays.xml
 data.depends += FORCE
 graphics.path = $$GRAPHICS_PATH
 graphics.files = Graphics/MoonPhaseWa?ing*.svg

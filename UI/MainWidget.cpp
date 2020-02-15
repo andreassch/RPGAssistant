@@ -2,11 +2,13 @@
 #include "ui_MainWidget.h"
 #include "../version.h"
 
+#include <QtDebug>
+
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
     m_ui(new Ui::MainWidget)
 {
-    setWindowIcon(QIcon(":/icons/Images/rpgassistant.ico"));
+    setWindowIcon(QIcon(":/Graphics/rpgassistant.ico"));
     m_ui->setupUi(this);
     SetupUi();
 }
@@ -22,6 +24,10 @@ MainWidget::~MainWidget()
 void MainWidget::SetupUi()
 {
     m_ui->labelVersion->setText(tr("Version ").append(VERSION_STR));
+    qDebug() << this->size().width();
+#ifdef ANDROID
+    m_ui->labelTdeLogo->setPixmap(QPixmap(":/Graphics/DSALogoFanprojekt-604x169.png"));
+#endif
     m_turn_order_widget = new TurnOrderWidget();
     m_npc_generator_widget = new NPCGeneratorWidget();
     m_calendar_widget = new CalendarWidget();

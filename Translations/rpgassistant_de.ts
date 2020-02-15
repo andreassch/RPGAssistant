@@ -5,68 +5,74 @@
     <name>CalendarWidget</name>
     <message>
         <location filename="../UI/CalendarWidget.ui" line="20"/>
+        <location filename="../UI/CalendarWidget.cpp" line="121"/>
         <source>Calendar</source>
         <translation>Kalender</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="81"/>
+        <location filename="../UI/CalendarWidget.ui" line="85"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="86"/>
+        <location filename="../UI/CalendarWidget.ui" line="90"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="91"/>
+        <location filename="../UI/CalendarWidget.ui" line="95"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="96"/>
+        <location filename="../UI/CalendarWidget.ui" line="100"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="101"/>
+        <location filename="../UI/CalendarWidget.ui" line="105"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="106"/>
+        <location filename="../UI/CalendarWidget.ui" line="110"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="116"/>
+        <location filename="../UI/CalendarWidget.ui" line="120"/>
         <source>&amp;&lt; Month</source>
         <translation>&amp;&lt; Monat</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="123"/>
+        <location filename="../UI/CalendarWidget.ui" line="127"/>
         <source>&amp;- Day</source>
         <translation>&amp;- Tag</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="130"/>
+        <location filename="../UI/CalendarWidget.ui" line="134"/>
         <source>Day &amp;+</source>
         <translation>Tag &amp;+</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="137"/>
+        <location filename="../UI/CalendarWidget.ui" line="141"/>
         <source>Month &amp;&gt;</source>
         <translation>Monat &amp;&gt;</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="164"/>
+        <location filename="../UI/CalendarWidget.ui" line="168"/>
         <source>Moon phase:</source>
         <translation>Mondphase:</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.ui" line="180"/>
+        <location filename="../UI/CalendarWidget.ui" line="184"/>
         <source>Holidays:</source>
         <translation>Feiertage:</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.cpp" line="121"/>
+        <source>Cannot open file %1 for reading: %2</source>
+        <translation>Kann Datei %1 nicht zum Lesen öffnen: %2</translation>
     </message>
 </context>
 <context>
@@ -77,22 +83,22 @@
         <translation>Rollenspiel-Assistent</translation>
     </message>
     <message>
-        <location filename="../UI/MainWidget.ui" line="20"/>
+        <location filename="../UI/MainWidget.ui" line="24"/>
         <source>&amp;Turn order list</source>
         <translation>&amp;Initiativliste</translation>
     </message>
     <message>
-        <location filename="../UI/MainWidget.ui" line="27"/>
+        <location filename="../UI/MainWidget.ui" line="31"/>
         <source>&amp;NPC Generator</source>
         <translation>NSC-&amp;Generator</translation>
     </message>
     <message>
-        <location filename="../UI/MainWidget.ui" line="34"/>
+        <location filename="../UI/MainWidget.ui" line="38"/>
         <source>&amp;Calendar</source>
         <translation>&amp;Kalender</translation>
     </message>
     <message>
-        <location filename="../UI/MainWidget.cpp" line="24"/>
+        <location filename="../UI/MainWidget.cpp" line="26"/>
         <source>Version </source>
         <translation>Version </translation>
     </message>
@@ -107,65 +113,65 @@
         <translation>NSC-Generator</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="61"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="65"/>
         <source>&amp;Region:</source>
         <translation>&amp;Region:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="25"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="29"/>
         <source>R&amp;ace:</source>
         <translation>R&amp;asse:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="48"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="52"/>
         <source>G&amp;ender:</source>
         <translation>G&amp;eschlecht:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="38"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="42"/>
         <source>&amp;Species:</source>
         <translation>&amp;Spezies:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="74"/>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="81"/>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="88"/>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="95"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="78"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="85"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="92"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="99"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="104"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="108"/>
         <source>&amp;Generate</source>
         <translation>&amp;Generieren</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="113"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="117"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="123"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="127"/>
         <source>Hair colour:</source>
         <translation>Haarfarbe:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="133"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="137"/>
         <source>Eye colour:</source>
         <translation>Augenfarbe:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="152"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="156"/>
         <source>Size:</source>
         <translation>Größe:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="165"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="169"/>
         <source>Weight:</source>
         <translation>Gewicht:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="178"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="182"/>
         <source>Gender:</source>
         <translation>Geschlecht:</translation>
     </message>
@@ -346,22 +352,27 @@ Line %2, column %3</source>
         <translation>BF</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="166"/>
+        <location filename="../Backend/TDECalendar.cpp" line="255"/>
+        <source>%1 %2 %3 %4</source>
+        <translation>%1 %2 %3 %4</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="289"/>
         <source>waxing</source>
         <translation>Kelch</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="167"/>
+        <location filename="../Backend/TDECalendar.cpp" line="290"/>
         <source>full</source>
         <translation>Rad</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="166"/>
+        <location filename="../Backend/TDECalendar.cpp" line="289"/>
         <source>waning</source>
         <translation>Helm</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="167"/>
+        <location filename="../Backend/TDECalendar.cpp" line="290"/>
         <source>new</source>
         <translation>Tote Mada</translation>
     </message>
@@ -380,6 +391,11 @@ Line %2, column %3</source>
         <source>The surname tag for region %1 does not contain a valid type attribute.</source>
         <translation>Der surname-Tag in Region %1 enthält kein gültiges type-Attribut.</translation>
     </message>
+    <message>
+        <location filename="../Backend/HolidaysXmlReader.cpp" line="38"/>
+        <source>XML error: month %1 outside range.</source>
+        <translation>XML Fehler: Monat %1 liegt außerhalb des erlaubten Bereichs.</translation>
+    </message>
 </context>
 <context>
     <name>TurnOrderWidget</name>
@@ -393,92 +409,92 @@ Line %2, column %3</source>
         <translation>Initiativliste</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="45"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="49"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="50"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="54"/>
         <source>INI</source>
         <translation>INI</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="58"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="62"/>
         <source>INI mod.</source>
         <translation>INI mod.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="66"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="70"/>
         <source>cHP</source>
         <translation>LeP</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="74"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="78"/>
         <source>HP</source>
         <translation>LE</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="82"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="86"/>
         <source>Mod.</source>
         <translation>Mod.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="100"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="104"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="110"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="114"/>
         <source>Ne&amp;xt</source>
         <translation>Nä&amp;chste</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="120"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="124"/>
         <source>Da&amp;mage</source>
         <translation>Scha&amp;den</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="127"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="131"/>
         <source>&amp;Delete</source>
         <translation>L&amp;öschen</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="134"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="138"/>
         <source>New &amp;round</source>
         <translation>Neue &amp;Runde</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="145"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="149"/>
         <source>&amp;Name</source>
         <translation>&amp;Name</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="158"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="162"/>
         <source>&amp;INI</source>
         <translation>&amp;INI</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="171"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="175"/>
         <source>&amp;HP</source>
         <translation>&amp;LE</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="184"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="188"/>
         <source>&amp;Add</source>
         <translation>&amp;Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="195"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="199"/>
         <source>&amp;Load list</source>
         <translation>Liste l&amp;aden</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="202"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="206"/>
         <source>&amp;Save list</source>
         <translation>Liste &amp;speichern</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="209"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="213"/>
         <source>&amp;Clear list</source>
         <translation>Liste l&amp;eeren</translation>
     </message>

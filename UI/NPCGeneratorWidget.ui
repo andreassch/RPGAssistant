@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>NPC Generator</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../icons.qrc">
+    <normaloff>:/Graphics/rpgassistant.ico</normaloff>:/Graphics/rpgassistant.ico</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QGridLayout" name="gridLayout">
@@ -192,6 +196,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

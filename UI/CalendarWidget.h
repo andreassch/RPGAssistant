@@ -18,8 +18,10 @@
 #pragma once
 
 #include "../Backend/TDECalendar.h"
+#include "../Backend/Holiday.h"
 #include <QWidget>
 #include <QTableWidgetItem>
+#include <vector>
 
 
 namespace Ui {
@@ -54,7 +56,7 @@ public:
      * @brief Get the current month.
      * @return Number of the current month (1-13).
      */
-    int month() const;
+    Month month() const;
 
     /**
      * @brief Get the current year in the currently active time reckoning.
@@ -66,7 +68,7 @@ public:
      * @brief Get the current reckoning.
      * @return Current reckoning.
      */
-    Reckoning::Reckoning reckoning() const;
+    Reckoning reckoning() const;
 
     /**
      * @brief Set the current day of the month.
@@ -78,7 +80,7 @@ public:
      * @brief Set the current month.
      * @param new_month New month (1-13).
      */
-    void setMonth(const int new_month);
+    void setMonth(const Month new_month);
 
     /**
      * @brief Set the current year in the current reckoning.
@@ -90,7 +92,7 @@ public:
      * @brief Set the current reckoning.
      * @param new_reckoning New reckoning.
      */
-    void setReckoning(const Reckoning::Reckoning new_reckoning);
+    void setReckoning(const Reckoning new_reckoning);
 
 private:
     /**
@@ -117,7 +119,7 @@ private:
      * @param year Year.
      * @param reckoning Reckoning.
      */
-    void fillMonth(const int month, const int year, const Reckoning::Reckoning reckoning);
+    void fillMonth(const Month month, const int year, const Reckoning reckoning);
 
     /**
      * @brief Saves the current date in the settings for persistant storage.
@@ -191,5 +193,6 @@ private slots:
 
 private:
     Ui::CalendarWidget *m_ui;
-    Reckoning::Reckoning m_reckoning = Reckoning::HAL;
+    Reckoning m_reckoning;
+    std::vector<Holiday> m_holidays;
 };

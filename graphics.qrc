@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Graphics/rpgassistant.ico</file>
+        <file>Graphics/DSALogoFanprojekt-300x84.png</file>
+        <file>Graphics/DSALogoFanprojekt-604x169.png</file>
+    </qresource>
+</RCC>

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Turn Order List</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../icons.qrc">
+    <normaloff>:/Graphics/rpgassistant.ico</normaloff>:/Graphics/rpgassistant.ico</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTableWidget" name="tableTurnOrder">
@@ -214,6 +218,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
