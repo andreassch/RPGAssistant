@@ -210,33 +210,6 @@ namespace TDECalendar {
 
 
     /*************************************************************************/
-    class Date
-    {
-    public:
-        Date(const Date& other);
-        Date(const int new_day, const Month new_month, const int new_year, const Reckoning new_reckoning);
-
-        void setDate(const int new_day, const Month new_month, const int new_year, const Reckoning new_reckoning);
-        void date(int* the_day, Month* the_month, int* the_year, Reckoning* the_reckoning);
-
-        Date operator++();
-        Date operator--();
-        Date operator+(const Date& other);
-        Date operator-(const Date& other);
-        bool operator>(const Date& other);
-        bool operator<(const Date& other);
-        bool operator>=(const Date& other);
-        bool operator<=(const Date& other);
-
-        QString toString();
-
-    protected:
-        int m_days_after_hal;
-        Reckoning m_reckoning;
-    };
-
-
-    /*************************************************************************/
     namespace MoonPhaseStatus {
         enum MoonPhaseStatus {WAXING, WANING};
     }

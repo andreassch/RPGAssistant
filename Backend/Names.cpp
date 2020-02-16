@@ -14,6 +14,8 @@ QString Names::genderString(const Gender &gender)
             return QObject::tr("female");
         case Gender::MALE:
             return QObject::tr("male");
+        default:
+            assert(false);
     }
     return QString("");
 }

@@ -5,7 +5,7 @@
     <name>CalendarWidget</name>
     <message>
         <location filename="../UI/CalendarWidget.ui" line="20"/>
-        <location filename="../UI/CalendarWidget.cpp" line="121"/>
+        <location filename="../UI/CalendarWidget.cpp" line="122"/>
         <source>Calendar</source>
         <translation>Kalender</translation>
     </message>
@@ -70,7 +70,7 @@
         <translation>Feiertage:</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.cpp" line="121"/>
+        <location filename="../UI/CalendarWidget.cpp" line="122"/>
         <source>Cannot open file %1 for reading: %2</source>
         <translation>Kann Datei %1 nicht zum Lesen öffnen: %2</translation>
     </message>
@@ -352,27 +352,22 @@ Line %2, column %3</source>
         <translation>BF</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="255"/>
-        <source>%1 %2 %3 %4</source>
-        <translation>%1 %2 %3 %4</translation>
-    </message>
-    <message>
-        <location filename="../Backend/TDECalendar.cpp" line="289"/>
+        <location filename="../Backend/TDECalendar.cpp" line="205"/>
         <source>waxing</source>
         <translation>Kelch</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="290"/>
+        <location filename="../Backend/TDECalendar.cpp" line="206"/>
         <source>full</source>
         <translation>Rad</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="289"/>
+        <location filename="../Backend/TDECalendar.cpp" line="205"/>
         <source>waning</source>
         <translation>Helm</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="290"/>
+        <location filename="../Backend/TDECalendar.cpp" line="206"/>
         <source>new</source>
         <translation>Tote Mada</translation>
     </message>

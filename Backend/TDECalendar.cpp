@@ -135,6 +135,8 @@ namespace TDECalendar {
             case RECKONING_FALL_OF_BOSPARAN:
                 year = year_hal + 993;
                 break;
+            default:
+                assert(false);
         }
         return year;
     }
@@ -149,6 +151,8 @@ namespace TDECalendar {
             case RECKONING_FALL_OF_BOSPARAN:
                 year_hal = year - 993;
                 break;
+            default:
+                assert(false);
         }
         return year_hal;
     }
@@ -165,94 +169,6 @@ namespace TDECalendar {
     {
         int year_hal = Calendar::toStandardReckoning(year, reckoning);
         return Calendar::dayOfYear(day, month) + year_hal*Calendar::daysInYear();
-    }
-
-
-    /* Implementation of Date class ******************************************/
-    Date::Date(const Date& other)
-        : m_days_after_hal(other.m_days_after_hal), m_reckoning(other.m_reckoning)
-    {
-    }
-
-    Date::Date(const int new_day, const Month new_month, const int new_year, const Reckoning new_reckoning)
-    {
-        setDate(new_day, new_month, new_year, new_reckoning);
-    }
-
-    void Date::setDate(const int new_day, const Month new_month, const int new_year, const Reckoning new_reckoning)
-    {
-        m_days_after_hal = Calendar::daysAfterStandardReckoning(new_day, new_month, new_year, new_reckoning);
-        return;
-    }
-
-    void Date::date(int *the_day, Month *the_month, int *the_year, Reckoning *the_reckoning)
-    {
-        int year_hal = m_days_after_hal / Calendar::daysInYear();
-        int day_of_year = m_days_after_hal % Calendar::daysInYear();
-        int month_no = day_of_year/Calendar::daysInMonth(MONTH_PRAIOS)+1;
-        *the_day = day_of_year - (month_no-1)*Calendar::daysInMonth(MONTH_PRAIOS);
-        *the_month = static_cast<Month>(month_no);
-        *the_reckoning = m_reckoning;
-        *the_year = Calendar::fromStandardReckoning(year_hal, m_reckoning);
-        return;
-    }
-
-    Date Date::operator++()
-    {
-        m_days_after_hal++;
-        return Date(*this);
-    }
-
-    Date Date::operator--()
-    {
-        m_days_after_hal--;
-        return Date(*this);
-    }
-
-    Date Date::operator+(const Date& other)
-    {
-        Date date_sum(other);
-        date_sum.m_days_after_hal += m_days_after_hal;
-        return date_sum;
-    }
-
-    Date Date::operator-(const Date &other)
-    {
-        Date date_diff(other);
-        date_diff.m_days_after_hal -= m_days_after_hal;
-        return date_diff;
-    }
-
-    bool Date::operator<(const Date &other)
-    {
-        return m_days_after_hal < other.m_days_after_hal;
-    }
-
-    bool Date::operator>(const Date &other)
-    {
-        return m_days_after_hal > other.m_days_after_hal;
-    }
-
-    bool Date::operator<=(const Date &other)
-    {
-        return m_days_after_hal <= other.m_days_after_hal;
-    }
-
-    bool Date::operator>=(const Date &other)
-    {
-        return m_days_after_hal >= other.m_days_after_hal;
-    }
-
-    QString Date::toString()
-    {
-        int the_day;
-        Month the_month;
-        int the_year;
-        Reckoning the_reckoning;
-        qDebug() << "alive";
-        date(&the_day, &the_month, &the_year, &the_reckoning);
-        qDebug() << the_day << the_month << the_year << Calendar::reckoningName(the_reckoning);
-        return QObject::tr("%1 %2 %3 %4").arg(QString::number(the_day)).arg(Calendar::monthName(the_month)).arg(QString::number(the_year)).arg(Calendar::reckoningName(the_reckoning));
     }
 
 

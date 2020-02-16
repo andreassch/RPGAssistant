@@ -3,5 +3,33 @@
         <file>Graphics/rpgassistant.ico</file>
         <file>Graphics/DSALogoFanprojekt-300x84.png</file>
         <file>Graphics/DSALogoFanprojekt-604x169.png</file>
+        <file>Graphics/MoonPhaseWaxing1.svg</file>
+        <file>Graphics/MoonPhaseWaxing2.svg</file>
+        <file>Graphics/MoonPhaseWaxing3.svg</file>
+        <file>Graphics/MoonPhaseWaxing4.svg</file>
+        <file>Graphics/MoonPhaseWaxing5.svg</file>
+        <file>Graphics/MoonPhaseWaxing6.svg</file>
+        <file>Graphics/MoonPhaseWaxing7.svg</file>
+        <file>Graphics/MoonPhaseWaxing8.svg</file>
+        <file>Graphics/MoonPhaseWaxing9.svg</file>
+        <file>Graphics/MoonPhaseWaxing10.svg</file>
+        <file>Graphics/MoonPhaseWaxing11.svg</file>
+        <file>Graphics/MoonPhaseWaxing12.svg</file>
+        <file>Graphics/MoonPhaseWaxing13.svg</file>
+        <file>Graphics/MoonPhaseWaxing14.svg</file>
+        <file>Graphics/MoonPhaseWaning1.svg</file>
+        <file>Graphics/MoonPhaseWaning2.svg</file>
+        <file>Graphics/MoonPhaseWaning3.svg</file>
+        <file>Graphics/MoonPhaseWaning4.svg</file>
+        <file>Graphics/MoonPhaseWaning5.svg</file>
+        <file>Graphics/MoonPhaseWaning6.svg</file>
+        <file>Graphics/MoonPhaseWaning7.svg</file>
+        <file>Graphics/MoonPhaseWaning8.svg</file>
+        <file>Graphics/MoonPhaseWaning9.svg</file>
+        <file>Graphics/MoonPhaseWaning10.svg</file>
+        <file>Graphics/MoonPhaseWaning11.svg</file>
+        <file>Graphics/MoonPhaseWaning12.svg</file>
+        <file>Graphics/MoonPhaseWaning13.svg</file>
+        <file>Graphics/MoonPhaseWaning14.svg</file>
     </qresource>
 </RCC>

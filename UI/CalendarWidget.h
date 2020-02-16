@@ -193,6 +193,6 @@ private slots:
 
 private:
     Ui::CalendarWidget *m_ui;
-    Reckoning m_reckoning;
+    Reckoning m_reckoning = static_cast<Reckoning>(0);
     std::vector<Holiday> m_holidays;
 };

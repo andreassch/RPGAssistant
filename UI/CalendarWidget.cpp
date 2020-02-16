@@ -75,6 +75,7 @@ void CalendarWidget::setYear(const int new_year)
 void CalendarWidget::setReckoning(const Reckoning new_reckoning)
 {
     m_ui->comboReckoning->setCurrentIndex(static_cast<int>(new_reckoning));
+    m_reckoning = new_reckoning;
     return;
 }
 
@@ -225,6 +226,7 @@ void CalendarWidget::onChangeReckoning(const int index)
 {
     Reckoning new_reckoning = static_cast<Reckoning>(index);
     int new_year = Calendar::convertReckoning(year(), m_reckoning, new_reckoning);
+    qDebug() << "onChangeReckoning" << year() << m_reckoning << new_year << new_reckoning;
     setYear(new_year);
     m_reckoning = new_reckoning;
     return;
@@ -270,11 +272,7 @@ void CalendarWidget::onChangeDayTab()
 void CalendarWidget::onChangeDate()
 {
     // Change moon phase text and graphics.
-#ifdef ANDROID
-    QDir image_dir("assets:/graphics");
-#else
-    QDir image_dir = QDir("."); // TODO: don't hardcode path
-#endif
+    QDir image_dir(":/Graphics");
     MoonPhase moon_phase(day(), month(), year(), reckoning());
     m_ui->labelMoonPhaseText->setText(moon_phase.toString());
     QString filename = image_dir.filePath(moon_phase.graphicsFilename());
