@@ -21,6 +21,7 @@ private:
     static inline QString eyecolorName() { return QStringLiteral("eyecolor"); }
     static inline QString colorName() { return QStringLiteral("color"); }
     static inline QString nameAttribute() { return QStringLiteral("name"); }
+    static inline QString subNameAttribute() { return QStringLiteral("subname"); }
 
     std::vector<Species>* m_species;
 };

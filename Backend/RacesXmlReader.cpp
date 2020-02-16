@@ -26,6 +26,8 @@ Race RacesXmlReader::readRace()
     Q_ASSERT(m_xml_reader.isStartElement() && m_xml_reader.name() == raceName());
     Race race;
     QString name = m_xml_reader.attributes().value(nameAttribute()).toString();
+    if (m_xml_reader.attributes().hasAttribute(subNameAttribute()))
+        name = name.append(QString(" (%1)").arg(m_xml_reader.attributes().value(subNameAttribute()).toString()));
     qDebug() << "race" << name;
     race.setName(name);
     while (m_xml_reader.readNextStartElement()) {

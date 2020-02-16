@@ -94,14 +94,11 @@ android {
 data.path = $$DATA_PATH
 data.files = Data/names.xml Data/races.xml Data/holidays.xml
 data.depends += FORCE
-graphics.path = $$GRAPHICS_PATH
-graphics.files = Graphics/MoonPhaseWa?ing*.svg
-graphics.depends += FORCE
 locales.path = $$LOCALE_PATH
 locales.files = Translations/rpgassistant_de.qm
 locales.depends += FORCE
 
-INSTALLS += data locales graphics
+INSTALLS += data locales
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

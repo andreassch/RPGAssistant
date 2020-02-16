@@ -19,8 +19,12 @@ def dsasuiterace2xml(xmlroot, filename, encoding='iso8859-1'):
     with open(filename, 'r') as fd:
         fd.readline()
         race = fd.readline()[:-2].decode(encoding)
-        root = ET.SubElement(xmlroot, 'race', attrib={'name': race})
-        for ind in range(5):
+        subrace = fd.readline()[:-2].decode(encoding)
+        attrib = {'name': race}
+        if subrace:
+            attrib.update({'subname': subrace})
+        root = ET.SubElement(xmlroot, 'race', attrib=attrib)
+        for ind in range(4):
             fd.readline()[:-2]
         size = fd.readline()[:-2].decode(encoding)
         size_tag = ET.SubElement(root, 'size')
@@ -47,10 +51,11 @@ if __name__ == '__main__':
     root = ET.Element('races')
     if os.path.isdir(argv[1]):
         for path, subdirs, files in os.walk(argv[1]):
+            subdirs.sort() # trick to alphabetically sort subdirectories
             if len(files) > 0:
                 species_name = os.path.basename(path)
                 species = ET.SubElement(root, 'species', {'name': species_name})
-                for filename in files:
+                for filename in sorted(files):
                     dsasuiterace2xml(species, os.path.join(path,filename))
     else:
         filename = argv[1]
