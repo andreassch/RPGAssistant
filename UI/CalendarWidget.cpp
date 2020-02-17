@@ -120,12 +120,13 @@ void CalendarWidget::setupUi()
     QFile holidays_file(data_dir.filePath("holidays.xml"));
     if(!holidays_file.open(QFile::ReadOnly | QFile::Text)) {
         QMessageBox::critical(this, tr("Calendar"), tr("Cannot open file %1 for reading: %2").arg(holidays_file.fileName()).arg(holidays_file.errorString()));
-        return;
     }
-    HolidaysXmlReader holidays_reader(&m_holidays);
-    holidays_reader.read(&holidays_file);
-    holidays_file.close();
-    qDebug() << m_holidays.size() << "holidays read.";
+    else {
+        HolidaysXmlReader holidays_reader(&m_holidays);
+        holidays_reader.read(&holidays_file);
+        holidays_file.close();
+        qDebug() << m_holidays.size() << "holidays read.";
+    }
 
     // Connect signals and slots.
     connect(m_ui->comboReckoning, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &CalendarWidget::onChangeReckoning);

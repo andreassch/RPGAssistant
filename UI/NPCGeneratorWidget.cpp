@@ -40,30 +40,40 @@ void NPCGeneratorWidget::setupUi()
     qDebug() << names_file;
     if(!names_file.open(QFile::ReadOnly | QFile::Text)) {
         QMessageBox::critical(this, tr("NPC Generator"), tr("Cannot open file %1 for reading: %2").arg(names_file.fileName()).arg(names_file.errorString()));
-        return;
+        m_ui->comboRegion->setEnabled(false);
+        m_ui->checkRandomRegion->setEnabled(false);
+        m_ui->buttonGenerate->setEnabled(false);
     }
-    NamesXmlReader name_reader(&m_namelists);
-    name_reader.read(&names_file);
-    names_file.close();
-    qDebug() << "Name list contains" << m_namelists.size() << "regions.";
-    for (std::size_t ind=0;ind < m_namelists.size(); ind++)
-        m_ui->comboRegion->addItem(m_namelists.at(ind).region());
+    else {
+        NamesXmlReader name_reader(&m_namelists);
+        name_reader.read(&names_file);
+        names_file.close();
+        qDebug() << "Name list contains" << m_namelists.size() << "regions.";
+        for (std::size_t ind=0;ind < m_namelists.size(); ind++)
+            m_ui->comboRegion->addItem(m_namelists.at(ind).region());
+    }
 
     // Read species and their races and fill the combo boxes.
     QFile races_file(data_dir.filePath("races.xml"));
     qDebug() << races_file;
     if(!races_file.open(QFile::ReadOnly | QFile::Text)) {
         QMessageBox::critical(this, tr("NPC Generator"), tr("Cannot open file %1 for reading: %2").arg(races_file.fileName()).arg(races_file.errorString()));
-        return;
+        m_ui->comboSpecies->setEnabled(false);
+        m_ui->checkRandomSpecies->setEnabled(false);
+        m_ui->comboRace->setEnabled(false);
+        m_ui->checkRandomRace->setEnabled(false);
+        m_ui->buttonGenerate->setEnabled(false);
     }
-    RacesXmlReader race_reader(&m_species);
-    race_reader.read(&races_file);
-    races_file.close();
-    qDebug() << "Species list contains" << m_species.size() << "species.";
-    for (std::size_t ind=0;ind < m_species.size(); ind++)
-        m_ui->comboSpecies->addItem(m_species.at(ind).name());
-    if (m_species.size() > 0)
-        onChangeSpecies(0);
+    else {
+        RacesXmlReader race_reader(&m_species);
+        race_reader.read(&races_file);
+        races_file.close();
+        qDebug() << "Species list contains" << m_species.size() << "species.";
+        for (std::size_t ind=0;ind < m_species.size(); ind++)
+            m_ui->comboSpecies->addItem(m_species.at(ind).name());
+        if (m_species.size() > 0)
+            onChangeSpecies(0);
+    }
 
     // Fill gender combo box.
     for (std::underlying_type_t<Gender> gval = 0; gval <= static_cast<std::underlying_type_t<Gender>>(Gender::MALE); gval++)
@@ -86,12 +96,18 @@ void NPCGeneratorWidget::setupUi()
 void NPCGeneratorWidget::saveSettings()
 {
     QSettings settings;
-    settings.setValue("NPCGenerator/region", m_ui->comboRegion->currentIndex());
-    settings.setValue("NPCGenerator/randomRegion", m_ui->checkRandomRegion->isChecked());
-    settings.setValue("NPCGenerator/species", m_ui->comboSpecies->currentIndex());
-    settings.setValue("NPCGenerator/randomSpecies", m_ui->checkRandomSpecies->isChecked());
-    settings.setValue("NPCGenerator/race", m_ui->comboRace->currentIndex());
-    settings.setValue("NPCGenerator/randomRace", m_ui->checkRandomRace->isChecked());
+    if (m_ui->comboRegion->count() > 0) {
+        settings.setValue("NPCGenerator/region", m_ui->comboRegion->currentIndex());
+        settings.setValue("NPCGenerator/randomRegion", m_ui->checkRandomRegion->isChecked());
+    }
+    if (m_ui->comboSpecies->count() > 0) {
+        settings.setValue("NPCGenerator/species", m_ui->comboSpecies->currentIndex());
+        settings.setValue("NPCGenerator/randomSpecies", m_ui->checkRandomSpecies->isChecked());
+    }
+    if (m_ui->comboRace->count() > 0) {
+        settings.setValue("NPCGenerator/race", m_ui->comboRace->currentIndex());
+        settings.setValue("NPCGenerator/randomRace", m_ui->checkRandomRace->isChecked());
+    }
     settings.setValue("NPCGenerator/gender", m_ui->comboGender->currentIndex());
     settings.setValue("NPCGenerator/randomGender", m_ui->checkRandomGender->isChecked());
     settings.sync();
