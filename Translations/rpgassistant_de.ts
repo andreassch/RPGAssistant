@@ -108,7 +108,7 @@
     <message>
         <location filename="../UI/NPCGeneratorWidget.ui" line="14"/>
         <location filename="../UI/NPCGeneratorWidget.cpp" line="42"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="56"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="60"/>
         <source>NPC Generator</source>
         <translation>NSC-Generator</translation>
     </message>
@@ -177,7 +177,7 @@
     </message>
     <message>
         <location filename="../UI/NPCGeneratorWidget.cpp" line="42"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="56"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="60"/>
         <source>Cannot open file %1 for reading: %2</source>
         <translation>Kann Datei %1 nicht zum Lesen öffnen: %2</translation>
     </message>
@@ -196,7 +196,7 @@ Line %2, column %3</source>
         <translation>%1\nZeile %2, Spalte %3</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="325"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="330"/>
         <source>Incorrect turn order XML file.</source>
         <translation>Keine korrekte Initiativlisten-XML-Datei.</translation>
     </message>
@@ -398,8 +398,8 @@ Line %2, column %3</source>
         <location filename="../UI/TurnOrderWidget.ui" line="14"/>
         <location filename="../UI/TurnOrderWidget.cpp" line="128"/>
         <location filename="../UI/TurnOrderWidget.cpp" line="228"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="259"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="355"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="264"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="367"/>
         <source>Turn Order List</source>
         <translation>Initiativliste</translation>
     </message>
@@ -504,32 +504,36 @@ Line %2, column %3</source>
         <translation>Bitte einen Eintrag selektieren, der getroffen werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="250"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="252"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="255"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="257"/>
         <source>Open turn order list</source>
         <translation>Initiativliste öffnen</translation>
     </message>
     <message>
         <location filename="../UI/TurnOrderWidget.cpp" line="250"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="252"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="346"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="348"/>
-        <source>XML files (*.xml)</source>
-        <translation>XML Dateien (*.xml)</translation>
+        <location filename="../UI/TurnOrderWidget.cpp" line="347"/>
+        <source>XML files (*.xml);;All files (*.*)</source>
+        <translation>XML-Dateien (*.xml);;Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="259"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="252"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="349"/>
+        <source>XML files (*.xml);;All files (*)</source>
+        <translation>XML-Dateien (*.xml);;Alle Dateien (*)</translation>
+    </message>
+    <message>
+        <location filename="../UI/TurnOrderWidget.cpp" line="264"/>
         <source>Cannot open file %1 for reading.</source>
         <translation>Datei %1 kann nicht zum Lesen geöffnet werden.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="346"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="348"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="356"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="358"/>
         <source>Save turn order list</source>
         <translation>Initiativliste speichern</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="355"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="367"/>
         <source>Cannot open file %1 for writing.</source>
         <translation>Datei %1 kann nicht zum Schreiben geöffnet werden.</translation>
     </message>

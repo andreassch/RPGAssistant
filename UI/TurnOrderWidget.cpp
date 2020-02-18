@@ -246,10 +246,15 @@ void TurnOrderWidget::onClear()
 
 void TurnOrderWidget::onLoad()
 {
-#ifdef ANDROID
-    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), tr("XML files (*.xml)"), 0, QFileDialog::DontUseNativeDialog));
+#ifdef _WIN32
+const QString file_filter = tr("XML files (*.xml);;All files (*.*)");
 #else
-    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), tr("XML files (*.xml)")));
+const QString file_filter = tr("XML files (*.xml);;All files (*)");
+#endif
+#ifdef ANDROID
+    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter, 0, QFileDialog::DontUseNativeDialog));
+#else
+    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter));
 #endif
     qDebug() << filename;
     if (filename.isEmpty())
@@ -338,18 +343,25 @@ void TurnOrderWidget::onLoad()
 
 void TurnOrderWidget::onSave()
 {
+#ifdef _WIN32
+const QString file_filter = tr("XML files (*.xml);;All files (*.*)");
+#else
+const QString file_filter = tr("XML files (*.xml);;All files (*)");
+#endif
 #ifdef ANDROID
     if (!QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).exists()) {
         qDebug() << "Creating Documents directory:" << QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
         QDir().mkdir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
     }
-    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), tr("XML files (*.xml)"), 0, QFileDialog::DontUseNativeDialog));
+    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter, 0, QFileDialog::DontUseNativeDialog));
 #else
-    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), tr("XML files (*.xml)")));
+    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter));
 #endif
-    qDebug() << filename;
     if (filename.isEmpty())
         return;
+    if (!filename.endsWith(".xml"))
+        filename = filename.append(".xml");
+    qDebug() << filename;
     QFile file(filename);
     if(!file.open(QFile::WriteOnly | QFile::Text)) {
         QMessageBox::critical(this, tr("Turn Order List"), tr("Cannot open file %1 for writing.").arg(file.errorString()));
