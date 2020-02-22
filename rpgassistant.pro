@@ -22,8 +22,8 @@ SOURCES += \
     Backend/HolidaysXmlReader.cpp \
     Backend/Names.cpp \
     Backend/NamesXmlReader.cpp \
-    Backend/Race.cpp \
-    Backend/RacesXmlReader.cpp \
+    Backend/Person.cpp \
+    Backend/PersonsXmlReader.cpp \
     Backend/TDECalendar.cpp \
     UI/CalendarWidget.cpp \
     UI/MainWidget.cpp \
@@ -38,9 +38,8 @@ HEADERS += \
     Backend/HolidaysXmlReader.h \
     Backend/Names.h \
     Backend/NamesXmlReader.h \
-    Backend/Race.h \
-    Backend/RacesXmlReader.h \
-    Backend/Species.h \
+    Backend/Person.h \
+    Backend/PersonsXmlReader.h \
     Backend/TDECalendar.h \
     UI/CalendarWidget.h \
     UI/MainWidget.h \
@@ -92,7 +91,7 @@ android {
     LOCALE_PATH=/
 }
 data.path = $$DATA_PATH
-data.files = Data/names.xml Data/races.xml Data/holidays.xml
+data.files = Data/names.xml Data/persons.xml Data/holidays.xml
 data.depends += FORCE
 locales.path = $$LOCALE_PATH
 locales.files = Translations/rpgassistant_de.qm

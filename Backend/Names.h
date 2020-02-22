@@ -7,7 +7,8 @@
 enum class Gender
 {
     FEMALE,
-    MALE
+    MALE,
+    NEUTRAL
 };
 
 enum class SurnameType
@@ -21,6 +22,7 @@ public:
     Names();
 
     static QString genderString(const Gender& gender);
+    static Gender parseGender(const QString& gender_name);
 
     inline QString region() const { return m_region; }
     QString firstname(const Gender& gender, const size_t index) const;

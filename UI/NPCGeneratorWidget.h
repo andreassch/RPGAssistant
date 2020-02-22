@@ -17,7 +17,7 @@
 
 #include <QWidget>
 #include "Backend/Names.h"
-#include "Backend/Species.h"
+#include "Backend/Person.h"
 
 namespace Ui {
 class NPCGeneratorWidget;
@@ -56,16 +56,25 @@ private:
      */
     void loadSettings();
 
+    /**
+     * @brief Determine the index in the person list for a given region name.
+     * @param region Name of the region to look for.
+     * @return Index of the region, or -1 if it is not found.
+     */
+    int searchRegion(const QString& region_name);
+
+    /**
+     * @brief Determine the index in the namelist for a given region name.
+     * @param region Name of the region to look for.
+     * @return Index of the region, or -1 if it is not found.
+     */
+    int searchNameRegion(const QString& region_name);
+
 private slots:
     /**
      * @brief Callback for the generate button.
      */
     void onGenerate();
-
-    /**
-     * @brief Callback when the species is changed, which updates the races available for the species.
-     */
-    void onChangeSpecies(const int index);
 
     /**
      * @brief Callback on changing the check box to select regions randomly.
@@ -75,18 +84,10 @@ private slots:
     void onChangeRandomRegion(const int state);
 
     /**
-     * @brief Callback on changing the check box to select species randomly.
-     * It enables/disbales the corresponding combo box and updates the state of random race selection, if necessary.
+     * @brief Callback on changing the check box to select the name region separately.
      * @param state The new state of the check box.
      */
-    void onChangeRandomSpecies(const int state);
-
-    /**
-     * @brief Callback on changing the check box to select races randomly.
-     * It enables/disbales the corresponding combo box and updates the state of random species selection, if necessary.
-     * @param state The new state of the check box.
-     */
-    void onChangeRandomRace(const int state);
+    void onChangeCheckSeparateNameRegion(const int state);
 
     /**
      * @brief Callback on changing the check box to select the gender randomly.
@@ -95,8 +96,14 @@ private slots:
      */
     void onChangeRandomGender(const int state);
 
+    /**
+     * @brief Callback on changing the check box to select the age randomly.
+     * @param state The new state of the check box.
+     */
+    void onChangeRandomAge(const int state);
+
 private:
     Ui::NPCGeneratorWidget* m_ui;
     std::vector<Names> m_namelists;
-    std::vector<Species> m_species;
+    std::vector<Person> m_persons;
 };

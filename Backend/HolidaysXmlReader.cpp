@@ -35,7 +35,7 @@ void HolidaysXmlReader::readEntry()
         else if (m_xml_reader.name() == "month") {
             int month = m_xml_reader.readElementText().toInt();
             if ((month < 1) || (month > Calendar::noOfMonths()))
-                m_xml_reader.raiseError(QObject::tr("XML error: month %1 outside range.").arg(QString::number(month)));
+                m_xml_reader.raiseError(QObject::tr("Error in holiday XML file: month %1 outside range.").arg(QString::number(month)));
             holiday.setMonth(static_cast<Month>(month));
         }
         else if (m_xml_reader.name() == "duration")

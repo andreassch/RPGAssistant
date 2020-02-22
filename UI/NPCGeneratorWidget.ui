@@ -14,39 +14,33 @@
    <string>NPC Generator</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../icons.qrc">
+   <iconset resource="../graphics.qrc">
     <normaloff>:/Graphics/rpgassistant.ico</normaloff>:/Graphics/rpgassistant.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="3" column="1">
+     <item row="2" column="1">
       <widget class="QComboBox" name="comboGender"/>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelRace">
-       <property name="text">
-        <string>R&amp;ace:</string>
-       </property>
-       <property name="buddy">
-        <cstring>comboRace</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="comboSpecies"/>
-     </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="labelSpecies">
+      <widget class="QCheckBox" name="checkNameRegion">
        <property name="text">
-        <string>&amp;Species:</string>
-       </property>
-       <property name="buddy">
-        <cstring>comboSpecies</cstring>
+        <string>&amp;Name from:</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item row="2" column="2">
+      <widget class="QCheckBox" name="checkRandomGender">
+       <property name="text">
+        <string>?</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="comboRegion"/>
+     </item>
+     <item row="2" column="0">
       <widget class="QLabel" name="labelGender">
        <property name="text">
         <string>G&amp;ender:</string>
@@ -56,8 +50,12 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QComboBox" name="comboRace"/>
+     <item row="0" column="2">
+      <widget class="QCheckBox" name="checkRandomRegion">
+       <property name="text">
+        <string>?</string>
+       </property>
+      </widget>
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="labelRegion">
@@ -69,32 +67,25 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QComboBox" name="comboRegion"/>
-     </item>
-     <item row="0" column="2">
-      <widget class="QCheckBox" name="checkRandomRegion">
-       <property name="text">
-        <string>?</string>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboNameRegion">
+       <property name="enabled">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
-      <widget class="QCheckBox" name="checkRandomSpecies">
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelAge">
        <property name="text">
-        <string>?</string>
+        <string>Age:</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="2">
-      <widget class="QCheckBox" name="checkRandomRace">
-       <property name="text">
-        <string>?</string>
-       </property>
-      </widget>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="comboAge"/>
      </item>
      <item row="3" column="2">
-      <widget class="QCheckBox" name="checkRandomGender">
+      <widget class="QCheckBox" name="checkRandomAge">
        <property name="text">
         <string>?</string>
        </property>
@@ -110,94 +101,12 @@
     </widget>
    </item>
    <item>
-    <layout class="QFormLayout" name="formLayout_2">
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelName">
-       <property name="text">
-        <string>Name:</string>
-       </property>
-       <property name="buddy">
-        <cstring>lineName</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelHairColor">
-       <property name="text">
-        <string>Hair colour:</string>
-       </property>
-       <property name="buddy">
-        <cstring>lineHairColor</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="labelEyeColor">
-       <property name="text">
-        <string>Eye colour:</string>
-       </property>
-       <property name="buddy">
-        <cstring>lineEyeColor</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="lineName"/>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="lineHairColor"/>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEyeColor"/>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="labelSize">
-       <property name="text">
-        <string>Size:</string>
-       </property>
-       <property name="buddy">
-        <cstring>lineSize</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="lineSize"/>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="labelWeight">
-       <property name="text">
-        <string>Weight:</string>
-       </property>
-       <property name="buddy">
-        <cstring>lineWeight</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLineEdit" name="lineWeight"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelGenderResult">
-       <property name="text">
-        <string>Gender:</string>
-       </property>
-       <property name="buddy">
-        <cstring>lineGender</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineGender"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QTextEdit" name="textResult"/>
+    <widget class="QTextEdit" name="textDescription"/>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="../icons.qrc"/>
+  <include location="../graphics.qrc"/>
  </resources>
  <connections/>
 </ui>

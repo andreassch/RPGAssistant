@@ -22,11 +22,7 @@ def dsasuitename2xml(xmlroot, filename, encoding='iso8859-1'):
     cat = None
     with open(filename, 'r') as fd:
         for line in fd:
-            line = line.decode(encoding)
-            if line.endswith('\n'):
-                line = line[:-1]
-            if line.endswith('\r'):
-                line = line[:-1]
+            line = line.decode(encoding).rstrip()
             if line.startswith('---'): # start of new category
                 category = line[3:-3]
                 if category == 'Nachnamen':

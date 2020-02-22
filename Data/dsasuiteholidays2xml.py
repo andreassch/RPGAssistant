@@ -31,7 +31,7 @@ def dsasuiteholiday2xml(xmlroot, filename, encoding='iso8859-1'):
     duration_types = ['endDate','durationBack', 'duration']
     with open(filename, 'r') as fd:
         while True:
-            name = fd.readline().decode(encoding)[:-2]
+            name = fd.readline().decode(encoding).rstrip()
             if not name:
                 break
             day_reference = HolidayReference(int(fd.readline()))

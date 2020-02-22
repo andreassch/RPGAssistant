@@ -107,79 +107,58 @@
     <name>NPCGeneratorWidget</name>
     <message>
         <location filename="../UI/NPCGeneratorWidget.ui" line="14"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="42"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="43"/>
         <location filename="../UI/NPCGeneratorWidget.cpp" line="60"/>
         <source>NPC Generator</source>
         <translation>NSC-Generator</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="65"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="63"/>
         <source>&amp;Region:</source>
         <translation>&amp;Region:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="29"/>
-        <source>R&amp;ace:</source>
-        <translation>R&amp;asse:</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="52"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="46"/>
         <source>G&amp;ender:</source>
         <translation>G&amp;eschlecht:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="42"/>
-        <source>&amp;Species:</source>
-        <translation>&amp;Spezies:</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="78"/>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="85"/>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="92"/>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="99"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="36"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="56"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="90"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="108"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="29"/>
+        <source>&amp;Name from:</source>
+        <translation>&amp;Name aus:</translation>
+    </message>
+    <message>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="80"/>
+        <source>Age:</source>
+        <translation>Lebensalter:</translation>
+    </message>
+    <message>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="99"/>
         <source>&amp;Generate</source>
         <translation>&amp;Generieren</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="117"/>
-        <source>Name:</source>
-        <translation>Name:</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="127"/>
-        <source>Hair colour:</source>
-        <translation>Haarfarbe:</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="137"/>
-        <source>Eye colour:</source>
-        <translation>Augenfarbe:</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="156"/>
-        <source>Size:</source>
-        <translation>Größe:</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="169"/>
-        <source>Weight:</source>
-        <translation>Gewicht:</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="182"/>
-        <source>Gender:</source>
-        <translation>Geschlecht:</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="42"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="43"/>
         <location filename="../UI/NPCGeneratorWidget.cpp" line="60"/>
         <source>Cannot open file %1 for reading: %2</source>
         <translation>Kann Datei %1 nicht zum Lesen öffnen: %2</translation>
+    </message>
+    <message>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="231"/>
+        <source>&lt;BR&gt;Trait: %1</source>
+        <translation>&lt;BR&gt;Charakter: %1</translation>
+    </message>
+    <message>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="232"/>
+        <source>&lt;BR&gt;Profession: %1</source>
+        <translation>&lt;BR&gt;Beruf: %1</translation>
     </message>
 </context>
 <context>
@@ -382,14 +361,54 @@ Line %2, column %3</source>
         <translation>männlich</translation>
     </message>
     <message>
+        <location filename="../Backend/Names.cpp" line="18"/>
+        <source>neutral</source>
+        <translation>neutral</translation>
+    </message>
+    <message>
         <location filename="../Backend/NamesXmlReader.cpp" line="60"/>
         <source>The surname tag for region %1 does not contain a valid type attribute.</source>
         <translation>Der surname-Tag in Region %1 enthält kein gültiges type-Attribut.</translation>
     </message>
     <message>
         <location filename="../Backend/HolidaysXmlReader.cpp" line="38"/>
-        <source>XML error: month %1 outside range.</source>
-        <translation>XML Fehler: Monat %1 liegt außerhalb des erlaubten Bereichs.</translation>
+        <source>Error in holiday XML file: month %1 outside range.</source>
+        <translation>Fehler in Feiertag-Datendatei: Monat %1 außerhalb des erlaubten Bereichs.</translation>
+    </message>
+    <message>
+        <location filename="../Backend/PersonsXmlReader.cpp" line="108"/>
+        <source>Error in persons XML file: incorrect gender attribute value %1.</source>
+        <translation>Fehler in Personen-Datendatei: ungültiges Geschlecht %1.</translation>
+    </message>
+    <message>
+        <location filename="../Backend/PersonsXmlReader.cpp" line="122"/>
+        <source>Error in persons XML file: incorrect age attribute value %1.</source>
+        <translation>Fehler in Personen-Datendatei: ungültiger Lebensalter String %1.</translation>
+    </message>
+    <message>
+        <location filename="../Backend/Person.cpp" line="16"/>
+        <source>child</source>
+        <translation>Kind</translation>
+    </message>
+    <message>
+        <location filename="../Backend/Person.cpp" line="16"/>
+        <source>adult</source>
+        <translation>Erwachsen</translation>
+    </message>
+    <message>
+        <location filename="../Backend/Person.cpp" line="16"/>
+        <source>elder</source>
+        <translation>Greis</translation>
+    </message>
+    <message>
+        <location filename="../Backend/Person.cpp" line="133"/>
+        <source> (apprentice)</source>
+        <translation> (Lehrling)</translation>
+    </message>
+    <message>
+        <location filename="../Backend/Person.cpp" line="135"/>
+        <source> (retired)</source>
+        <translation> (in Ruhestand)</translation>
     </message>
 </context>
 <context>

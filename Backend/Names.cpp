@@ -14,10 +14,22 @@ QString Names::genderString(const Gender &gender)
             return QObject::tr("female");
         case Gender::MALE:
             return QObject::tr("male");
+        case Gender::NEUTRAL:
+            return QObject::tr("neutral");
         default:
             assert(false);
     }
     return QString("");
+}
+
+Gender Names::parseGender(const QString& gender_name)
+{
+    if (gender_name.compare("female") == 0)
+        return Gender::FEMALE;
+    else if (gender_name.compare("male") == 0)
+        return Gender::MALE;
+    else
+        return Gender::NEUTRAL;
 }
 
 QString Names::firstname(const Gender& gender, const size_t index) const

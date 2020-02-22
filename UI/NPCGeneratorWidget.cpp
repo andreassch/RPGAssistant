@@ -2,7 +2,7 @@
 #include "ui_NPCGeneratorWidget.h"
 
 #include "../Backend/NamesXmlReader.h"
-#include "../Backend/RacesXmlReader.h"
+#include "../Backend/PersonsXmlReader.h"
 #include <QFile>
 #include <QDir>
 #include <QMessageBox>
@@ -35,13 +35,13 @@ void NPCGeneratorWidget::setupUi()
     QDir data_dir = QDir("."); // TODO: don't hardcode path
 #endif
     qDebug() << data_dir;
-    // Read name lists and fill region combo box.
+
+    // Read name lists and fill name region combo box.
     QFile names_file(data_dir.filePath("names.xml"));
     qDebug() << names_file;
     if(!names_file.open(QFile::ReadOnly | QFile::Text)) {
         QMessageBox::critical(this, tr("NPC Generator"), tr("Cannot open file %1 for reading: %2").arg(names_file.fileName()).arg(names_file.errorString()));
-        m_ui->comboRegion->setEnabled(false);
-        m_ui->checkRandomRegion->setEnabled(false);
+        m_ui->comboNameRegion->setEnabled(false);
         m_ui->buttonGenerate->setEnabled(false);
     }
     else {
@@ -50,41 +50,39 @@ void NPCGeneratorWidget::setupUi()
         names_file.close();
         qDebug() << "Name list contains" << m_namelists.size() << "regions.";
         for (std::size_t ind=0;ind < m_namelists.size(); ind++)
-            m_ui->comboRegion->addItem(m_namelists.at(ind).region());
+            m_ui->comboNameRegion->addItem(m_namelists.at(ind).region());
     }
 
-    // Read species and their races and fill the combo boxes.
-    QFile races_file(data_dir.filePath("races.xml"));
-    qDebug() << races_file;
-    if(!races_file.open(QFile::ReadOnly | QFile::Text)) {
-        QMessageBox::critical(this, tr("NPC Generator"), tr("Cannot open file %1 for reading: %2").arg(races_file.fileName()).arg(races_file.errorString()));
-        m_ui->comboSpecies->setEnabled(false);
-        m_ui->checkRandomSpecies->setEnabled(false);
-        m_ui->comboRace->setEnabled(false);
-        m_ui->checkRandomRace->setEnabled(false);
-        m_ui->buttonGenerate->setEnabled(false);
+    // Read persons.
+    QFile persons_file(data_dir.filePath("persons.xml"));
+    qDebug() << persons_file;
+    if(!persons_file.open(QFile::ReadOnly | QFile::Text)) {
+        QMessageBox::critical(this, tr("NPC Generator"), tr("Cannot open file %1 for reading: %2").arg(persons_file.fileName()).arg(persons_file.errorString()));
+        m_ui->comboRegion->setEnabled(false);
+        m_ui->checkRandomRegion->setEnabled(false);
     }
     else {
-        RacesXmlReader race_reader(&m_species);
-        race_reader.read(&races_file);
-        races_file.close();
-        qDebug() << "Species list contains" << m_species.size() << "species.";
-        for (std::size_t ind=0;ind < m_species.size(); ind++)
-            m_ui->comboSpecies->addItem(m_species.at(ind).name());
-        if (m_species.size() > 0)
-            onChangeSpecies(0);
+        PersonsXmlReader person_reader(&m_persons);
+        person_reader.read(&persons_file);
+        persons_file.close();
+        qDebug() << "Person list contains" << m_persons.size() << "regions.";
+        for (std::size_t ind=0;ind < m_persons.size(); ind++)
+            m_ui->comboRegion->addItem(m_persons.at(ind).region());
     }
 
     // Fill gender combo box.
     for (std::underlying_type_t<Gender> gval = 0; gval <= static_cast<std::underlying_type_t<Gender>>(Gender::MALE); gval++)
         m_ui->comboGender->addItem(Names::genderString(static_cast<Gender>(gval)));
 
+    // Fill age combo box.
+    for (std::underlying_type_t<AgePeriod> aval = 0; aval <= static_cast<std::underlying_type_t<AgePeriod>>(AgePeriod::ELDER); aval++)
+        m_ui->comboAge->addItem(Person::agePeriodString(static_cast<AgePeriod>(aval)));
+
     // Connect signals and slots.
-    connect(m_ui->comboSpecies, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &NPCGeneratorWidget::onChangeSpecies);
     connect(m_ui->checkRandomRegion, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomRegion);
-    connect(m_ui->checkRandomSpecies, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomSpecies);
-    connect(m_ui->checkRandomRace, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomRace);
+    connect(m_ui->checkNameRegion, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeCheckSeparateNameRegion);
     connect(m_ui->checkRandomGender, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomGender);
+    connect(m_ui->checkRandomAge, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomAge);
     connect(m_ui->buttonGenerate, &QPushButton::clicked, this, &NPCGeneratorWidget::onGenerate);
 
     // Load settings.
@@ -96,20 +94,22 @@ void NPCGeneratorWidget::setupUi()
 void NPCGeneratorWidget::saveSettings()
 {
     QSettings settings;
+    // Save region status.
     if (m_ui->comboRegion->count() > 0) {
-        settings.setValue("NPCGenerator/region", m_ui->comboRegion->currentIndex());
+        settings.setValue("NPCGenerator/region", m_ui->comboRegion->currentText());
         settings.setValue("NPCGenerator/randomRegion", m_ui->checkRandomRegion->isChecked());
     }
-    if (m_ui->comboSpecies->count() > 0) {
-        settings.setValue("NPCGenerator/species", m_ui->comboSpecies->currentIndex());
-        settings.setValue("NPCGenerator/randomSpecies", m_ui->checkRandomSpecies->isChecked());
+    // Save name region status.
+    if (m_ui->comboNameRegion->count() > 0) {
+        settings.setValue("NPCGenerator/nameRegion", m_ui->comboNameRegion->currentText());
+        settings.setValue("NPCGenerator/nameRegionSeparate", m_ui->checkNameRegion->isChecked());
     }
-    if (m_ui->comboRace->count() > 0) {
-        settings.setValue("NPCGenerator/race", m_ui->comboRace->currentIndex());
-        settings.setValue("NPCGenerator/randomRace", m_ui->checkRandomRace->isChecked());
-    }
+    // Save gender status.
     settings.setValue("NPCGenerator/gender", m_ui->comboGender->currentIndex());
     settings.setValue("NPCGenerator/randomGender", m_ui->checkRandomGender->isChecked());
+    // Save age status.
+    settings.setValue("NPCGenerator/agePeriod", m_ui->comboGender->currentIndex());
+    settings.setValue("NPCGenerator/randomAgePeriod", m_ui->checkRandomGender->isChecked());
     settings.sync();
     qDebug() << "NPCGenerator::saveSettings";
     return;
@@ -118,38 +118,55 @@ void NPCGeneratorWidget::saveSettings()
 void NPCGeneratorWidget::loadSettings()
 {
     QSettings settings;
-    int ind_region = settings.value("NPCGenerator/region", 0).toInt();
-    if ((ind_region >= 0) && (ind_region < m_ui->comboRegion->count()))
-        m_ui->comboRegion->setCurrentIndex(ind_region);
-    int ind_species = settings.value("NPCGenerator/species", 0).toInt();
-    if ((ind_species >= 0) && (ind_species < m_ui->comboSpecies->count()))
-        m_ui->comboSpecies->setCurrentIndex(ind_species);
-    int ind_race = settings.value("NPCGenerator/race", 0).toInt();
-    if ((ind_race >= 0) && (ind_race < m_ui->comboRace->count()))
-        m_ui->comboRace->setCurrentIndex(ind_race);
-    int ind_gender = settings.value("NPCGenerator/gender", 0).toInt();
-    if ((ind_gender >= 0) && (ind_gender <= m_ui->comboGender->count()))
-        m_ui->comboGender->setCurrentIndex(ind_gender);
-    qDebug() << "NPCGeneratorWidget::loadSettings" << ind_region << ind_species << ind_race << ind_gender;
+    // Load region status.
+    if (m_ui->comboRegion->count() > 0) {
+        QString region_name = settings.value("NPCGenerator/region", m_ui->comboRegion->itemText(0)).toString();
+        int ind_region = searchRegion(region_name);
+        if (ind_region != -1)
+            m_ui->comboRegion->setCurrentIndex(ind_region);
+    }
+    // Load name region status.
+    m_ui->checkNameRegion->setChecked(settings.value("NPCGenerator/nameRegionSeparate", false).toBool());
+    if (m_ui->comboNameRegion->count() > 0) {
+        QString region_name = settings.value("NPCGenerator/nameRegion", m_ui->comboNameRegion->itemText(0)).toString();
+        int ind_region = searchNameRegion(region_name);
+        if (ind_region != -1)
+            m_ui->comboNameRegion->setCurrentIndex(ind_region);
+    }
+    // Load gender status.
     m_ui->checkRandomRegion->setChecked(settings.value("NPCGenerator/randomRegion", false).toBool());
-    m_ui->checkRandomSpecies->setChecked(settings.value("NPCGenerator/randomSpecies", false).toBool());
-    m_ui->checkRandomRace->setChecked(settings.value("NPCGenerator/randomRace", false).toBool());
+    int ind_gender = settings.value("NPCGenerator/gender", 0).toInt();
+    if ((ind_gender >= 0) && (ind_gender < m_ui->comboGender->count()))
+        m_ui->comboGender->setCurrentIndex(ind_gender);
     m_ui->checkRandomGender->setChecked(settings.value("NPCGenerator/randomGender", false).toBool());
+    // Load age status.
+    int ind_age_period = settings.value("NPCGenerator/agePeriod", 0).toInt();
+    if ((ind_age_period >= 0) && (ind_age_period < m_ui->comboAge->count()))
+        m_ui->comboAge->setCurrentIndex(ind_age_period);
+    m_ui->checkRandomAge->setChecked(settings.value("NPCGenerator/randomAgePeriod", false).toBool());
     return;
 }
+
+int NPCGeneratorWidget::searchRegion(const QString& region_name)
+{
+    for (size_t ind = 0; ind < m_persons.size(); ind++) {
+        if (m_persons.at(ind).region().compare(region_name) == 0)
+            return static_cast<int>(ind);
+    }
+    return -1;
+}
+
+int NPCGeneratorWidget::searchNameRegion(const QString& region_name)
+{
+    for (size_t ind = 0; ind < m_namelists.size(); ind++) {
+        if (m_namelists.at(ind).region().compare(region_name) == 0)
+            return static_cast<int>(ind);
+    }
+    return -1;
+}
+
 
 /* Private slots *************************************************************/
-void NPCGeneratorWidget::onChangeSpecies(const int index)
-{
-    qDebug() << "onChangeSpecies" << m_ui->comboSpecies->currentIndex() << index;
-    m_ui->comboRace->clear();
-    Species species = m_species.at(index);
-    for (int ind=0; ind < species.raceCount(); ind++) {
-        m_ui->comboRace->addItem(species.race(ind).name());
-    }
-    return;
-}
-
 void NPCGeneratorWidget::onChangeRandomRegion(const int state)
 {
     if (m_ui->checkRandomRegion->isChecked())
@@ -159,27 +176,12 @@ void NPCGeneratorWidget::onChangeRandomRegion(const int state)
     return;
 }
 
-void NPCGeneratorWidget::onChangeRandomSpecies(const int state)
+void NPCGeneratorWidget::onChangeCheckSeparateNameRegion(const int state)
 {
-    if (m_ui->checkRandomSpecies->isChecked()) {
-        m_ui->comboSpecies->setEnabled(false);
-        if (!m_ui->checkRandomRace->isChecked())
-            m_ui->checkRandomRace->setChecked(true);
-    }
+    if (m_ui->checkNameRegion->isChecked())
+        m_ui->comboNameRegion->setEnabled(true);
     else
-        m_ui->comboSpecies->setEnabled(true);
-    return;
-}
-
-void NPCGeneratorWidget::onChangeRandomRace(const int state)
-{
-    if (m_ui->checkRandomRace->isChecked())
-        m_ui->comboRace->setEnabled(false);
-    else {
-        m_ui->comboRace->setEnabled(true);
-        if (m_ui->checkRandomSpecies->isChecked())
-            m_ui->checkRandomSpecies->setChecked(false);
-    }
+        m_ui->comboNameRegion->setEnabled(false);
     return;
 }
 
@@ -192,11 +194,20 @@ void NPCGeneratorWidget::onChangeRandomGender(const int state)
     return;
 }
 
+void NPCGeneratorWidget::onChangeRandomAge(const int state)
+{
+    if (m_ui->checkRandomAge->isChecked())
+        m_ui->comboAge->setEnabled(false);
+    else
+        m_ui->comboAge->setEnabled(true);
+    return;
+}
+
 void NPCGeneratorWidget::onGenerate()
 {
-    int ind_region;
+    size_t ind_region;
     if (m_ui->checkRandomRegion->isChecked())
-        ind_region = QRandomGenerator::global()->bounded(static_cast<int>(m_namelists.size()));
+        ind_region = QRandomGenerator::global()->bounded(static_cast<int>(m_persons.size()));
     else
         ind_region = m_ui->comboRegion->currentIndex();
     int ind_gender;
@@ -204,34 +215,22 @@ void NPCGeneratorWidget::onGenerate()
         ind_gender = QRandomGenerator::global()->bounded(2);
     else
         ind_gender = m_ui->comboGender->currentIndex();
-    qDebug() << "Gender" << ind_gender;
     Gender gender = static_cast<Gender>(ind_gender);
-    qDebug() << "Name region" << ind_region << m_namelists.at(ind_region).region();
-    qDebug() << m_namelists.at(ind_region).surnamesCount() << m_namelists.at(ind_region).firstnamesCount(Gender::FEMALE) << m_namelists.at(ind_region).firstnamesCount(Gender::MALE);
-    m_ui->lineName->setText(m_namelists.at(ind_region).randomName(gender));
-    m_ui->lineGender->setText(Names::genderString(gender));
-    int ind_species;
-    if (m_ui->checkRandomSpecies->isChecked())
-        ind_species = QRandomGenerator::global()->bounded(static_cast<int>(m_species.size()));
+    size_t ind_name_region;
+    if (m_ui->checkNameRegion->isChecked())
+        ind_name_region = m_ui->comboNameRegion->currentIndex();
     else
-        ind_species = m_ui->comboSpecies->currentIndex();
-    int ind_race;
-    if (m_ui->checkRandomRace->isChecked())
-        ind_race = QRandomGenerator::global()->bounded(static_cast<int>(m_species.at(ind_species).raceCount()));
+        ind_name_region = searchNameRegion(m_ui->comboRegion->currentText());
+    QString name = m_namelists.at(ind_name_region).randomName(gender);
+    Person person = m_persons.at(ind_region);
+    if (m_ui->checkRandomAge->isChecked())
+        person.randomPerson(gender);
     else
-        ind_race = m_ui->comboRace->currentIndex();
-    Species species = m_species.at(ind_species);
-    qDebug() << "Species" << ind_species << species.name();
-    Race race = species.race(ind_race);
-    qDebug() << "Race" << ind_race << race.name();
-    QString haircolor = race.haircolor();
-    QString eyecolor = race.eyecolor();
-    m_ui->lineHairColor->setText(haircolor);
-    m_ui->lineEyeColor->setText(eyecolor);
-    int size = race.size();
-    int weight = race.weight();
-    m_ui->lineSize->setText(QString::number(size));
-    m_ui->lineWeight->setText(QString::number(weight));
+        person.randomPerson(gender, static_cast<AgePeriod>(m_ui->comboAge->currentIndex()));
+    QString desc = QString("<B>%1</B><BR>%2").arg(name).arg(person.description());
+    desc.append(tr("<BR>Trait: %1").arg(person.trait()));
+    desc.append(tr("<BR>Profession: %1").arg(person.profession()));
+    m_ui->textDescription->setHtml(desc);
 #ifdef ANDROID
     saveSettings();
 #endif

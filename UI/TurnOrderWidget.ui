@@ -14,7 +14,7 @@
    <string>Turn Order List</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../icons.qrc">
+   <iconset resource="../graphics.qrc">
     <normaloff>:/Graphics/rpgassistant.ico</normaloff>:/Graphics/rpgassistant.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -219,7 +219,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../icons.qrc"/>
+  <include location="../graphics.qrc"/>
  </resources>
  <connections/>
 </ui>
