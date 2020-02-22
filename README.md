@@ -8,7 +8,7 @@ This is a small tool to assist a role playing game master. It contains the follo
   As the calendar computations are separated from the GUI, it can easily be adapted to other systems.
 * more modules to come ...
 
-RPGAssistant is inspired by Dirk Oetmann's DSASuite from the beginning of the 2000s ([archived homepage](https://web.archive.org/web/20010307023059/http://www.dirkoz.de/dsa/tools/index.htm)).
+RPGAssistant is inspired by Dirk Oetmann's DSASuite from the early 2000s ([archived homepage](https://web.archive.org/web/20010307023059/http://www.dirkoz.de/dsa/tools/index.htm)).
 
 
 ## License information
@@ -42,7 +42,7 @@ Now run the conversion scripts:
   python dsasuiteprs2xml.py DSASuite/Daten >persons.xml
   python dsasuiteholidays2xml.py DSASuite/Daten/feiertage.dat >holidays.xml
 ```
-You have to correct two entries in `holidays.xml`: "Immanmeisterschaften" and "Sklavenauktion in Al'Anfa" begin at the second weekday in the month, thus you have to set the `number` attribute of the `day` tag to `2` for these two entries. I didn't figure out DSASuite's format in its entirety. The desktop version of RPGAssistant expects the data files in the same folder as the executable. For the Android version they are packed into the APK.
+The ages in Zwerge.prs seem to be erroneous, I corrected the numbers in the 3rd and 4th line (minimal and maximal age) to 20 and 400, respectively, and the numbers in the 9th and 10th line (age limits for youngster and elderly person) to 40 and 300, respectively. Moreover, since I didn't figure out DSASuite's format in its entirety, you have to correct two entries in `holidays.xml` after conversion: "Immanmeisterschaften" and "Sklavenauktion in Al'Anfa" begin at the second weekday in the month, thus you have to set the `number` attribute of the `day` tag to `2` for these two entries.
 
 Some name lists do not contain surnames as these are constructed from a parent's name in some cultures, e.g. Thorwal or among dwaves. To handle that, I have made an extension to DSASuite's name lists. The conversion script support star-prefixed keywords in the `---Nachnamen---` section of DSASuite's `.dat` files. In `DSASuite/Namen/Thorwal.dat` you can add the following lines after `---Nachnamen---`:
 ```
@@ -57,6 +57,8 @@ In `DSASuite/Namen/Zwerge.dat` you can add the following lines after `---Nachnam
 *postfixW xin
 ```
 Mind the traling space after `groscho` and `groschna`. Now rerun the conversion script for the names.
+
+The desktop version of RPGAssistant expects the data files in the same folder as the executable. For the Android version they are packed into the APK.
 
 
 ## Customisation

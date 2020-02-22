@@ -167,7 +167,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="spinBoxIni"/>
+      <widget class="QSpinBox" name="spinBoxIni">
+       <property name="maximum">
+        <number>99</number>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="labelLe">
@@ -180,7 +184,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="spinBoxLe"/>
+      <widget class="QSpinBox" name="spinBoxLe">
+       <property name="maximum">
+        <number>999</number>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonAdd">
