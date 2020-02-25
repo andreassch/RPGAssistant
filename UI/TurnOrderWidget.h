@@ -147,6 +147,21 @@ private slots:
     void onDamage();
 
     /**
+     * @brief Hides/unhides the column with the INI modifier.
+     */
+    void onHideIniMod();
+
+    /**
+     * @brief Applies the INI modifier selected in the spin box.
+     */
+    void onApplyIniMod();
+
+    /**
+     * @brief Allows a person to wait. Sets the initiative temporarily to zero and the modifier to undo that after the current round.
+     */
+    void onWait();
+
+    /**
      * @brief Clears the current turn order list.
      */
     void onClear();

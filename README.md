@@ -4,7 +4,7 @@ This is a small tool to assist a role playing game master. It contains the follo
 
 * Turn order list: Manage turn order and NPCs during combat.
 * NPC Generator: Randomly generate non-player characters from different region, race, etc.
-* Calendar: A calendar with moon phases and holidays, taylored to the system The Dark Eye.
+* Calendar: A calendar with moon phases and holidays, tailored to the system The Dark Eye.
   As the calendar computations are separated from the GUI, it can easily be adapted to other systems.
 * more modules to come ...
 

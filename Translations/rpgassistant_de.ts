@@ -175,7 +175,7 @@ Line %2, column %3</source>
         <translation>%1\nZeile %2, Spalte %3</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="330"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="388"/>
         <source>Incorrect turn order XML file.</source>
         <translation>Keine korrekte Initiativlisten-XML-Datei.</translation>
     </message>
@@ -415,10 +415,11 @@ Line %2, column %3</source>
     <name>TurnOrderWidget</name>
     <message>
         <location filename="../UI/TurnOrderWidget.ui" line="14"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="128"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="228"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="264"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="367"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="137"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="239"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="271"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="322"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="425"/>
         <source>Turn Order List</source>
         <translation>Initiativliste</translation>
     </message>
@@ -434,6 +435,7 @@ Line %2, column %3</source>
     </message>
     <message>
         <location filename="../UI/TurnOrderWidget.ui" line="62"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="149"/>
         <source>INI mod.</source>
         <translation>INI mod.</translation>
     </message>
@@ -458,101 +460,127 @@ Line %2, column %3</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="114"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="138"/>
         <source>Ne&amp;xt</source>
         <translation>Nä&amp;chste</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="124"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="131"/>
         <source>Da&amp;mage</source>
         <translation>Scha&amp;den</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="131"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="121"/>
         <source>&amp;Delete</source>
         <translation>L&amp;öschen</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="138"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="114"/>
         <source>New &amp;round</source>
         <translation>Neue &amp;Runde</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="149"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="159"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="256"/>
+        <source>Hide</source>
+        <translation>Ausblenden</translation>
+    </message>
+    <message>
+        <location filename="../UI/TurnOrderWidget.ui" line="173"/>
+        <source>Apply</source>
+        <translation>Anwenden</translation>
+    </message>
+    <message>
+        <location filename="../UI/TurnOrderWidget.ui" line="180"/>
+        <source>&amp;Wait</source>
+        <translation>Ab&amp;warten</translation>
+    </message>
+    <message>
+        <location filename="../UI/TurnOrderWidget.ui" line="191"/>
         <source>&amp;Name</source>
         <translation>&amp;Name</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="162"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="204"/>
         <source>&amp;INI</source>
         <translation>&amp;INI</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="175"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="221"/>
         <source>&amp;HP</source>
         <translation>&amp;LE</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="188"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="238"/>
         <source>&amp;Add</source>
         <translation>&amp;Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="199"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="249"/>
         <source>&amp;Load list</source>
         <translation>Liste l&amp;aden</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="206"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="256"/>
         <source>&amp;Save list</source>
         <translation>Liste &amp;speichern</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.ui" line="213"/>
+        <location filename="../UI/TurnOrderWidget.ui" line="263"/>
         <source>&amp;Clear list</source>
         <translation>Liste l&amp;eeren</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="128"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="137"/>
         <source>Please select the entry that shall be deleted.</source>
         <translation>Bitte einen Eintrag selektieren, der gelöscht werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="228"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="239"/>
         <source>Please select the entry that shall be damaged.</source>
         <translation>Bitte einen Eintrag selektieren, der getroffen werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="255"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="257"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="260"/>
+        <source>Unhide</source>
+        <translation>Zeigen</translation>
+    </message>
+    <message>
+        <location filename="../UI/TurnOrderWidget.cpp" line="313"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="315"/>
         <source>Open turn order list</source>
         <translation>Initiativliste öffnen</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="250"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="347"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="308"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="405"/>
         <source>XML files (*.xml);;All files (*.*)</source>
         <translation>XML-Dateien (*.xml);;Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="252"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="349"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="271"/>
+        <source>Please select the entry for which the initiative modifier shall be changed.</source>
+        <translation>Bitte einen Eintrag selektieren, dessen INI-Modifikator geändert werden soll.</translation>
+    </message>
+    <message>
+        <location filename="../UI/TurnOrderWidget.cpp" line="310"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="407"/>
         <source>XML files (*.xml);;All files (*)</source>
         <translation>XML-Dateien (*.xml);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="264"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="322"/>
         <source>Cannot open file %1 for reading.</source>
         <translation>Datei %1 kann nicht zum Lesen geöffnet werden.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="356"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="358"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="414"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="416"/>
         <source>Save turn order list</source>
         <translation>Initiativliste speichern</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="367"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="425"/>
         <source>Cannot open file %1 for writing.</source>
         <translation>Datei %1 kann nicht zum Schreiben geöffnet werden.</translation>
     </message>

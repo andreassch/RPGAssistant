@@ -41,6 +41,7 @@ void TurnOrderWidget::addEntry(const QString name, const float ini, const int le
     m_ui->tableTurnOrder->setSortingEnabled(true);
     m_ui->buttonDelete->setEnabled(true);
     m_ui->buttonStart->setEnabled(true);
+    m_ui->buttonDamage->setEnabled(true);
     return;
 }
 
@@ -50,9 +51,16 @@ void TurnOrderWidget::setupUi()
     m_ui->buttonDelete->setEnabled(false);
     m_ui->buttonStart->setEnabled(false);
     m_ui->buttonNext->setEnabled(false);
+    m_ui->buttonIniModApply->setEnabled(false);
+    m_ui->buttonWait->setEnabled(false);
+    m_ui->buttonDamage->setEnabled(false);
     m_ui->tableTurnOrder->horizontalHeader()->setSectionResizeMode(TurnOrderTableColumn::NAME, QHeaderView::Stretch);
     m_ui->tableTurnOrder->sortItems(TurnOrderTableColumn::INI, Qt::DescendingOrder);
     m_ui->tableTurnOrder->setSelectionMode(QAbstractItemView::SingleSelection);
+#ifdef ANDROID
+    for (auto col = 1; col < m_ui->tableTurnOrder->columnCount(); col++)
+        m_ui->tableTurnOrder->horizontalHeader()->resizeSection(col, 140);
+#endif
 
     connect(m_ui->buttonAdd, &QPushButton::clicked, this, &TurnOrderWidget::onAddEntry);
     connect(m_ui->buttonDelete, &QPushButton::clicked, this, &TurnOrderWidget::onDeleteEntry);
@@ -60,6 +68,9 @@ void TurnOrderWidget::setupUi()
     connect(m_ui->tableTurnOrder, &QTableWidget::cellChanged, this, &TurnOrderWidget::onChangeEntry);
     connect(m_ui->buttonNext, &QPushButton::clicked, this, &TurnOrderWidget::onNext);
     connect(m_ui->buttonDamage, &QPushButton::clicked, this, &TurnOrderWidget::onDamage);
+    connect(m_ui->buttonIniModHide, &QPushButton::clicked, this, &TurnOrderWidget::onHideIniMod);
+    connect(m_ui->buttonIniModApply, &QPushButton::clicked, this, &TurnOrderWidget::onApplyIniMod);
+    connect(m_ui->buttonWait, &QPushButton::clicked, this, &TurnOrderWidget::onWait);
     connect(m_ui->buttonClear, &QPushButton::clicked, this, &TurnOrderWidget::onClear);
     connect(m_ui->buttonLoad, &QPushButton::clicked, this, &TurnOrderWidget::onLoad);
     connect(m_ui->buttonSave, &QPushButton::clicked, this, &TurnOrderWidget::onSave);
@@ -121,9 +132,12 @@ void TurnOrderWidget::onAddEntry()
 
 void TurnOrderWidget::onDeleteEntry()
 {
+    bool is_active = false;
     int row = selectedEntry();
-    if (row < 0) // If no row is selected.
+    if (row < 0) { // If no row is selected.
         row = activeEntry();
+        is_active = true;
+    }
     if (row < 0) { // If also no entry is active.
         QMessageBox::information(this, tr("Turn Order List"), tr("Please select the entry that shall be deleted."));
         return;
@@ -131,11 +145,17 @@ void TurnOrderWidget::onDeleteEntry()
     qDebug() << "onDeleteEntry: row" << row;
     if (row < 0) // If no row is selected.
         return;
+    if ((is_active) && (row != m_ui->tableTurnOrder->rowCount()-1))
+        onNext();
     m_ui->tableTurnOrder->removeRow(row);
+    if ((is_active) && (row == m_ui->tableTurnOrder->rowCount()))
+        onStart();
     if (m_ui->tableTurnOrder->rowCount() == 0) {
         m_ui->buttonDelete->setEnabled(false);
         m_ui->buttonStart->setEnabled(false);
         m_ui->buttonNext->setEnabled(false);
+        m_ui->buttonDamage->setEnabled(false);
+        m_ui->buttonIniModApply->setEnabled(false);
     }
     return;
 }
@@ -189,6 +209,9 @@ void TurnOrderWidget::onStart()
     m_ui->labelCurrentIni->setText(QString("%1").arg(QString::number(current_ini)));
     activateEntry(0);
     m_ui->buttonNext->setEnabled(true);
+    m_ui->buttonIniModApply->setEnabled(true);
+    m_ui->buttonWait->setEnabled(true);
+    m_ui->tableTurnOrder->clearSelection();
     return;
 }
 
@@ -238,9 +261,61 @@ void TurnOrderWidget::onDamage()
     return;
 }
 
+void TurnOrderWidget::onHideIniMod()
+{
+    if (m_ui->tableTurnOrder->isColumnHidden(TurnOrderTableColumn::INI_MOD)) {
+        m_ui->tableTurnOrder->setColumnHidden(TurnOrderTableColumn::INI_MOD, false);
+        m_ui->buttonIniModHide->setText(tr("Hide"));
+    }
+    else {
+        m_ui->tableTurnOrder->setColumnHidden(TurnOrderTableColumn::INI_MOD, true);
+        m_ui->buttonIniModHide->setText(tr("Unhide"));
+    }
+    return;
+}
+
+void TurnOrderWidget::onApplyIniMod()
+{
+    int row = selectedEntry();
+    if (row < 0) // If no row is selected.
+        row = activeEntry();
+    if (row < 0) { // If also no entry is active.
+        QMessageBox::information(this, tr("Turn Order List"), tr("Please select the entry for which the initiative modifier shall be changed."));
+        return;
+    }
+    if (row != -1) {
+        int ini_mod = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::INI_MOD)->data(Qt::DisplayRole).toInt();
+        ini_mod += m_ui->spinBoxIniMod->value();
+        m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::INI_MOD)->setData(Qt::DisplayRole,QVariant(ini_mod));
+    }
+    return;
+}
+
+void TurnOrderWidget::onWait()
+{
+    int row_active = activeEntry();
+    int row_last = m_ui->tableTurnOrder->rowCount()-1;
+    if ((row_active != -1) && (row_active != row_last)) {
+        float ini = m_ui->tableTurnOrder->item(row_active, TurnOrderTableColumn::INI)->data(Qt::DisplayRole).toFloat();
+        int ini_mod = m_ui->tableTurnOrder->item(row_active, TurnOrderTableColumn::INI_MOD)->data(Qt::DisplayRole).toInt();
+        float new_ini = std::min(0.0f, m_ui->tableTurnOrder->item(row_last, TurnOrderTableColumn::INI)->data(Qt::DisplayRole).toFloat()-1.0f);
+        onNext();
+        m_ui->tableTurnOrder->setSortingEnabled(false);
+        m_ui->tableTurnOrder->item(row_active, TurnOrderTableColumn::INI)->setData(Qt::DisplayRole,QVariant(new_ini));
+        m_ui->tableTurnOrder->item(row_active, TurnOrderTableColumn::INI_MOD)->setData(Qt::DisplayRole,QVariant(ini_mod+static_cast<int>(ini-new_ini)));
+        m_ui->tableTurnOrder->setSortingEnabled(true);
+    }
+    return;
+}
+
 void TurnOrderWidget::onClear()
 {
     m_ui->tableTurnOrder->setRowCount(0); // Delete all rows.
+    m_ui->buttonDelete->setEnabled(false);
+    m_ui->buttonNext->setEnabled(false);
+    m_ui->buttonWait->setEnabled(false);
+    m_ui->buttonIniModApply->setEnabled(false);
+    m_ui->buttonDamage->setEnabled(false);
     return;
 }
 
@@ -337,6 +412,7 @@ const QString file_filter = tr("XML files (*.xml);;All files (*)");
     if (m_ui->tableTurnOrder->rowCount() > 0) {
         m_ui->buttonStart->setEnabled(true);
         m_ui->buttonDelete->setEnabled(true);
+        m_ui->buttonDamage->setEnabled(true);
     }
     return;
 }
