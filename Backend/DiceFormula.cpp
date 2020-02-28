@@ -8,13 +8,17 @@ Dices::Dices(int faces, int count)
 {
 }
 
-int Dices::roll() const
+int Dices::roll(QString* strptr) const
 {
-    qDebug() << "Rolling" << diceCount() << "D" << faceCount();
     int value = 0;
     for (auto ind=0; ind < diceCount(); ind++) {
-        value += QRandomGenerator::global()->bounded(faceCount())+1;
-        qDebug() << value;
+        int this_roll = QRandomGenerator::global()->bounded(faceCount())+1;
+        value += this_roll;
+        if (strptr != nullptr) {
+            if (ind > 0)
+                strptr->append(" + ");
+            strptr->append(QString::number(this_roll));
+        }
     }
     return value;
 }

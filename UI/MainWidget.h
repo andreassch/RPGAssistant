@@ -39,9 +39,18 @@ private:
     void onNPCGenerator();
     void onCalendar();
 
+    void onRoll();
+    void onRollD6();
+    void onRollD20();
+    void onRoll3D20();
+
 private:
+    void saveDiceSettings();
+    void loadDiceSettings();
+
     Ui::MainWidget *m_ui;
     TurnOrderWidget* m_turn_order_widget;
     NPCGeneratorWidget* m_npc_generator_widget;
     CalendarWidget* m_calendar_widget;
+    const int m_dices[6] = {4, 6, 8, 10, 12, 20};
 };

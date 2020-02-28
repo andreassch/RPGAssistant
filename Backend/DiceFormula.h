@@ -12,7 +12,7 @@ public:
     inline int diceCount() const { return m_dice_count; }
     inline void setFaceCount(const int face_count) { m_face_count = face_count; }
     inline void setDiceCount(const int dice_count) { m_dice_count = dice_count; }
-    int roll() const;
+    int roll(QString* strptr = nullptr) const;
 
 private:
     int m_face_count;
