@@ -322,14 +322,14 @@ void TurnOrderWidget::onClear()
 void TurnOrderWidget::onLoad()
 {
 #ifdef _WIN32
-const QString file_filter = tr("XML files (*.xml);;All files (*.*)");
+QString file_filter = tr("XML files (*.xml);;All files (*.*)");
 #else
-const QString file_filter = tr("XML files (*.xml);;All files (*)");
+QString file_filter = tr("XML files (*.xml);;All files (*)");
 #endif
 #ifdef ANDROID
-    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter, 0, QFileDialog::DontUseNativeDialog));
+    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter, &file_filter, QFileDialog::DontUseNativeDialog));
 #else
-    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter));
+    QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter, &file_filter));
 #endif
     qDebug() << filename;
     if (filename.isEmpty())
@@ -341,39 +341,39 @@ const QString file_filter = tr("XML files (*.xml);;All files (*)");
     }
     QXmlStreamReader xml_reader(&file);
     if (xml_reader.readNextStartElement()) {
-            if (xml_reader.name() == "turnorderlist") {
-                qDebug() << "Reading turn order list from xml file.";
-                m_ui->tableTurnOrder->setSortingEnabled(false);
-                while(xml_reader.readNextStartElement()){
-                    if(xml_reader.name() == "entry") {
-                        int new_row = m_ui->tableTurnOrder->rowCount();
-                        m_ui->tableTurnOrder->insertRow(new_row);
-                        // Read a row of a turn order table from the file.
-                        while(xml_reader.readNextStartElement()) {
-                            if(xml_reader.name() == "name") {
-                                QString str = xml_reader.readElementText();
-                                m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem(str));
-                            }
-                            else if(xml_reader.name() == "ini") {
-                                QString str = xml_reader.readElementText();
-                                m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI, UiUtils::createTableWidgetNumericItem<float>(str.toFloat()));
-                            }
-                            else if(xml_reader.name() == "le") {
-                                QString str = xml_reader.readElementText();
-                                m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<int>(str.toInt()));
-                            }
-                            else if(xml_reader.name() == "lep") {
-                                QString str = xml_reader.readElementText();
-                                m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, UiUtils::createTableWidgetNumericItem<int>(str.toInt()));
-                            }
-                            else
-                                xml_reader.skipCurrentElement();
+        if (xml_reader.name() == "turnorderlist") {
+            qDebug() << "Reading turn order list from xml file.";
+            m_ui->tableTurnOrder->setSortingEnabled(false);
+            while(xml_reader.readNextStartElement()){
+                if(xml_reader.name() == "entry") {
+                    int new_row = m_ui->tableTurnOrder->rowCount();
+                    m_ui->tableTurnOrder->insertRow(new_row);
+                    // Read a row of a turn order table from the file.
+                    while(xml_reader.readNextStartElement()) {
+                        if(xml_reader.name() == "name") {
+                            QString str = xml_reader.readElementText();
+                            m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem(str));
                         }
-                        // Check if all columns have been filled by the file, and create non-existant entries.
-                        for (int column=0; column < m_ui->tableTurnOrder->columnCount(); column++) {
-                            if (m_ui->tableTurnOrder->item(new_row, column) == nullptr) {
-                                qDebug() << "Creating column that is not in the file:" << column;
-                                switch(column) {
+                        else if(xml_reader.name() == "ini") {
+                            QString str = xml_reader.readElementText();
+                            m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI, UiUtils::createTableWidgetNumericItem<float>(str.toFloat()));
+                        }
+                        else if(xml_reader.name() == "le") {
+                            QString str = xml_reader.readElementText();
+                            m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<int>(str.toInt()));
+                        }
+                        else if(xml_reader.name() == "lep") {
+                            QString str = xml_reader.readElementText();
+                            m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, UiUtils::createTableWidgetNumericItem<int>(str.toInt()));
+                        }
+                        else
+                            xml_reader.skipCurrentElement();
+                    }
+                    // Check if all columns have been filled by the file, and create non-existant entries.
+                    for (int column=0; column < m_ui->tableTurnOrder->columnCount(); column++) {
+                        if (m_ui->tableTurnOrder->item(new_row, column) == nullptr) {
+                            qDebug() << "Creating column that is not in the file:" << column;
+                            switch(column) {
                                 case TurnOrderTableColumn::NAME:
                                     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem("[unknown]"));
                                     break;
@@ -392,17 +392,17 @@ const QString file_filter = tr("XML files (*.xml);;All files (*)");
                                 case TurnOrderTableColumn::MOD:
                                     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, UiUtils::createTableWidgetNumericItem<int>(0));
                                     break;
-                                }
                             }
                         }
                     }
-                    else
-                        xml_reader.skipCurrentElement();
                 }
-                m_ui->tableTurnOrder->setSortingEnabled(true);
+                else
+                    xml_reader.skipCurrentElement();
             }
-            else
-                xml_reader.raiseError(QObject::tr("Incorrect turn order XML file."));
+            m_ui->tableTurnOrder->setSortingEnabled(true);
+        }
+        else
+            xml_reader.raiseError(QObject::tr("Incorrect turn order XML file."));
     }
     file.close();
     if (xml_reader.hasError()) {
@@ -420,18 +420,18 @@ const QString file_filter = tr("XML files (*.xml);;All files (*)");
 void TurnOrderWidget::onSave()
 {
 #ifdef _WIN32
-const QString file_filter = tr("XML files (*.xml);;All files (*.*)");
+QString file_filter = tr("XML files (*.xml);;All files (*.*)");
 #else
-const QString file_filter = tr("XML files (*.xml);;All files (*)");
+QString file_filter = tr("XML files (*.xml);;All files (*)");
 #endif
 #ifdef ANDROID
     if (!QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).exists()) {
         qDebug() << "Creating Documents directory:" << QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
         QDir().mkdir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
     }
-    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter, 0, QFileDialog::DontUseNativeDialog));
+    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter, &file_filter, QFileDialog::DontUseNativeDialog));
 #else
-    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter));
+    QString filename(QFileDialog::getSaveFileName(this,tr("Save turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter, &file_filter));
 #endif
     if (filename.isEmpty())
         return;

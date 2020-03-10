@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Backend/DataXmlReader.cpp \
+    Backend/Diary.cpp \
     Backend/DiceFormula.cpp \
     Backend/Holiday.cpp \
     Backend/HolidaysXmlReader.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
 
 HEADERS += \
     Backend/DataXmlReader.h \
+    Backend/Diary.h \
     Backend/DiceFormula.h \
     Backend/Holiday.h \
     Backend/HolidaysXmlReader.h \

@@ -6,6 +6,8 @@
 #include <QSettings>
 #include <QDir>
 #include <QFile>
+#include <QFileDialog>
+#include <QStandardPaths>
 #include <QMessageBox>
 #include <QtDebug>
 #include <cassert>
@@ -24,6 +26,7 @@ CalendarWidget::CalendarWidget(QWidget *parent) :
 CalendarWidget::~CalendarWidget()
 {
     qDebug() << "Calendar destructor";
+    updateDiary();
     saveSettings();
     delete m_ui;
 }
@@ -75,7 +78,7 @@ void CalendarWidget::setYear(const int new_year)
 void CalendarWidget::setReckoning(const Reckoning new_reckoning)
 {
     m_ui->comboReckoning->setCurrentIndex(static_cast<int>(new_reckoning));
-    m_reckoning = new_reckoning;
+    m_date = Date(day(), month(), year(), new_reckoning);
     return;
 }
 
@@ -138,6 +141,8 @@ void CalendarWidget::setupUi()
     connect(m_ui->buttonPreviousDay, &QPushButton::clicked, this, &CalendarWidget::onPreviousDay);
     connect(m_ui->buttonNextDay, &QPushButton::clicked, this, &CalendarWidget::onNextDay);
     connect(m_ui->buttonNextMonth, &QPushButton::clicked, this, &CalendarWidget::onNextMonth);
+    connect(m_ui->buttonNewDiary, &QPushButton::clicked, this, &CalendarWidget::onNewDiary);
+    connect(m_ui->buttonCloseDiary, &QPushButton::clicked, this, &CalendarWidget::onCloseDiary);
 
     // Recover last viewed date from settings.
     QSettings settings;
@@ -148,6 +153,12 @@ void CalendarWidget::setupUi()
     int curr_year = settings.value("Calendar/year", QVariant(1)).toInt();
     QString curr_reckoning_str = settings.value("Calendar/reckoning", QVariant("Hal")).toString();
     Reckoning curr_reckoning = Calendar::parseReckoning(curr_reckoning_str);
+    QString diary_filename = settings.value("Calendar/diary", QVariant("")).toString();
+    qDebug() << "Diary file:", diary_filename;
+    if (!diary_filename.isEmpty())
+        loadDiary(diary_filename);
+    else
+        m_ui->buttonCloseDiary->setEnabled(false);
     fillMonth(curr_month, curr_year, curr_reckoning);
     setReckoning(curr_reckoning);
     setYear(curr_year);
@@ -211,14 +222,51 @@ void CalendarWidget::fillMonth(const Month month, const int year, const Reckonin
     }
 }
 
-void CalendarWidget::saveSettings() const
+void CalendarWidget::saveSettings()
 {
+    qDebug() << "CalendarWidget::saveSettings";
     QSettings settings;
     settings.setValue("Calendar/day", day());
     settings.setValue("Calendar/month", static_cast<int>(month()));
     settings.setValue("Calendar/year", year());
     settings.setValue("Calendar/reckoning", Calendar::reckoningSymbolicName(reckoning()));
+    settings.setValue("Calendar/diary", m_diary.filename());
+    qDebug() << "diary file" << m_diary.filename();
     settings.sync();
+    if (!m_diary.isEmpty())
+        saveDiary();
+    return;
+}
+
+void CalendarWidget::updateDiary()
+{
+    if (m_ui->textDiary->toPlainText().length() > 0)
+        m_diary.addEntry(m_date, m_ui->textDiary->toPlainText());
+    return;
+}
+
+void CalendarWidget::loadDiary(const QString &filename)
+{
+    m_diary.setFilename(filename);
+    bool success = m_diary.readFromFile();
+    if (!success)
+        QMessageBox::critical(this, tr("Calendar"), tr("Cannot read diary file %1.").arg(filename));
+    m_ui->textDiary->setEnabled(true);
+    m_ui->textDiary->setText(m_diary.entry(m_date));
+    QFileInfo fileinfo(filename);
+    m_ui->labelDiary->setText(tr("Diary: %1").arg(fileinfo.fileName()));
+    m_ui->buttonCloseDiary->setEnabled(true);
+    return;
+}
+
+void CalendarWidget::saveDiary()
+{
+    if (m_diary.isEmpty() || m_diary.filename().isEmpty())
+        return;
+    qDebug() << "saveDiary";
+    bool success = m_diary.writeToFile();
+    if (!success)
+        QMessageBox::critical(this, tr("Calendar"), tr("Cannot write diary file %1.").arg(m_diary.filename()));
     return;
 }
 
@@ -226,10 +274,10 @@ void CalendarWidget::saveSettings() const
 void CalendarWidget::onChangeReckoning(const int index)
 {
     Reckoning new_reckoning = static_cast<Reckoning>(index);
-    int new_year = Calendar::convertReckoning(year(), m_reckoning, new_reckoning);
-    qDebug() << "onChangeReckoning" << year() << m_reckoning << new_year << new_reckoning;
+    int new_year = Calendar::convertReckoning(year(), m_date.reckoning(), new_reckoning);
+    qDebug() << "onChangeReckoning" << year() << m_date.reckoning() << new_year << new_reckoning;
     setYear(new_year);
-    m_reckoning = new_reckoning;
+    m_date.setReckoning(new_reckoning);
     return;
 }
 
@@ -272,6 +320,13 @@ void CalendarWidget::onChangeDayTab()
 
 void CalendarWidget::onChangeDate()
 {
+    // Care for diary and update date member.
+    updateDiary();
+    qDebug() << "diary contains" << m_diary.size() << "elements";
+    m_ui->textDiary->clear();
+    m_date.setDate(day(), month(), year(), reckoning());
+    m_ui->textDiary->setText(m_diary.entry(m_date));
+
     // Change moon phase text and graphics.
     QDir image_dir(":/Graphics");
     MoonPhase moon_phase(day(), month(), year(), reckoning());
@@ -361,5 +416,48 @@ void CalendarWidget::onNextDay()
         new_day = 1;
     }
     setDay(new_day);
+    return;
+}
+
+void CalendarWidget::onNewDiary()
+{
+    updateDiary();
+    if (!m_diary.isEmpty())
+        saveDiary();
+    QString file_filter = tr("XML files (*.xml);;All files (*)");
+    QFileDialog::Options file_options = QFileDialog::DontConfirmOverwrite;
+#ifdef ANDROID
+    file_options |= QFileDialog::DontUseNativeDialog;
+#endif
+    QString filename(QFileDialog::getSaveFileName(this,tr("Open diary"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter, &file_filter, file_options));
+    if (!filename.isEmpty()) {
+        if (!filename.endsWith(".xml"))
+            filename = filename.append(".xml");
+        qDebug() << "new diary filename:" << filename;
+        m_diary.clear();
+        m_diary.setFilename(filename);
+        m_ui->textDiary->clear();
+        QFileInfo fileinfo(filename);
+        m_ui->labelDiary->setText(tr("Diary: %1").arg(fileinfo.fileName()));
+        m_ui->textDiary->setEnabled(true);
+        if (fileinfo.exists())
+            loadDiary(filename);
+        m_ui->buttonCloseDiary->setEnabled(true);
+        saveSettings();
+    }
+    return;
+}
+
+void CalendarWidget::onCloseDiary()
+{
+    updateDiary();
+    if (!m_diary.isEmpty())
+        saveDiary();
+    m_diary.clear();
+    m_diary.setFilename("");
+    m_ui->labelDiary->setText(tr("Diary:"));
+    m_ui->textDiary->setEnabled(false);
+    m_ui->buttonCloseDiary->setEnabled(false);
+    saveSettings();
     return;
 }

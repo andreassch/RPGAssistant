@@ -5,7 +5,9 @@
     <name>CalendarWidget</name>
     <message>
         <location filename="../UI/CalendarWidget.ui" line="20"/>
-        <location filename="../UI/CalendarWidget.cpp" line="122"/>
+        <location filename="../UI/CalendarWidget.cpp" line="125"/>
+        <location filename="../UI/CalendarWidget.cpp" line="253"/>
+        <location filename="../UI/CalendarWidget.cpp" line="269"/>
         <source>Calendar</source>
         <translation>Kalender</translation>
     </message>
@@ -70,9 +72,51 @@
         <translation>Feiertage:</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.cpp" line="122"/>
+        <location filename="../UI/CalendarWidget.ui" line="219"/>
+        <source>&amp;Close</source>
+        <translation>S&amp;chließen</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="232"/>
+        <source>&amp;New diary</source>
+        <translation>&amp;Neues Buch</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.cpp" line="125"/>
         <source>Cannot open file %1 for reading: %2</source>
         <translation>Kann Datei %1 nicht zum Lesen öffnen: %2</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.cpp" line="253"/>
+        <source>Cannot read diary file %1.</source>
+        <translation>Tagebuch in Datei %1 nicht lesbar.</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.cpp" line="269"/>
+        <source>Cannot write diary file %1.</source>
+        <translation>Kann Tagebuch nicht in Datei %1. schreiben.</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.cpp" line="427"/>
+        <source>XML files (*.xml);;All files (*)</source>
+        <translation>XML-Dateien (*.xml);;Alle Dateien (*)</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.cpp" line="432"/>
+        <source>Open diary</source>
+        <translation>Tagebuch öffnen</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.ui" line="206"/>
+        <location filename="../UI/CalendarWidget.cpp" line="458"/>
+        <source>Diary:</source>
+        <translation>Tagebuch:</translation>
+    </message>
+    <message>
+        <location filename="../UI/CalendarWidget.cpp" line="257"/>
+        <location filename="../UI/CalendarWidget.cpp" line="441"/>
+        <source>Diary: %1</source>
+        <translation>Tagebuch: %1</translation>
     </message>
 </context>
 <context>
@@ -153,6 +197,16 @@
         <translation>&amp;Region:</translation>
     </message>
     <message>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="80"/>
+        <source>&amp;Age:</source>
+        <translation>Lebens&amp;alter:</translation>
+    </message>
+    <message>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="112"/>
+        <source>&amp;Clear</source>
+        <translation>&amp;Leeren</translation>
+    </message>
+    <message>
         <location filename="../UI/NPCGeneratorWidget.ui" line="46"/>
         <source>G&amp;ender:</source>
         <translation>G&amp;eschlecht:</translation>
@@ -160,7 +214,7 @@
     <message>
         <location filename="../UI/NPCGeneratorWidget.ui" line="36"/>
         <location filename="../UI/NPCGeneratorWidget.ui" line="56"/>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="90"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="93"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -170,12 +224,7 @@
         <translation>&amp;Name aus:</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="80"/>
-        <source>Age:</source>
-        <translation>Lebensalter:</translation>
-    </message>
-    <message>
-        <location filename="../UI/NPCGeneratorWidget.ui" line="99"/>
+        <location filename="../UI/NPCGeneratorWidget.ui" line="102"/>
         <source>&amp;Generate</source>
         <translation>&amp;Generieren</translation>
     </message>
@@ -186,12 +235,12 @@
         <translation>Kann Datei %1 nicht zum Lesen öffnen: %2</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="231"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="232"/>
         <source>&lt;BR&gt;Trait: %1</source>
         <translation>&lt;BR&gt;Charakter: %1</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="232"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="233"/>
         <source>&lt;BR&gt;Profession: %1</source>
         <translation>&lt;BR&gt;Beruf: %1</translation>
     </message>
@@ -366,22 +415,27 @@ Line %2, column %3</source>
         <translation>BF</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="205"/>
+        <location filename="../Backend/TDECalendar.cpp" line="269"/>
+        <source>%1 %2 %3 %4</source>
+        <translation>%1 %2 %3 %4</translation>
+    </message>
+    <message>
+        <location filename="../Backend/TDECalendar.cpp" line="303"/>
         <source>waxing</source>
         <translation>Kelch</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="206"/>
+        <location filename="../Backend/TDECalendar.cpp" line="304"/>
         <source>full</source>
         <translation>Rad</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="205"/>
+        <location filename="../Backend/TDECalendar.cpp" line="303"/>
         <source>waning</source>
         <translation>Helm</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="206"/>
+        <location filename="../Backend/TDECalendar.cpp" line="304"/>
         <source>new</source>
         <translation>Tote Mada</translation>
     </message>

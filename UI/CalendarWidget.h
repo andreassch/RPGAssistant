@@ -19,6 +19,7 @@
 
 #include "../Backend/TDECalendar.h"
 #include "../Backend/Holiday.h"
+#include "../Backend/Diary.h"
 #include <QWidget>
 #include <QTableWidgetItem>
 #include <vector>
@@ -124,7 +125,23 @@ private:
     /**
      * @brief Saves the current date in the settings for persistant storage.
      */
-    void saveSettings() const;
+    void saveSettings();
+
+    /**
+     * @brief Updates the diary object with the contents from the text edit.
+     */
+    void updateDiary();
+
+    /**
+     * @brief Loads a new diary from file.
+     * @param filename The filename of the new diary to load.
+     */
+    void loadDiary(const QString& filename);
+
+    /**
+     * @brief Saves the current diary to the filename stored in the diary object.
+     */
+    void saveDiary();
 
 private slots:
     /**
@@ -191,8 +208,20 @@ private slots:
      */
     void onNextDay();
 
+    /**
+     * @brief Starts a new diary.
+     */
+    void onNewDiary();
+
+    /**
+      * @brief Closes the current diary.
+     */
+    void onCloseDiary();
+
 private:
     Ui::CalendarWidget *m_ui;
+    Date m_date;
     Reckoning m_reckoning = static_cast<Reckoning>(0);
     std::vector<Holiday> m_holidays;
+    Diary m_diary;
 };
