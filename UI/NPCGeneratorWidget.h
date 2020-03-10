@@ -102,6 +102,11 @@ private slots:
      */
     void onChangeRandomAge(const int state);
 
+    /**
+     * @brief Callback for the clear button, which clears the result text edit.
+     */
+    void onClear();
+
 private:
     Ui::NPCGeneratorWidget* m_ui;
     std::vector<Names> m_namelists;

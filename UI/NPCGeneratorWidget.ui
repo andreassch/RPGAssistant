@@ -77,7 +77,10 @@
      <item row="3" column="0">
       <widget class="QLabel" name="labelAge">
        <property name="text">
-        <string>Age:</string>
+        <string>&amp;Age:</string>
+       </property>
+       <property name="buddy">
+        <cstring>comboAge</cstring>
        </property>
       </widget>
      </item>
@@ -102,6 +105,13 @@
    </item>
    <item>
     <widget class="QTextEdit" name="textDescription"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonClear">
+     <property name="text">
+      <string>&amp;Clear</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

@@ -84,6 +84,7 @@ void NPCGeneratorWidget::setupUi()
     connect(m_ui->checkRandomGender, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomGender);
     connect(m_ui->checkRandomAge, &QCheckBox::stateChanged, this, &NPCGeneratorWidget::onChangeRandomAge);
     connect(m_ui->buttonGenerate, &QPushButton::clicked, this, &NPCGeneratorWidget::onGenerate);
+    connect(m_ui->buttonClear, &QPushButton::clicked, this, &NPCGeneratorWidget::onClear);
 
     // Load settings.
     loadSettings();
@@ -230,9 +231,17 @@ void NPCGeneratorWidget::onGenerate()
     QString desc = QString("<B>%1</B><BR>%2").arg(name).arg(person.description());
     desc.append(tr("<BR>Trait: %1").arg(person.trait()));
     desc.append(tr("<BR>Profession: %1").arg(person.profession()));
-    m_ui->textDescription->setHtml(desc);
+    if (m_ui->textDescription->toPlainText().size() > 0)
+        desc.prepend("<P>");
+    m_ui->textDescription->append(desc);
 #ifdef ANDROID
     saveSettings();
 #endif
+    return;
+}
+
+void NPCGeneratorWidget::onClear()
+{
+    m_ui->textDescription->clear();
     return;
 }
