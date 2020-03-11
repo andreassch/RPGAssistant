@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>318</width>
+    <width>335</width>
     <height>427</height>
    </rect>
   </property>
@@ -119,18 +119,22 @@
        </layout>
       </item>
       <item>
-       <widget class="QTextEdit" name="textDiceResult"/>
+       <widget class="QTextEdit" name="textDiceResult">
+        <property name="undoRedoEnabled">
+         <bool>false</bool>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="labelTdeLogo">
+    <widget class="QLabel" name="labelLogo">
      <property name="text">
       <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="../graphics.qrc">:/Graphics/DSALogoFanprojekt-300x84.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>false</bool>

@@ -15,10 +15,11 @@
 
 #pragma once
 
+#include "../config.h"
+
 #include <QWidget>
 #include <QTableWidgetItem>
 #include <QColor>
-//#include <QColorConstants>
 
 /**
  * Enumeration to access the different columns in the turn order list by name.
@@ -104,14 +105,6 @@ private:
      */
     int selectedEntry() const;
 
-    /**
-     * @brief Compute modifier for the German rpg The Dark Eye ("Das Schwarze Auge"), fith edition.
-     * @param lep Current hit points ("Lebenspunkte") of the character.
-     * @param le Maximal hit points ("Lebensenergie") of the character.
-     * @return Modificator due to bad health.
-     */
-    static int computeModifierTDE(const int lep, const int le);
-
 private slots:
     /**
      * @brief Callback to add an entry to the turn order list.
@@ -179,5 +172,5 @@ private slots:
 private:
     Ui::TurnOrderWidget *m_ui;
     int current_ini = 0;
-    QColor color_active = QColor("green");//QColorConstants::Green;
+    QColor color_active = QColor("green");
 };

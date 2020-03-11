@@ -27,9 +27,12 @@ void MainWidget::SetupUi()
 {
     // Set up version information and logo.
     m_ui->labelVersion->setText(tr("Version ").append(VERSION_STR));
-    qDebug() << this->size().width();
+#ifdef RPG_SYSTEM_TDE_AVENTURIA
 #ifdef ANDROID
-    m_ui->labelTdeLogo->setPixmap(QPixmap(":/Graphics/DSALogoFanprojekt-604x169.png"));
+    m_ui->labelLogo->setPixmap(QPixmap(":/Graphics/3rdparty/DSALogoFanprojekt-604x169.png"));
+#else
+    m_ui->labelLogo->setPixmap(QPixmap(":/Graphics/3rdparty/DSALogoFanprojekt-300x84.png"));
+#endif
 #endif
 
     // Set up tools.

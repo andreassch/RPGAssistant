@@ -26,6 +26,7 @@ SOURCES += \
     Backend/Person.cpp \
     Backend/PersonsXmlReader.cpp \
     Backend/TDECalendar.cpp \
+    Backend/TDEModifer.cpp \
     UI/CalendarWidget.cpp \
     UI/MainWidget.cpp \
     UI/TurnOrderWidget.cpp \
@@ -43,11 +44,13 @@ HEADERS += \
     Backend/Person.h \
     Backend/PersonsXmlReader.h \
     Backend/TDECalendar.h \
+    Backend/TDEModifer.h \
     UI/CalendarWidget.h \
     UI/MainWidget.h \
     UI/NPCGeneratorWidget.h \
     UI/TurnOrderWidget.h \
     UI/Utils.h \
+    config.h \
     version.h
 
 FORMS += \

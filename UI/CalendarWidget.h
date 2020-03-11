@@ -17,9 +17,15 @@
 
 #pragma once
 
-#include "../Backend/TDECalendar.h"
+#include "../config.h"
 #include "../Backend/Holiday.h"
 #include "../Backend/Diary.h"
+
+#ifdef RPG_SYSTEM_TDE_AVENTURIA
+#include "../Backend/TDECalendar.h"
+using namespace TDECalendar;
+#endif
+
 #include <QWidget>
 #include <QTableWidgetItem>
 #include <vector>
@@ -28,8 +34,6 @@
 namespace Ui {
 class CalendarWidget;
 }
-
-using namespace TDECalendar;
 
 class CalendarWidget : public QWidget
 {

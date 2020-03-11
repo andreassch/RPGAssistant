@@ -3,33 +3,45 @@
 This is a small tool to assist a role playing game master. It contains the following modules:
 
 * Turn order list: Manage turn order and NPCs during combat.
-* NPC Generator: Randomly generate non-player characters from different region, race, etc.
-* Calendar: A calendar with moon phases and holidays, tailored to the system The Dark Eye.
-  As the calendar computations are separated from the GUI, it can easily be adapted to other systems.
+* NPC Generator: Randomly generate non-player characters from different regions.
+* Calendar: A calendar with moon phases and holidays. Currently, calendar computations are implemented for The Dark Eye/Aventuria, but it can easily be adapted to other systems since the calendar computations are separated from the GUI. The calendar also contains a diary.
+* Throw dices.
 * more modules to come ...
 
-RPGAssistant is inspired by Dirk Oetmann's DSASuite from the early 2000s ([archived homepage](https://web.archive.org/web/20010307023059/http://www.dirkoz.de/dsa/tools/index.htm)).
+RPGAssistant is partly inspired by Dirk Oetmann's DSASuite from the early 2000s ([archived homepage](https://web.archive.org/web/20010307023059/http://www.dirkoz.de/dsa/tools/index.htm)).
 
 
 ## License information
 
 The software itself is licensed under the GNU General public license version 3.
 
-Data are yet included due to unknown legal status. RPGAssistant's data files are based on those by DSASuite. Provided are scripts to convert these data files. The original author of these files, Dirk Oetmann, gives permission to use and modify his files for non-commercial purposes, provided that they are used under a different project name, see [webpage](https://web.archive.org/web/20091012042038/http://www.dirkoz.de/downloads.php).
+Data and 3rd party material are not included. For the German version of The Dark Eye, Das Schwarze Auge, you can use data files from DSASuite and convert these to RPGAssistant's data format; Python scripts to do the conversion are provided, see details below. Please be aware that this third party material is separate from the RPGAssistant software and falls under different licenses. Use it solely under your own responsibility.
+
+The Dark Eye, its respective logos, as well as Aventuria, Dere, Myranor, Riesland, Tharun and Uthuria, and their respective logos, are trademarks of Ulisses Spiele GmbH, Waldems.
 
 
 ## Compilation
 
-The preferred way to build is by using QtCreator. Just open rpgassistant.pro and click on build.
+1. Select in config.h for which roleplaying system you want to build.
 
-You can also configure and compile on the command line with the following steps:
+2. If you build for The Dark Eye and want to include the fanproject logo, you can download a low and high resolution graphic from https://ulisses-spiele.de/wp-content/uploads/dsa_logo_fanprojekt-300x84.png and https://ulisses-spiele.de/wp-content/uploads/dsa_logo_fanprojekt.png?x55694 in low and high resolution, respectively. Create a subfolder 3rdparty under the Graphics folder, the the logos in it and rename them to DSALogoFanware-300x84.png and DSALogoFanware-604x169.png, respectively. Please note that these logos are copyrighted by Ulisses Spiele and NOT part of this software. To use the logos, the rules set forth under https://ulisses-spiele.de/spielsysteme/das-schwarze-auge/ have to be obeyed. You use them solely at your own responsibility.
+
+3. Build the program.
+
+      a. The preferred way is by using QtCreator. Just open rpgassistant.pro and click on build.
+
+      b. You can also configure and compile on the command line with the following steps:
 
 ```
-  qmake
-  make
+          qmake
+          make
 ```
 
 ## Data files
+
+The software needs data files with lists of names, holidays, etc. These files depend on the role playing system you want to use. Due to legal issues, such files are not included in this package.
+
+### The Dark Eye/Aventuria, German version (Das Schwarze Auge/Aventurien)
 
 This program can use the data files from Dirk Oetmann's DSASuite. These can be obtained from [the web archive](https://web.archive.org/web/20010419203408/http://www.dirkoz.de/dsa/tools/bin/_daten.EXE). The self-extracting zip archive can also be extracted with unzip. Unpack it to a temporary folder inside the data folder. Under Linux:
 ```
@@ -63,9 +75,11 @@ The desktop version of RPGAssistant expects the data files in the same folder as
 
 ## Customisation
 
-RPGAssistant can be adapted to role playing systems other than The Dark Eye (or Das Schwarze Auge in German). To facilitate that, the UI has been separated from the backend that depends on the system as much as possible. You are welcome to share extensions that you have created.
+RPGAssistant can be adapted to different role playing systems To facilitate that, the UI has been separated from the backend as much as possible. There are two system-dependent modules:
+1. Calendar computations. Classes Calendar, Date and MoonPhase and enums Month and Reckoning are expected. Please refer to the implementations for The Dark Eye in TDECalendar for details. Include the new module in CalendarWidget and use its namespace.
+2. Computation of modifiers due to bad health. Expected is a function computeModifier which takes current hit points and total hit points as parameters and returns a modifier. Please refer to the TDEModifier module for details.
 
 
 ## Author
 
-This program is written by Andreas Schneider (andreas underscore schn at web dot de).
+This program has been written by Andreas Schneider (andreas underscore schn at web dot de).

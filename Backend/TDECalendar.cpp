@@ -1,5 +1,7 @@
 #include "TDECalendar.h"
 
+#ifdef RPG_SYSTEM_TDE_AVENTURIA
+
 #include <cassert>
 #include <QtDebug>
 
@@ -318,3 +320,5 @@ namespace TDECalendar {
         return QString("MoonPhase%1%2.svg").arg(status).arg(QString::number(m_phase+1));
     }
 }
+
+#endif // RPG_SYSTEM_TDE_AVENTURIA

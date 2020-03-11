@@ -1,5 +1,9 @@
 #pragma once
 
+#include "../config.h"
+
+#ifdef RPG_SYSTEM_TDE_AVENTURIA
+
 #include <QString>
 #include <QObject>
 
@@ -248,7 +252,7 @@ namespace TDECalendar {
     }
 
     /**
-     * @brief Moon phases in Aventurica.
+     * @brief Moon phases in Aventuria.
      */
     class MoonPhase
     {
@@ -288,3 +292,5 @@ namespace TDECalendar {
         int m_phase;
     };
 }
+
+#endif // RPG_SYSTEM_TDE_AVENTURIA

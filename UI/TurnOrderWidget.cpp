@@ -1,8 +1,12 @@
 #include "TurnOrderWidget.h"
 #include "ui_TurnOrderWidget.h"
 
+#ifdef RPG_SYSTEM_TDE_AVENTURIA
+#include "../Backend/TDEModifer.h"
+using namespace TDEModifier;
+#endif
+
 #include "Utils.h"
-#include <cmath>
 #include <QFile>
 #include <QDir>
 #include <QFileDialog>
@@ -37,7 +41,7 @@ void TurnOrderWidget::addEntry(const QString name, const float ini, const int le
     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI_MOD, UiUtils::createTableWidgetNumericItem<int>(0));
     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, UiUtils::createTableWidgetNumericItem<int>(le));
     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<int>(lep));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, UiUtils::createTableWidgetNumericItem<int>(computeModifierTDE(lep, le)));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, UiUtils::createTableWidgetNumericItem<int>(computeModifier(lep, le)));
     m_ui->tableTurnOrder->setSortingEnabled(true);
     m_ui->buttonDelete->setEnabled(true);
     m_ui->buttonStart->setEnabled(true);
@@ -109,20 +113,6 @@ int TurnOrderWidget::selectedEntry() const
         return -1;
 }
 
-int TurnOrderWidget::computeModifierTDE(const int lep, const int le)
-{
-    if (lep <= 5)
-        return 4;
-    else if (static_cast<float>(lep) <= round(static_cast<float>(le)*0.25))
-        return 3;
-    else if (static_cast<float>(lep) <= round(static_cast<float>(le)*0.5))
-        return 2;
-    else if (static_cast<float>(lep) <= round(static_cast<float>(le)*0.75))
-        return 1;
-    else
-        return 0;
-}
-
 /* Private slots *************************************************************/
 void TurnOrderWidget::onAddEntry()
 {
@@ -175,7 +165,7 @@ void TurnOrderWidget::onChangeEntry(const int row, const int column)
         case TurnOrderTableColumn::LE:
             int lep = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LeP)->data(Qt::DisplayRole).toInt();
             int le = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LE)->data(Qt::DisplayRole).toInt();
-            int mod = computeModifierTDE(lep, le);
+            int mod = computeModifier(lep, le);
             m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::MOD)->setData(Qt::DisplayRole,QVariant(mod));
             if (lep <= 0)
                 m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LeP)->setForeground(QColor("red"));
