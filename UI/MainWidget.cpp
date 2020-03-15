@@ -25,15 +25,8 @@ MainWidget::~MainWidget()
 
 void MainWidget::SetupUi()
 {
-    // Set up version information and logo.
+    // Set up version information.
     m_ui->labelVersion->setText(tr("Version ").append(VERSION_STR));
-#ifdef RPG_SYSTEM_TDE_AVENTURIA
-#ifdef ANDROID
-    m_ui->labelLogo->setPixmap(QPixmap(":/Graphics/3rdparty/DSALogoFanprojekt-604x169.png"));
-#else
-    m_ui->labelLogo->setPixmap(QPixmap(":/Graphics/3rdparty/DSALogoFanprojekt-300x84.png"));
-#endif
-#endif
 
     // Set up tools.
     m_turn_order_widget = new TurnOrderWidget();

@@ -31,7 +31,7 @@ TurnOrderWidget::~TurnOrderWidget()
 }
 
 /* Public methods ************************************************************/
-void TurnOrderWidget::addEntry(const QString name, const float ini, const int le, const int lep)
+void TurnOrderWidget::addEntry(const QString name, const float ini, const int total_hit_points, const int current_hit_points)
 {
     m_ui->tableTurnOrder->setSortingEnabled(false);
     int new_row = m_ui->tableTurnOrder->rowCount();
@@ -39,9 +39,9 @@ void TurnOrderWidget::addEntry(const QString name, const float ini, const int le
     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem(name));
     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI, UiUtils::createTableWidgetNumericItem<float>(ini));
     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI_MOD, UiUtils::createTableWidgetNumericItem<int>(0));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, UiUtils::createTableWidgetNumericItem<int>(le));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<int>(lep));
-    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, UiUtils::createTableWidgetNumericItem<int>(computeModifier(lep, le)));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::cHP, UiUtils::createTableWidgetNumericItem<int>(total_hit_points));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::tHP, UiUtils::createTableWidgetNumericItem<int>(current_hit_points));
+    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, UiUtils::createTableWidgetNumericItem<int>(computeModifier(current_hit_points, total_hit_points)));
     m_ui->tableTurnOrder->setSortingEnabled(true);
     m_ui->buttonDelete->setEnabled(true);
     m_ui->buttonStart->setEnabled(true);
@@ -154,23 +154,23 @@ void TurnOrderWidget::onChangeEntry(const int row, const int column)
 {
     if ((m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::INI) == nullptr) ||
         (m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::INI_MOD) == nullptr) ||
-        (m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LeP) == nullptr) ||
-        (m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LE) == nullptr) ||
+        (m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::cHP) == nullptr) ||
+        (m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::tHP) == nullptr) ||
         (m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::MOD) == nullptr))
         return;
 
     qDebug() << "onChangeEntry" << row << column;
     switch(column) {
-        case TurnOrderTableColumn::LeP:
-        case TurnOrderTableColumn::LE:
-            int lep = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LeP)->data(Qt::DisplayRole).toInt();
-            int le = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LE)->data(Qt::DisplayRole).toInt();
-            int mod = computeModifier(lep, le);
+        case TurnOrderTableColumn::cHP:
+        case TurnOrderTableColumn::tHP:
+            int current_hit_points = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::cHP)->data(Qt::DisplayRole).toInt();
+            int total_hit_points = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::tHP)->data(Qt::DisplayRole).toInt();
+            int mod = computeModifier(current_hit_points, total_hit_points);
             m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::MOD)->setData(Qt::DisplayRole,QVariant(mod));
-            if (lep <= 0)
-                m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LeP)->setForeground(QColor("red"));
+            if (current_hit_points <= 0)
+                m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::cHP)->setForeground(QColor("red"));
             else
-                m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LeP)->setForeground(QColor("black"));
+                m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::cHP)->setForeground(QColor("black"));
             break;
     }
 
@@ -242,11 +242,11 @@ void TurnOrderWidget::onDamage()
         return;
     }
     qDebug() << "onDamage: row" << row;
-    int lep = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LeP)->data(Qt::DisplayRole).toInt();
+    int current_hit_points = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::cHP)->data(Qt::DisplayRole).toInt();
     int damage = m_ui->spinBoxDamage->value();
-    qDebug() << "onDamage()" << lep << damage;
-    lep -= damage;
-    m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LeP)->setData(Qt::DisplayRole,QVariant(lep));
+    qDebug() << "onDamage()" << current_hit_points << damage;
+    current_hit_points -= damage;
+    m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::cHP)->setData(Qt::DisplayRole,QVariant(current_hit_points));
     // The modifier is updated by the onChangeEntry callback.
     return;
 }
@@ -334,27 +334,27 @@ QString file_filter = tr("XML files (*.xml);;All files (*)");
         if (xml_reader.name() == "turnorderlist") {
             qDebug() << "Reading turn order list from xml file.";
             m_ui->tableTurnOrder->setSortingEnabled(false);
-            while(xml_reader.readNextStartElement()){
-                if(xml_reader.name() == "entry") {
+            while (xml_reader.readNextStartElement()){
+                if (xml_reader.name() == "entry") {
                     int new_row = m_ui->tableTurnOrder->rowCount();
                     m_ui->tableTurnOrder->insertRow(new_row);
                     // Read a row of a turn order table from the file.
-                    while(xml_reader.readNextStartElement()) {
-                        if(xml_reader.name() == "name") {
+                    while (xml_reader.readNextStartElement()) {
+                        if (xml_reader.name() == "name") {
                             QString str = xml_reader.readElementText();
                             m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem(str));
                         }
-                        else if(xml_reader.name() == "ini") {
+                        else if (xml_reader.name() == "ini") {
                             QString str = xml_reader.readElementText();
                             m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI, UiUtils::createTableWidgetNumericItem<float>(str.toFloat()));
                         }
-                        else if(xml_reader.name() == "le") {
+                        else if ( (xml_reader.name() == "totalHitPoints") || (xml_reader.name() == "le") ) {
                             QString str = xml_reader.readElementText();
-                            m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<int>(str.toInt()));
+                            m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::tHP, UiUtils::createTableWidgetNumericItem<int>(str.toInt()));
                         }
-                        else if(xml_reader.name() == "lep") {
+                        else if ( (xml_reader.name() == "currentHitPoints") || (xml_reader.name() == "lep") ) {
                             QString str = xml_reader.readElementText();
-                            m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, UiUtils::createTableWidgetNumericItem<int>(str.toInt()));
+                            m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::cHP, UiUtils::createTableWidgetNumericItem<int>(str.toInt()));
                         }
                         else
                             xml_reader.skipCurrentElement();
@@ -368,16 +368,16 @@ QString file_filter = tr("XML files (*.xml);;All files (*)");
                                     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem("[unknown]"));
                                     break;
                                 case TurnOrderTableColumn::INI:
-                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<float>(0.));
+                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::tHP, UiUtils::createTableWidgetNumericItem<float>(0.));
                                     break;
                                 case TurnOrderTableColumn::INI_MOD:
                                     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::INI_MOD, UiUtils::createTableWidgetNumericItem<int>(0));
                                     break;
-                                case TurnOrderTableColumn::LE:
-                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LE, UiUtils::createTableWidgetNumericItem<int>(0));
+                                case TurnOrderTableColumn::tHP:
+                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::tHP, UiUtils::createTableWidgetNumericItem<int>(0));
                                     break;
-                                case TurnOrderTableColumn::LeP:
-                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::LeP, UiUtils::createTableWidgetNumericItem<int>((m_ui->tableTurnOrder->item(new_row, TurnOrderTableColumn::LE) == nullptr) ? 0 : m_ui->tableTurnOrder->item(new_row, TurnOrderTableColumn::LE)->data(Qt::DisplayRole).toInt()));
+                                case TurnOrderTableColumn::cHP:
+                                    m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::cHP, UiUtils::createTableWidgetNumericItem<int>((m_ui->tableTurnOrder->item(new_row, TurnOrderTableColumn::tHP) == nullptr) ? 0 : m_ui->tableTurnOrder->item(new_row, TurnOrderTableColumn::tHP)->data(Qt::DisplayRole).toInt()));
                                     break;
                                 case TurnOrderTableColumn::MOD:
                                     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::MOD, UiUtils::createTableWidgetNumericItem<int>(0));
@@ -442,7 +442,7 @@ QString file_filter = tr("XML files (*.xml);;All files (*)");
         xml_writer.writeStartElement("entry");
         xml_writer.writeTextElement("name", m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::NAME)->data(Qt::DisplayRole).toString());
         xml_writer.writeTextElement("ini", m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::INI)->data(Qt::DisplayRole).toString());
-        xml_writer.writeTextElement("le", m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::LE)->data(Qt::DisplayRole).toString());
+        xml_writer.writeTextElement("totalHitPoints", m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::tHP)->data(Qt::DisplayRole).toString());
         xml_writer.writeEndElement();
     }
     xml_writer.writeEndDocument();

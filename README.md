@@ -13,20 +13,20 @@ RPGAssistant is partly inspired by Dirk Oetmann's DSASuite from the early 2000s 
 
 ## License information
 
-The software itself is licensed under the GNU General public license version 3.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 3.
 
-Data and 3rd party material are not included. For the German version of The Dark Eye, Das Schwarze Auge, you can use data files from DSASuite and convert these to RPGAssistant's data format; Python scripts to do the conversion are provided, see details below. Please be aware that this third party material is separate from the RPGAssistant software and falls under different licenses. Use it solely under your own responsibility.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-The Dark Eye, its respective logos, as well as Aventuria, Dere, Myranor, Riesland, Tharun and Uthuria, and their respective logos, are trademarks of Ulisses Spiele GmbH, Waldems.
+This program uses the open source version of the Qt toolkit. The source code and pre-built versions of Qt can be obtained from www.qt.io.
+
+Data and 3rd party material that you may use in combination with this program are not part of the program itself and thus do NOT fall under the GNU General Public License. You use such 3rd party materials solely under your own responsibility.
 
 
 ## Compilation
 
-1. Select in config.h for which roleplaying system you want to build.
+1. Select for which roleplaying system you want to build in config.h.
 
-2. If you build for The Dark Eye and want to include the fanproject logo, you can download a low and high resolution graphic from https://ulisses-spiele.de/wp-content/uploads/dsa_logo_fanprojekt-300x84.png and https://ulisses-spiele.de/wp-content/uploads/dsa_logo_fanprojekt.png?x55694 in low and high resolution, respectively. Create a subfolder 3rdparty under the Graphics folder, the the logos in it and rename them to DSALogoFanware-300x84.png and DSALogoFanware-604x169.png, respectively. Please note that these logos are copyrighted by Ulisses Spiele and NOT part of this software. To use the logos, the rules set forth under https://ulisses-spiele.de/spielsysteme/das-schwarze-auge/ have to be obeyed. You use them solely at your own responsibility.
-
-3. Build the program.
+2. Build the program.
 
       a. The preferred way is by using QtCreator. Just open rpgassistant.pro and click on build.
 
@@ -71,6 +71,8 @@ In `DSASuite/Namen/Zwerge.dat` you can add the following lines after `---Nachnam
 Mind the traling space after `groscho` and `groschna`. Now rerun the conversion script for the names.
 
 The desktop version of RPGAssistant expects the data files in the same folder as the executable. For the Android version they are packed into the APK.
+
+The Dark Eye, its respective logos, as well as Aventuria, Dere, Myranor, Riesland, Tharun and Uthuria, and their respective logos, are trademarks of Ulisses Spiele GmbH, Waldems.
 
 
 ## Customisation

@@ -1,7 +1,7 @@
 /**
- * Turn order list module for Role Playing Game Assistant.
+ * Turn order list module of the Role Playing Game Assistant.
  *
- * (c) Andreas Schneider andreas underscore schn at web dot de
+ * Copyright (c) 2019, 2020 Andreas Schneider (andreas underscore schn at web dot de)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3
@@ -30,8 +30,8 @@ namespace TurnOrderTableColumn {
         NAME,
         INI,
         INI_MOD,
-        LeP,
-        LE,
+        cHP,
+        tHP,
         MOD
     };
 }
@@ -61,9 +61,9 @@ public:
      * @brief Adds an entry to the turn order list.
      * @param name The name of the new character.
      * @param ini The initiative value.
-     * @param le The total hit points.
+     * @param total_hit_points The total hit points.
      */
-    void addEntry(const QString name, const float ini, const int le, const int lep);
+    void addEntry(const QString name, const float ini, const int total_hit_points, const int current_hit_points);
 
     /**
      * @brief Gets the number of entries in the turn order list.

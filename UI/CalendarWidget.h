@@ -1,9 +1,9 @@
 /**
- * Calendar module for Role Playing Game Assistant.
- * This module implements the calendar of the fantasy roleplaying game
- * The Dark Eye (German "Das Scwarze Auge").
+ * User interface of the calendar module of the Role Playing Game Assistant.
+ * The actual calendar computations are in a separate module. Select the one
+ * for the world you play in in config.h in the top level directory.
  *
- * (c) Andreas Schneider andreas underscore schn at web dot de
+ * Copyright (c) 2020 Andreas Schneider (andreas underscore schn at web dot de)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3

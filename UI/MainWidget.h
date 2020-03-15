@@ -1,7 +1,7 @@
 /**
- * Main window for the Role Playing Game Assistant.
+ * Main window of the Role Playing Game Assistant.
  *
- * (c) Andreas Schneider andreas underscore schn at web dot de
+ * Copyright (c) 2020 Andreas Schneider (andreas underscore schn at web dot de)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3

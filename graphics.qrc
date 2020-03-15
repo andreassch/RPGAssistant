@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>Graphics/rpgassistant.ico</file>
-        <file>Graphics/3rdparty/DSALogoFanprojekt-300x84.png</file>
-        <file>Graphics/3rdparty/DSALogoFanprojekt-604x169.png</file>
         <file>Graphics/MoonPhaseWaxing1.svg</file>
         <file>Graphics/MoonPhaseWaxing2.svg</file>
         <file>Graphics/MoonPhaseWaxing3.svg</file>

@@ -1,3 +1,23 @@
+/**
+ * Implementation of the Aventurian calendar.
+ * This module is part of the Role Playing Game Assistant.
+ *
+ * Copyright (c) 2020 Andreas Schneider (andreas underscore schn at web dot de)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 3
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * The Dark Eye, its respective logos, as well as Aventuria, Dere,
+ * Myranor, Riesland, Tharun and Uthuria, and their respective logos,
+ * are trademarks of Ulisses Spiele GmbH, Waldems.
+ */
+
 #pragma once
 
 #include "../config.h"

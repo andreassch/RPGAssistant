@@ -177,7 +177,7 @@
         <translation>Version </translation>
     </message>
     <message>
-        <location filename="../UI/MainWidget.cpp" line="45"/>
+        <location filename="../UI/MainWidget.cpp" line="41"/>
         <source>D%1</source>
         <translation>W%1</translation>
     </message>
@@ -259,183 +259,183 @@ Line %2, column %3</source>
         <translation>%1\nZeile %2, Spalte %3</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="405"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="395"/>
         <source>Incorrect turn order XML file.</source>
         <translation>Keine korrekte Initiativlisten-XML-Datei.</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="24"/>
+        <location filename="../Backend/TDECalendar.cpp" line="26"/>
         <source>Praios</source>
         <translation>Praios</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="24"/>
+        <location filename="../Backend/TDECalendar.cpp" line="26"/>
         <source>Rondra</source>
         <translation>Rondra</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="24"/>
+        <location filename="../Backend/TDECalendar.cpp" line="26"/>
         <source>Efferd</source>
         <translation>Efferd</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="24"/>
+        <location filename="../Backend/TDECalendar.cpp" line="26"/>
         <source>Travia</source>
         <translation>Travia</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="25"/>
+        <location filename="../Backend/TDECalendar.cpp" line="27"/>
         <source>Boron</source>
         <translation>Boron</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="25"/>
+        <location filename="../Backend/TDECalendar.cpp" line="27"/>
         <source>Hesinde</source>
         <translation>Hesinde</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="25"/>
+        <location filename="../Backend/TDECalendar.cpp" line="27"/>
         <source>Firun</source>
         <translation>Firun</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="25"/>
+        <location filename="../Backend/TDECalendar.cpp" line="27"/>
         <source>Tsa</source>
         <translation>Tsa</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="26"/>
+        <location filename="../Backend/TDECalendar.cpp" line="28"/>
         <source>Phex</source>
         <translation>Phex</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="26"/>
+        <location filename="../Backend/TDECalendar.cpp" line="28"/>
         <source>Peraine</source>
         <translation>Peraine</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="26"/>
+        <location filename="../Backend/TDECalendar.cpp" line="28"/>
         <source>Ingerimm</source>
         <translation>Ingerimm</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="26"/>
+        <location filename="../Backend/TDECalendar.cpp" line="28"/>
         <source>Rahja</source>
         <translation>Rahja</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="27"/>
+        <location filename="../Backend/TDECalendar.cpp" line="29"/>
         <source>Nameless</source>
         <translation>Namenlos</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="35"/>
+        <location filename="../Backend/TDECalendar.cpp" line="37"/>
         <source>Windsday</source>
         <translation>Windstag</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="35"/>
+        <location filename="../Backend/TDECalendar.cpp" line="37"/>
         <source>Earthday</source>
         <translation>Erdtag</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="35"/>
+        <location filename="../Backend/TDECalendar.cpp" line="37"/>
         <source>Marketday</source>
         <translation>Markttag</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="35"/>
+        <location filename="../Backend/TDECalendar.cpp" line="37"/>
         <source>Praiosday</source>
         <translation>Praiostag</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="36"/>
+        <location filename="../Backend/TDECalendar.cpp" line="38"/>
         <source>Rohalsday</source>
         <translation>Rohalstag</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="36"/>
+        <location filename="../Backend/TDECalendar.cpp" line="38"/>
         <source>Fireday</source>
         <translation>Feuertag</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="36"/>
+        <location filename="../Backend/TDECalendar.cpp" line="38"/>
         <source>Waterday</source>
         <translation>Wassertag</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <location filename="../Backend/TDECalendar.cpp" line="46"/>
         <source>Wi</source>
         <translation>Wi</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <location filename="../Backend/TDECalendar.cpp" line="46"/>
         <source>Ea</source>
         <translation>Er</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <location filename="../Backend/TDECalendar.cpp" line="46"/>
         <source>Ma</source>
         <translation>Ma</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <location filename="../Backend/TDECalendar.cpp" line="46"/>
         <source>Pr</source>
         <translation>Pr</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <location filename="../Backend/TDECalendar.cpp" line="46"/>
         <source>Ro</source>
         <translation>Ro</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <location filename="../Backend/TDECalendar.cpp" line="46"/>
         <source>Fi</source>
         <translation>Fe</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="44"/>
+        <location filename="../Backend/TDECalendar.cpp" line="46"/>
         <source>Wa</source>
         <translation>Wa</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="52"/>
-        <location filename="../Backend/TDECalendar.cpp" line="58"/>
+        <location filename="../Backend/TDECalendar.cpp" line="54"/>
+        <location filename="../Backend/TDECalendar.cpp" line="60"/>
         <source>Hal</source>
         <translation>Hal</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="52"/>
+        <location filename="../Backend/TDECalendar.cpp" line="54"/>
         <source>Fall of Bosparan</source>
         <translation>Bosparans Fall</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="58"/>
+        <location filename="../Backend/TDECalendar.cpp" line="60"/>
         <source>BoF</source>
         <translation>BF</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="269"/>
+        <location filename="../Backend/TDECalendar.cpp" line="271"/>
         <source>%1 %2 %3 %4</source>
         <translation>%1 %2 %3 %4</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="303"/>
+        <location filename="../Backend/TDECalendar.cpp" line="305"/>
         <source>waxing</source>
         <translation>Kelch</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="304"/>
+        <location filename="../Backend/TDECalendar.cpp" line="306"/>
         <source>full</source>
         <translation>Rad</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="303"/>
+        <location filename="../Backend/TDECalendar.cpp" line="305"/>
         <source>waning</source>
         <translation>Helm</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="304"/>
+        <location filename="../Backend/TDECalendar.cpp" line="306"/>
         <source>new</source>
         <translation>Tote Mada</translation>
     </message>
@@ -504,11 +504,11 @@ Line %2, column %3</source>
     <name>TurnOrderWidget</name>
     <message>
         <location filename="../UI/TurnOrderWidget.ui" line="14"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="142"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="251"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="283"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="339"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="443"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="132"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="241"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="273"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="329"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="433"/>
         <source>Turn Order List</source>
         <translation>Initiativliste</translation>
     </message>
@@ -570,7 +570,7 @@ Line %2, column %3</source>
     </message>
     <message>
         <location filename="../UI/TurnOrderWidget.ui" line="159"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="268"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="258"/>
         <source>Hide</source>
         <translation>Ausblenden</translation>
     </message>
@@ -620,56 +620,56 @@ Line %2, column %3</source>
         <translation>Liste l&amp;eeren</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="142"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="132"/>
         <source>Please select the entry that shall be deleted.</source>
         <translation>Bitte einen Eintrag selektieren, der gelöscht werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="251"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="241"/>
         <source>Please select the entry that shall be damaged.</source>
         <translation>Bitte einen Eintrag selektieren, der getroffen werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="272"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="262"/>
         <source>Unhide</source>
         <translation>Zeigen</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="330"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="332"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="320"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="322"/>
         <source>Open turn order list</source>
         <translation>Initiativliste öffnen</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="325"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="423"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="315"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="413"/>
         <source>XML files (*.xml);;All files (*.*)</source>
         <translation>XML-Dateien (*.xml);;Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="283"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="273"/>
         <source>Please select the entry for which the initiative modifier shall be changed.</source>
         <translation>Bitte einen Eintrag selektieren, dessen INI-Modifikator geändert werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="327"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="425"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="317"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="415"/>
         <source>XML files (*.xml);;All files (*)</source>
         <translation>XML-Dateien (*.xml);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="339"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="329"/>
         <source>Cannot open file %1 for reading.</source>
         <translation>Datei %1 kann nicht zum Lesen geöffnet werden.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="432"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="434"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="422"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="424"/>
         <source>Save turn order list</source>
         <translation>Initiativliste speichern</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="443"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="433"/>
         <source>Cannot open file %1 for writing.</source>
         <translation>Datei %1 kann nicht zum Schreiben geöffnet werden.</translation>
     </message>
