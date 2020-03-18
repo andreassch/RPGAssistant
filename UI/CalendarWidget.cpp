@@ -3,6 +3,7 @@
 #include "../Backend/HolidaysXmlReader.h"
 
 #include "Utils.h"
+#include "../Backend/Utils.h"
 #include <QSettings>
 #include <QDir>
 #include <QFile>
@@ -115,11 +116,7 @@ void CalendarWidget::setupUi()
 #endif
 
     // Read holidays from XML file.
-#ifdef ANDROID
-    QDir data_dir("assets:/data");
-#else
-    QDir data_dir = QDir("."); // TODO: don't hardcode path
-#endif
+    QDir data_dir = Utils::dataDir();
     QFile holidays_file(data_dir.filePath("holidays.xml"));
     if(!holidays_file.open(QFile::ReadOnly | QFile::Text)) {
         QMessageBox::critical(this, tr("Calendar"), tr("Cannot open file %1 for reading: %2").arg(holidays_file.fileName()).arg(holidays_file.errorString()));

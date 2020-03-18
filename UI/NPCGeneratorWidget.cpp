@@ -3,6 +3,7 @@
 
 #include "../Backend/NamesXmlReader.h"
 #include "../Backend/PersonsXmlReader.h"
+#include "../Backend/Utils.h"
 #include <QFile>
 #include <QDir>
 #include <QMessageBox>
@@ -29,11 +30,7 @@ NPCGeneratorWidget::~NPCGeneratorWidget()
 void NPCGeneratorWidget::setupUi()
 {
     // Get data path.
-#ifdef ANDROID
-    QDir data_dir("assets:/data");
-#else
-    QDir data_dir = QDir("."); // TODO: don't hardcode path
-#endif
+    QDir data_dir = Utils::dataDir();
     qDebug() << data_dir;
 
     // Read name lists and fill name region combo box.

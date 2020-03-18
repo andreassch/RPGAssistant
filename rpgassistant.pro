@@ -27,6 +27,7 @@ SOURCES += \
     Backend/PersonsXmlReader.cpp \
     Backend/TDECalendar.cpp \
     Backend/TDEModifer.cpp \
+    Backend/Utils.cpp \
     UI/CalendarWidget.cpp \
     UI/MainWidget.cpp \
     UI/TurnOrderWidget.cpp \
@@ -45,6 +46,7 @@ HEADERS += \
     Backend/PersonsXmlReader.h \
     Backend/TDECalendar.h \
     Backend/TDEModifer.h \
+    Backend/Utils.h \
     UI/CalendarWidget.h \
     UI/MainWidget.h \
     UI/NPCGeneratorWidget.h \
@@ -86,13 +88,18 @@ for(tsfile, TRANSLATIONS) {
 
 
 # Setup 'make install' step
+QMAKE_TARGET_BUNDLE_PREFIX = com.github.andreassch
 android {
     DATA_PATH=/assets/data
-    GRAPHICS_PATH=/assets/graphics
     LOCALE_PATH=/assets/translations
-} else {
+} macx {
+    DATA_PATH=Contents/Resources
+    LOCALE_PATH=Contents/Resources
+} win32 {
     DATA_PATH=/
-    GRAPHICS_PATH=/
+    LOCALE_PATH=/
+} unix:!macx {
+    DATA_PATH=/
     LOCALE_PATH=/
 }
 data.path = $$DATA_PATH
@@ -102,7 +109,12 @@ locales.path = $$LOCALE_PATH
 locales.files = Translations/rpgassistant_de.qm
 locales.depends += FORCE
 
-INSTALLS += data locales
+macx {
+    ICON = Graphics/rpgassistant.icns
+    QMAKE_BUNDLE_DATA += data locales
+} else {
+    INSTALLS += data locales
+}
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -121,3 +133,5 @@ android {
 }
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.14
