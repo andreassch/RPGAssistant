@@ -84,7 +84,6 @@ void TurnOrderWidget::setupUi()
 
 void TurnOrderWidget::activateEntry(const int number)
 {
-    qDebug() << m_ui->tableTurnOrder->item(number, TurnOrderTableColumn::NAME)->background().color();
     m_ui->tableTurnOrder->item(number, TurnOrderTableColumn::NAME)->setBackground(color_active);
     return;
 }
@@ -132,7 +131,6 @@ void TurnOrderWidget::onDeleteEntry()
         QMessageBox::information(this, tr("Turn Order List"), tr("Please select the entry that shall be deleted."));
         return;
     }
-    qDebug() << "onDeleteEntry: row" << row;
     if (row < 0) // If no row is selected.
         return;
     if ((is_active) && (row != m_ui->tableTurnOrder->rowCount()-1))
@@ -159,7 +157,6 @@ void TurnOrderWidget::onChangeEntry(const int row, const int column)
         (m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::MOD) == nullptr))
         return;
 
-    qDebug() << "onChangeEntry" << row << column;
     switch(column) {
         case TurnOrderTableColumn::cHP:
         case TurnOrderTableColumn::tHP:
@@ -189,13 +186,11 @@ void TurnOrderWidget::onStart()
     for (int row=0; row<m_ui->tableTurnOrder->rowCount(); row++) {
         float ini = m_ui->tableTurnOrder->item(row,TurnOrderTableColumn::INI)->data(Qt::DisplayRole).toFloat();
         int ini_mod = m_ui->tableTurnOrder->item(row,TurnOrderTableColumn::INI_MOD)->data(Qt::DisplayRole).toInt();
-        qDebug() << ini << ini_mod;
         m_ui->tableTurnOrder->item(row,TurnOrderTableColumn::INI_MOD)->setData(Qt::DisplayRole,QVariant(0));
         m_ui->tableTurnOrder->item(row,TurnOrderTableColumn::INI)->setData(Qt::DisplayRole,QVariant(ini+static_cast<float>(ini_mod)));
     }
     // Start with first turn.
     current_ini = m_ui->tableTurnOrder->item(0, TurnOrderTableColumn::INI)->data(Qt::DisplayRole).toInt(); // highest INI in the list
-    qDebug() << "onStart: curren_ini" << current_ini;
     m_ui->labelCurrentIni->setText(QString("%1").arg(QString::number(current_ini)));
     activateEntry(0);
     m_ui->buttonNext->setEnabled(true);
@@ -223,7 +218,6 @@ void TurnOrderWidget::onNext()
         else {
             activateEntry(row_active);
             int next_ini = m_ui->tableTurnOrder->item(row_active, TurnOrderTableColumn::INI)->data(Qt::DisplayRole).toInt();
-            qDebug() << "onNext()" << current_ini << next_ini;
             current_ini = next_ini;
             m_ui->labelCurrentIni->setText(QString("%1").arg(QString::number(current_ini)));
         }
@@ -241,10 +235,8 @@ void TurnOrderWidget::onDamage()
         QMessageBox::information(this, tr("Turn Order List"), tr("Please select the entry that shall be damaged."));
         return;
     }
-    qDebug() << "onDamage: row" << row;
     int current_hit_points = m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::cHP)->data(Qt::DisplayRole).toInt();
     int damage = m_ui->spinBoxDamage->value();
-    qDebug() << "onDamage()" << current_hit_points << damage;
     current_hit_points -= damage;
     m_ui->tableTurnOrder->item(row, TurnOrderTableColumn::cHP)->setData(Qt::DisplayRole,QVariant(current_hit_points));
     // The modifier is updated by the onChangeEntry callback.
@@ -321,7 +313,6 @@ QString file_filter = tr("XML files (*.xml);;All files (*)");
 #else
     QString filename(QFileDialog::getOpenFileName(this,tr("Open turn order list"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), file_filter, &file_filter));
 #endif
-    qDebug() << filename;
     if (filename.isEmpty())
         return;
     QFile file(filename);
@@ -332,7 +323,6 @@ QString file_filter = tr("XML files (*.xml);;All files (*)");
     QXmlStreamReader xml_reader(&file);
     if (xml_reader.readNextStartElement()) {
         if (xml_reader.name() == "turnorderlist") {
-            qDebug() << "Reading turn order list from xml file.";
             m_ui->tableTurnOrder->setSortingEnabled(false);
             while (xml_reader.readNextStartElement()){
                 if (xml_reader.name() == "entry") {
@@ -362,7 +352,6 @@ QString file_filter = tr("XML files (*.xml);;All files (*)");
                     // Check if all columns have been filled by the file, and create non-existant entries.
                     for (int column=0; column < m_ui->tableTurnOrder->columnCount(); column++) {
                         if (m_ui->tableTurnOrder->item(new_row, column) == nullptr) {
-                            qDebug() << "Creating column that is not in the file:" << column;
                             switch(column) {
                                 case TurnOrderTableColumn::NAME:
                                     m_ui->tableTurnOrder->setItem(new_row, TurnOrderTableColumn::NAME, new QTableWidgetItem("[unknown]"));
@@ -396,8 +385,7 @@ QString file_filter = tr("XML files (*.xml);;All files (*)");
     }
     file.close();
     if (xml_reader.hasError()) {
-        // do error handling
-        qDebug() << "Error reading file:" << xml_reader.lineNumber() << xml_reader.columnNumber() << xml_reader.errorString();
+        QMessageBox::critical(this, tr("Turn Order List"), tr("Error reading XML file %1: line %2 column %3: %4").arg(filename).arg(QString::number(xml_reader.lineNumber())).arg(QString::number(xml_reader.columnNumber())).arg(xml_reader.errorString()));
     }
     if (m_ui->tableTurnOrder->rowCount() > 0) {
         m_ui->buttonStart->setEnabled(true);
@@ -427,7 +415,6 @@ QString file_filter = tr("XML files (*.xml);;All files (*)");
         return;
     if (!filename.endsWith(".xml"))
         filename = filename.append(".xml");
-    qDebug() << filename;
     QFile file(filename);
     if(!file.open(QFile::WriteOnly | QFile::Text)) {
         QMessageBox::critical(this, tr("Turn Order List"), tr("Cannot open file %1 for writing.").arg(file.errorString()));

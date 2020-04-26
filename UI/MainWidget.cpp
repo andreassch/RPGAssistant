@@ -3,7 +3,6 @@
 #include "../version.h"
 
 #include <QSettings>
-#include <QtDebug>
 
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),

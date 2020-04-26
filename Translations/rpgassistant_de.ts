@@ -5,9 +5,9 @@
     <name>CalendarWidget</name>
     <message>
         <location filename="../UI/CalendarWidget.ui" line="20"/>
-        <location filename="../UI/CalendarWidget.cpp" line="125"/>
-        <location filename="../UI/CalendarWidget.cpp" line="253"/>
-        <location filename="../UI/CalendarWidget.cpp" line="269"/>
+        <location filename="../UI/CalendarWidget.cpp" line="119"/>
+        <location filename="../UI/CalendarWidget.cpp" line="242"/>
+        <location filename="../UI/CalendarWidget.cpp" line="257"/>
         <source>Calendar</source>
         <translation>Kalender</translation>
     </message>
@@ -82,39 +82,39 @@
         <translation>&amp;Neues Buch</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.cpp" line="125"/>
+        <location filename="../UI/CalendarWidget.cpp" line="119"/>
         <source>Cannot open file %1 for reading: %2</source>
         <translation>Kann Datei %1 nicht zum Lesen öffnen: %2</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.cpp" line="253"/>
+        <location filename="../UI/CalendarWidget.cpp" line="242"/>
         <source>Cannot read diary file %1.</source>
         <translation>Tagebuch in Datei %1 nicht lesbar.</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.cpp" line="269"/>
+        <location filename="../UI/CalendarWidget.cpp" line="257"/>
         <source>Cannot write diary file %1.</source>
         <translation>Kann Tagebuch nicht in Datei %1. schreiben.</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.cpp" line="427"/>
+        <location filename="../UI/CalendarWidget.cpp" line="412"/>
         <source>XML files (*.xml);;All files (*)</source>
         <translation>XML-Dateien (*.xml);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.cpp" line="432"/>
+        <location filename="../UI/CalendarWidget.cpp" line="417"/>
         <source>Open diary</source>
         <translation>Tagebuch öffnen</translation>
     </message>
     <message>
         <location filename="../UI/CalendarWidget.ui" line="206"/>
-        <location filename="../UI/CalendarWidget.cpp" line="458"/>
+        <location filename="../UI/CalendarWidget.cpp" line="442"/>
         <source>Diary:</source>
         <translation>Tagebuch:</translation>
     </message>
     <message>
-        <location filename="../UI/CalendarWidget.cpp" line="257"/>
-        <location filename="../UI/CalendarWidget.cpp" line="441"/>
+        <location filename="../UI/CalendarWidget.cpp" line="246"/>
+        <location filename="../UI/CalendarWidget.cpp" line="425"/>
         <source>Diary: %1</source>
         <translation>Tagebuch: %1</translation>
     </message>
@@ -172,12 +172,12 @@
         <translation>&amp;3W20</translation>
     </message>
     <message>
-        <location filename="../UI/MainWidget.cpp" line="29"/>
+        <location filename="../UI/MainWidget.cpp" line="28"/>
         <source>Version </source>
         <translation>Version </translation>
     </message>
     <message>
-        <location filename="../UI/MainWidget.cpp" line="41"/>
+        <location filename="../UI/MainWidget.cpp" line="40"/>
         <source>D%1</source>
         <translation>W%1</translation>
     </message>
@@ -186,8 +186,8 @@
     <name>NPCGeneratorWidget</name>
     <message>
         <location filename="../UI/NPCGeneratorWidget.ui" line="14"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="43"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="60"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="37"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="52"/>
         <source>NPC Generator</source>
         <translation>NSC-Generator</translation>
     </message>
@@ -229,18 +229,18 @@
         <translation>&amp;Generieren</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="43"/>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="60"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="37"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="52"/>
         <source>Cannot open file %1 for reading: %2</source>
         <translation>Kann Datei %1 nicht zum Lesen öffnen: %2</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="232"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="222"/>
         <source>&lt;BR&gt;Trait: %1</source>
         <translation>&lt;BR&gt;Charakter: %1</translation>
     </message>
     <message>
-        <location filename="../UI/NPCGeneratorWidget.cpp" line="233"/>
+        <location filename="../UI/NPCGeneratorWidget.cpp" line="223"/>
         <source>&lt;BR&gt;Profession: %1</source>
         <translation>&lt;BR&gt;Beruf: %1</translation>
     </message>
@@ -248,18 +248,18 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Backend/DataXmlReader.cpp" line="26"/>
+        <location filename="../Backend/DataXmlReader.cpp" line="22"/>
         <source>The file is not a valid XML data file.</source>
         <translation>Diese Datei enthält keine gültigen XML-Daten.</translation>
     </message>
     <message>
-        <location filename="../Backend/DataXmlReader.cpp" line="35"/>
+        <location filename="../Backend/DataXmlReader.cpp" line="31"/>
         <source>%1
 Line %2, column %3</source>
         <translation>%1\nZeile %2, Spalte %3</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="395"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="384"/>
         <source>Incorrect turn order XML file.</source>
         <translation>Keine korrekte Initiativlisten-XML-Datei.</translation>
     </message>
@@ -415,52 +415,52 @@ Line %2, column %3</source>
         <translation>BF</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="271"/>
+        <location filename="../Backend/TDECalendar.cpp" line="276"/>
         <source>%1 %2 %3 %4</source>
         <translation>%1 %2 %3 %4</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="305"/>
+        <location filename="../Backend/TDECalendar.cpp" line="309"/>
         <source>waxing</source>
         <translation>Kelch</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="306"/>
+        <location filename="../Backend/TDECalendar.cpp" line="310"/>
         <source>full</source>
         <translation>Rad</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="305"/>
+        <location filename="../Backend/TDECalendar.cpp" line="309"/>
         <source>waning</source>
         <translation>Helm</translation>
     </message>
     <message>
-        <location filename="../Backend/TDECalendar.cpp" line="306"/>
+        <location filename="../Backend/TDECalendar.cpp" line="310"/>
         <source>new</source>
         <translation>Tote Mada</translation>
     </message>
     <message>
-        <location filename="../Backend/Names.cpp" line="14"/>
+        <location filename="../Backend/Names.cpp" line="13"/>
         <source>female</source>
         <translation>weiblich</translation>
     </message>
     <message>
-        <location filename="../Backend/Names.cpp" line="16"/>
+        <location filename="../Backend/Names.cpp" line="15"/>
         <source>male</source>
         <translation>männlich</translation>
     </message>
     <message>
-        <location filename="../Backend/Names.cpp" line="18"/>
+        <location filename="../Backend/Names.cpp" line="17"/>
         <source>neutral</source>
         <translation>neutral</translation>
     </message>
     <message>
-        <location filename="../Backend/NamesXmlReader.cpp" line="60"/>
+        <location filename="../Backend/NamesXmlReader.cpp" line="57"/>
         <source>The surname tag for region %1 does not contain a valid type attribute.</source>
         <translation>Der surname-Tag in Region %1 enthält kein gültiges type-Attribut.</translation>
     </message>
     <message>
-        <location filename="../Backend/HolidaysXmlReader.cpp" line="38"/>
+        <location filename="../Backend/HolidaysXmlReader.cpp" line="35"/>
         <source>Error in holiday XML file: month %1 outside range.</source>
         <translation>Fehler in Feiertag-Datendatei: Monat %1 außerhalb des erlaubten Bereichs.</translation>
     </message>
@@ -475,27 +475,27 @@ Line %2, column %3</source>
         <translation>Fehler in Personen-Datendatei: ungültiger Lebensalter String %1.</translation>
     </message>
     <message>
-        <location filename="../Backend/Person.cpp" line="16"/>
+        <location filename="../Backend/Person.cpp" line="15"/>
         <source>child</source>
         <translation>Kind</translation>
     </message>
     <message>
-        <location filename="../Backend/Person.cpp" line="16"/>
+        <location filename="../Backend/Person.cpp" line="15"/>
         <source>adult</source>
         <translation>Erwachsen</translation>
     </message>
     <message>
-        <location filename="../Backend/Person.cpp" line="16"/>
+        <location filename="../Backend/Person.cpp" line="15"/>
         <source>elder</source>
         <translation>Greis</translation>
     </message>
     <message>
-        <location filename="../Backend/Person.cpp" line="133"/>
+        <location filename="../Backend/Person.cpp" line="132"/>
         <source> (apprentice)</source>
         <translation> (Lehrling)</translation>
     </message>
     <message>
-        <location filename="../Backend/Person.cpp" line="135"/>
+        <location filename="../Backend/Person.cpp" line="134"/>
         <source> (retired)</source>
         <translation> (in Ruhestand)</translation>
     </message>
@@ -504,11 +504,12 @@ Line %2, column %3</source>
     <name>TurnOrderWidget</name>
     <message>
         <location filename="../UI/TurnOrderWidget.ui" line="14"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="132"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="241"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="273"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="329"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="433"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="131"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="235"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="265"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="320"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="388"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="420"/>
         <source>Turn Order List</source>
         <translation>Initiativliste</translation>
     </message>
@@ -570,7 +571,7 @@ Line %2, column %3</source>
     </message>
     <message>
         <location filename="../UI/TurnOrderWidget.ui" line="159"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="258"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="250"/>
         <source>Hide</source>
         <translation>Ausblenden</translation>
     </message>
@@ -620,56 +621,61 @@ Line %2, column %3</source>
         <translation>Liste l&amp;eeren</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="132"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="131"/>
         <source>Please select the entry that shall be deleted.</source>
         <translation>Bitte einen Eintrag selektieren, der gelöscht werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="241"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="235"/>
         <source>Please select the entry that shall be damaged.</source>
         <translation>Bitte einen Eintrag selektieren, der getroffen werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="262"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="254"/>
         <source>Unhide</source>
         <translation>Zeigen</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="320"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="322"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="312"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="314"/>
         <source>Open turn order list</source>
         <translation>Initiativliste öffnen</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="315"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="413"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="388"/>
+        <source>Error reading XML file %1: line %2 column %3: %4</source>
+        <translation>Fehler beim Einlesen der XML-Datei %1: Zeile %2, Spalte %3: %4</translation>
+    </message>
+    <message>
+        <location filename="../UI/TurnOrderWidget.cpp" line="307"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="401"/>
         <source>XML files (*.xml);;All files (*.*)</source>
         <translation>XML-Dateien (*.xml);;Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="273"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="265"/>
         <source>Please select the entry for which the initiative modifier shall be changed.</source>
         <translation>Bitte einen Eintrag selektieren, dessen INI-Modifikator geändert werden soll.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="317"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="415"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="309"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="403"/>
         <source>XML files (*.xml);;All files (*)</source>
         <translation>XML-Dateien (*.xml);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="329"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="320"/>
         <source>Cannot open file %1 for reading.</source>
         <translation>Datei %1 kann nicht zum Lesen geöffnet werden.</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="422"/>
-        <location filename="../UI/TurnOrderWidget.cpp" line="424"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="410"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="412"/>
         <source>Save turn order list</source>
         <translation>Initiativliste speichern</translation>
     </message>
     <message>
-        <location filename="../UI/TurnOrderWidget.cpp" line="433"/>
+        <location filename="../UI/TurnOrderWidget.cpp" line="420"/>
         <source>Cannot open file %1 for writing.</source>
         <translation>Datei %1 kann nicht zum Schreiben geöffnet werden.</translation>
     </message>

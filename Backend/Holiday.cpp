@@ -1,7 +1,5 @@
 #include "Holiday.h"
 
-#include <QtDebug>
-
 Holiday::Holiday()
 {
     setName(QString());

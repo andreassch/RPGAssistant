@@ -9,8 +9,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QCoreApplication::setOrganizationName("andreas_schn");
-    QCoreApplication::setOrganizationDomain("andreasschneider.de");
+    QCoreApplication::setOrganizationName("andreassch");
     QCoreApplication::setApplicationName("rpgassistant");
     QCoreApplication::setApplicationVersion(VERSION_STR);
 
@@ -20,7 +19,7 @@ int main(int argc, char *argv[])
 #elif defined(Q_OS_MAC)
     QDir translation_dir = Utils::dataDir();
 #else
-    QDir translation_dir = QDir("");
+    QDir translation_dir = QDir("Translations");
 #endif
     QString locale_name = translation_dir.filePath("rpgassistant_" + QLocale::system().name());
     app_translator.load(locale_name);

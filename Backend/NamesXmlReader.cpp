@@ -1,7 +1,5 @@
 #include "NamesXmlReader.h"
 
-#include <QtDebug>
-
 NamesXmlReader::NamesXmlReader(std::vector<Names>* namelists)
     : m_namelists(namelists)
 {
@@ -13,7 +11,6 @@ void NamesXmlReader::readEntry()
     Q_ASSERT(m_xml_reader.isStartElement() && m_xml_reader.name() == entryName());
     Names namelist;
     QString region = m_xml_reader.attributes().value(regionAttribute()).toString();
-    qDebug() << "Names for region " << region;
     namelist.setRegion(region);
     while (m_xml_reader.readNextStartElement()) {
         QString type_attrib;
@@ -75,7 +72,6 @@ void NamesXmlReader::readEntry()
 std::vector<QString> NamesXmlReader::readNames()
 {
     Q_ASSERT(m_xml_reader.isStartElement() && (m_xml_reader.name() == firstnamesName() || m_xml_reader.name() == surnamesName() || m_xml_reader.name() == partsName()));
-    qDebug() << "Reading names: " << m_xml_reader.name();
     std::vector<QString> names;
     while (m_xml_reader.readNextStartElement()) {
         if (m_xml_reader.name() == nameName())
@@ -83,7 +79,6 @@ std::vector<QString> NamesXmlReader::readNames()
         else
             m_xml_reader.skipCurrentElement();
     }
-    qDebug() << QString("Read %1 names.").arg(names.size());
     return names;
 }
 

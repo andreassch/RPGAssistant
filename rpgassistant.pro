@@ -92,15 +92,12 @@ QMAKE_TARGET_BUNDLE_PREFIX = com.github.andreassch
 android {
     DATA_PATH=/assets/data
     LOCALE_PATH=/assets/translations
-} macx {
+} else:macx {
     DATA_PATH=Contents/Resources
     LOCALE_PATH=Contents/Resources
-} win32 {
-    DATA_PATH=/
-    LOCALE_PATH=/
-} unix:!macx {
-    DATA_PATH=/
-    LOCALE_PATH=/
+} else {
+    DATA_PATH=.
+    LOCALE_PATH=.
 }
 data.path = $$DATA_PATH
 data.files = Data/names.xml Data/persons.xml Data/holidays.xml

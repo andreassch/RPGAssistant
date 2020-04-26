@@ -9,7 +9,6 @@
 #include <QMessageBox>
 #include <QRandomGenerator>
 #include <QSettings>
-#include <QtDebug>
 
 /* Public constructors/desctructors ******************************************/
 NPCGeneratorWidget::NPCGeneratorWidget(QWidget *parent) :
@@ -31,11 +30,9 @@ void NPCGeneratorWidget::setupUi()
 {
     // Get data path.
     QDir data_dir = Utils::dataDir();
-    qDebug() << data_dir;
 
     // Read name lists and fill name region combo box.
     QFile names_file(data_dir.filePath("names.xml"));
-    qDebug() << names_file;
     if(!names_file.open(QFile::ReadOnly | QFile::Text)) {
         QMessageBox::critical(this, tr("NPC Generator"), tr("Cannot open file %1 for reading: %2").arg(names_file.fileName()).arg(names_file.errorString()));
         m_ui->comboNameRegion->setEnabled(false);
@@ -45,14 +42,12 @@ void NPCGeneratorWidget::setupUi()
         NamesXmlReader name_reader(&m_namelists);
         name_reader.read(&names_file);
         names_file.close();
-        qDebug() << "Name list contains" << m_namelists.size() << "regions.";
         for (std::size_t ind=0;ind < m_namelists.size(); ind++)
             m_ui->comboNameRegion->addItem(m_namelists.at(ind).region());
     }
 
     // Read persons.
     QFile persons_file(data_dir.filePath("persons.xml"));
-    qDebug() << persons_file;
     if(!persons_file.open(QFile::ReadOnly | QFile::Text)) {
         QMessageBox::critical(this, tr("NPC Generator"), tr("Cannot open file %1 for reading: %2").arg(persons_file.fileName()).arg(persons_file.errorString()));
         m_ui->comboRegion->setEnabled(false);
@@ -62,7 +57,6 @@ void NPCGeneratorWidget::setupUi()
         PersonsXmlReader person_reader(&m_persons);
         person_reader.read(&persons_file);
         persons_file.close();
-        qDebug() << "Person list contains" << m_persons.size() << "regions.";
         for (std::size_t ind=0;ind < m_persons.size(); ind++)
             m_ui->comboRegion->addItem(m_persons.at(ind).region());
     }
@@ -109,7 +103,6 @@ void NPCGeneratorWidget::saveSettings()
     settings.setValue("NPCGenerator/agePeriod", m_ui->comboGender->currentIndex());
     settings.setValue("NPCGenerator/randomAgePeriod", m_ui->checkRandomGender->isChecked());
     settings.sync();
-    qDebug() << "NPCGenerator::saveSettings";
     return;
 }
 

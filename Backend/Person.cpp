@@ -1,7 +1,6 @@
 #include "Person.h"
 
 #include <QRandomGenerator>
-#include <QDebug>
 #include <cassert>
 
 
@@ -196,7 +195,6 @@ void Person::randomProperties()
     m_ind_haircolor = weightedRandomIndex(m_haircolor_weights);
     m_ind_appearance = weightedRandomIndex(m_appearance_weights);
     m_has_beard = ((gender() == Gender::MALE) && (agePeriod() != AgePeriod::CHILD)) ? (static_cast<unsigned int>(QRandomGenerator::global()->bounded(100)) < m_beard_percentage) : false;
-    qDebug() << "beard percentage" << m_beard_percentage << "->" << m_has_beard;
     m_ind_beard = weightedRandomIndex(m_beard_weights);
     m_ind_trait = weightedRandomIndex(m_trait_weights);
     m_ind_profession = weightedRandomIndex(m_profession_weights);
@@ -212,7 +210,6 @@ size_t Person::weightedRandomIndex(const std::vector<unsigned int> weights)
         sum_of_weights += n;
     // Compute a random number.
     int rnd = QRandomGenerator::global()->bounded(sum_of_weights);
-    qDebug() << "weightedRandomIndex" << sum_of_weights << rnd;
     for (size_t ind = 0; ind < weights.size(); ind++) {
         if (rnd < static_cast<int>(weights.at(ind)))
             return ind;

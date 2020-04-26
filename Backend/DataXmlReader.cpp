@@ -1,7 +1,5 @@
 #include "DataXmlReader.h"
 
-#include <QtDebug>
-
 DataXmlReader::DataXmlReader()
 {
 }
@@ -14,11 +12,9 @@ bool DataXmlReader::read(QIODevice* device)
         if (m_xml_reader.name() == dataName()) {
             while (m_xml_reader.readNextStartElement()) {
                 if (m_xml_reader.name() == entryName()) {
-                    qDebug() << "Reading entry" << m_xml_reader.name();
                     readEntry();
                 }
                 else {
-                    qDebug() << "Skipping entry" << m_xml_reader.name();
                     m_xml_reader.skipCurrentElement();
                 }
             }

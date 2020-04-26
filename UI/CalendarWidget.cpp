@@ -10,7 +10,6 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QMessageBox>
-#include <QtDebug>
 #include <cassert>
 
 using namespace TDECalendar;
@@ -26,7 +25,6 @@ CalendarWidget::CalendarWidget(QWidget *parent) :
 
 CalendarWidget::~CalendarWidget()
 {
-    qDebug() << "Calendar destructor";
     updateDiary();
     saveSettings();
     delete m_ui;
@@ -97,7 +95,6 @@ void CalendarWidget::setupUi()
 
     // Create table columns for week days.
     m_ui->tableCalendar->setColumnCount(Calendar::daysInWeek());
-    qDebug() << m_ui->tableCalendar->columnCount();
     for (int col = 0; col < m_ui->tableCalendar->columnCount(); col++) {
         QTableWidgetItem* header = new QTableWidgetItem(Calendar::weekdayAbbreviation(col+1),QTableWidgetItem::Type);
         m_ui->tableCalendar->setHorizontalHeaderItem(col, header);
@@ -125,7 +122,6 @@ void CalendarWidget::setupUi()
         HolidaysXmlReader holidays_reader(&m_holidays);
         holidays_reader.read(&holidays_file);
         holidays_file.close();
-        qDebug() << m_holidays.size() << "holidays read.";
     }
 
     // Connect signals and slots.
@@ -151,7 +147,6 @@ void CalendarWidget::setupUi()
     QString curr_reckoning_str = settings.value("Calendar/reckoning", QVariant("Hal")).toString();
     Reckoning curr_reckoning = Calendar::parseReckoning(curr_reckoning_str);
     QString diary_filename = settings.value("Calendar/diary", QVariant("")).toString();
-    qDebug() << "Diary file:", diary_filename;
     if (!diary_filename.isEmpty())
         loadDiary(diary_filename);
     else
@@ -188,7 +183,6 @@ void CalendarWidget::fillMonth(const Month month, const int year, const Reckonin
 {
     int day = 1;
     int col = Calendar::dayOfWeek(day, month, year, reckoning)-1;
-    qDebug() << "fillMonth" << reckoning << year << month << col << Calendar::daysInMonth(month);
     int row = 0;
     // Clear items before start.
     for (auto col_del=0; col_del<col;col_del++) {
@@ -221,14 +215,12 @@ void CalendarWidget::fillMonth(const Month month, const int year, const Reckonin
 
 void CalendarWidget::saveSettings()
 {
-    qDebug() << "CalendarWidget::saveSettings";
     QSettings settings;
     settings.setValue("Calendar/day", day());
     settings.setValue("Calendar/month", static_cast<int>(month()));
     settings.setValue("Calendar/year", year());
     settings.setValue("Calendar/reckoning", Calendar::reckoningSymbolicName(reckoning()));
     settings.setValue("Calendar/diary", m_diary.filename());
-    qDebug() << "diary file" << m_diary.filename();
     settings.sync();
     if (!m_diary.isEmpty())
         saveDiary();
@@ -260,7 +252,6 @@ void CalendarWidget::saveDiary()
 {
     if (m_diary.isEmpty() || m_diary.filename().isEmpty())
         return;
-    qDebug() << "saveDiary";
     bool success = m_diary.writeToFile();
     if (!success)
         QMessageBox::critical(this, tr("Calendar"), tr("Cannot write diary file %1.").arg(m_diary.filename()));
@@ -272,7 +263,6 @@ void CalendarWidget::onChangeReckoning(const int index)
 {
     Reckoning new_reckoning = static_cast<Reckoning>(index);
     int new_year = Calendar::convertReckoning(year(), m_date.reckoning(), new_reckoning);
-    qDebug() << "onChangeReckoning" << year() << m_date.reckoning() << new_year << new_reckoning;
     setYear(new_year);
     m_date.setReckoning(new_reckoning);
     return;
@@ -319,7 +309,6 @@ void CalendarWidget::onChangeDate()
 {
     // Care for diary and update date member.
     updateDiary();
-    qDebug() << "diary contains" << m_diary.size() << "elements";
     m_ui->textDiary->clear();
     m_date.setDate(day(), month(), year(), reckoning());
     m_ui->textDiary->setText(m_diary.entry(m_date));
@@ -329,7 +318,6 @@ void CalendarWidget::onChangeDate()
     MoonPhase moon_phase(day(), month(), year(), reckoning());
     m_ui->labelMoonPhaseText->setText(moon_phase.toString());
     QString filename = image_dir.filePath(moon_phase.graphicsFilename());
-    qDebug() << filename;
     m_ui->widgetMoonPhase->load(filename);
 
     // Check holidays and fill them in the text field.
@@ -430,7 +418,6 @@ void CalendarWidget::onNewDiary()
     if (!filename.isEmpty()) {
         if (!filename.endsWith(".xml"))
             filename = filename.append(".xml");
-        qDebug() << "new diary filename:" << filename;
         m_diary.clear();
         m_diary.setFilename(filename);
         m_ui->textDiary->clear();

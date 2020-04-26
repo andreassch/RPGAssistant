@@ -1,7 +1,6 @@
 #include "Names.h"
 
 #include <QRandomGenerator>
-#include <QDebug>
 
 Names::Names()
 {

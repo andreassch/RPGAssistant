@@ -1,7 +1,6 @@
 #include "DiceFormula.h"
 #include <QRandomGenerator>
 #include <QStringList>
-#include <QtDebug>
 
 Dices::Dices(int faces, int count)
     : m_face_count(faces), m_dice_count(count)

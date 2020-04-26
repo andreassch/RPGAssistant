@@ -1,7 +1,5 @@
 #include "HolidaysXmlReader.h"
 
-#include <QtDebug>
-
 HolidaysXmlReader::HolidaysXmlReader(std::vector<Holiday>* holiday_list)
     : m_holiday_list(holiday_list)
 {
@@ -13,7 +11,6 @@ void HolidaysXmlReader::readEntry()
     Q_ASSERT(m_xml_reader.isStartElement() && m_xml_reader.name() == entryName());
     Holiday holiday;
     QString name = m_xml_reader.attributes().value("name").toString();
-    qDebug() << name;
     holiday.setName(name);
     QString type_str = m_xml_reader.attributes().value("durationType").toString();
     if (type_str.compare("forward") == 0)

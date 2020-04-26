@@ -170,7 +170,7 @@ namespace TDECalendar {
     int Calendar::daysAfterStandardReckoning(const int day, const Month month, const int year, const Reckoning reckoning)
     {
         int year_hal = Calendar::toStandardReckoning(year, reckoning);
-        return Calendar::dayOfYear(day, month) + year_hal*Calendar::daysInYear();
+        return Calendar::dayOfYear(day, month) + year_hal*Calendar::daysInYear() - 1;
     }
 
 
@@ -198,10 +198,17 @@ namespace TDECalendar {
 
     void Date::date(int *the_day, Month *the_month, int *the_year, Reckoning *the_reckoning)
     {
-        int year_hal = m_days_after_hal / Calendar::daysInYear();
-        int day_of_year = m_days_after_hal % Calendar::daysInYear();
-        int month_no = day_of_year/Calendar::daysInMonth(MONTH_PRAIOS)+1;
-        *the_day = day_of_year - (month_no-1)*Calendar::daysInMonth(MONTH_PRAIOS);
+        int year_hal, day_of_year;
+        if (m_days_after_hal >= 0) {
+            year_hal = m_days_after_hal / Calendar::daysInYear();
+            day_of_year = m_days_after_hal % Calendar::daysInYear(); // zero-based day of year
+        }
+        else {
+            year_hal = (m_days_after_hal+1) / Calendar::daysInYear() - 1;
+            day_of_year = m_days_after_hal - year_hal*Calendar::daysInYear(); // zero-based day of year
+        }
+        int month_no = day_of_year/Calendar::daysInMonth(MONTH_PRAIOS) + 1;
+        *the_day = day_of_year - (month_no-1)*Calendar::daysInMonth(MONTH_PRAIOS) + 1;
         *the_month = static_cast<Month>(month_no);
         *the_reckoning = m_reckoning;
         *the_year = Calendar::fromStandardReckoning(year_hal, m_reckoning);
@@ -229,8 +236,8 @@ namespace TDECalendar {
 
     Date Date::operator-(const Date &other)
     {
-        Date date_diff(other);
-        date_diff.m_days_after_hal -= m_days_after_hal;
+        Date date_diff(m_days_after_hal);
+        date_diff.m_days_after_hal -= other.m_days_after_hal;
         return date_diff;
     }
 
@@ -265,9 +272,7 @@ namespace TDECalendar {
         Month the_month;
         int the_year;
         Reckoning the_reckoning;
-        qDebug() << "alive";
         date(&the_day, &the_month, &the_year, &the_reckoning);
-        qDebug() << the_day << the_month << the_year << Calendar::reckoningName(the_reckoning);
         return QObject::tr("%1 %2 %3 %4").arg(QString::number(the_day)).arg(Calendar::monthName(the_month)).arg(QString::number(the_year)).arg(Calendar::reckoningName(the_reckoning));
     }
 
@@ -289,7 +294,6 @@ namespace TDECalendar {
         int status = moon_phase_base / 14;
         m_status = (status == 0) ? MoonPhaseStatus::WAXING : MoonPhaseStatus::WANING;
         m_phase = moon_phase_base - 14*status;
-        qDebug() << "setMoonPhase" << status << m_phase;
         return;
     }
 
