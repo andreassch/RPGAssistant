@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.11)
 project(tests)
 
+add_compile_definitions(RPG_SYSTEM_TDE_AVENTURIA)
+
 set(CMAKE_CXX_STANDARD 17)
 
 if (UNIX)

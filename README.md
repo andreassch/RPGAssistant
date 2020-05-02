@@ -4,7 +4,7 @@ This is a small tool to assist a role playing game master. It contains the follo
 
 * Turn order list: Manage turn order and NPCs during combat.
 * NPC Generator: Randomly generate non-player characters from different regions.
-* Calendar: A calendar with moon phases and holidays. Currently, calendar computations are implemented for The Dark Eye/Aventuria, but it can easily be adapted to other systems since the calendar computations are separated from the GUI. The calendar also contains a diary.
+* Calendar: A calendar with moon phases and holidays. Calendar computations are separated from the GUI, thus the use for different settings and worlds is possible. The calendar also contains a diary.
 * Throw dices.
 * more modules to come ...
 
@@ -24,11 +24,11 @@ Data and 3rd party material that you may use in combination with this program ar
 
 ## Compilation
 
-1. Select for which roleplaying system you want to build in config.h.
+1. Select in `rpgassistant.pro` for which roleplaying system you want to build.
 
 2. Build the program.
 
-      a. The preferred way is by using QtCreator. Just open rpgassistant.pro and click on build.
+      a. The preferred way is by using QtCreator. Just open `rpgassistant.pro` and click on build.
 
       b. You can also configure and compile on the command line with the following steps:
 
@@ -36,6 +36,7 @@ Data and 3rd party material that you may use in combination with this program ar
           qmake
           make
 ```
+
 
 ## Data files
 
@@ -48,15 +49,9 @@ This program can use the data files from Dirk Oetmann's DSASuite. These can be o
   mkdir DSASuite
   unzip -d DSASuite _daten.EXE
 ```
-Now run the conversion scripts:
-```
-  python dsasuitenames2xml.py DSASuite/Namen >names.xml
-  python dsasuiteprs2xml.py DSASuite/Daten >persons.xml
-  python dsasuiteholidays2xml.py DSASuite/Daten/feiertage.dat >holidays.xml
-```
-The ages in Zwerge.prs seem to be erroneous, I corrected the numbers in the 3rd and 4th line (minimal and maximal age) to 20 and 400, respectively, and the numbers in the 9th and 10th line (age limits for youngster and elderly person) to 40 and 300, respectively. Moreover, since I didn't figure out DSASuite's format in its entirety, you have to correct two entries in `holidays.xml` after conversion: "Immanmeisterschaften" and "Sklavenauktion in Al'Anfa" begin at the second weekday in the month, thus you have to set the `number` attribute of the `day` tag to `2` for these two entries.
+The ages in Zwerge.prs seem to be erroneous, I corrected the numbers in the 3rd and 4th line (minimal and maximal age) to 20 and 400, respectively, and the numbers in the 9th and 10th line (age limits for youngster and elderly person) to 40 and 300, respectively.
 
-Some name lists do not contain surnames as these are constructed from a parent's name in some cultures, e.g. Thorwal or among dwaves. To handle that, I have made an extension to DSASuite's name lists. The conversion script support star-prefixed keywords in the `---Nachnamen---` section of DSASuite's `.dat` files. In `DSASuite/Namen/Thorwal.dat` you can add the following lines after `---Nachnamen---`:
+Some name lists do not contain surnames as these are constructed from a parent's name in some cultures, e.g. Thorwal or among dwarves. To handle that, I have made an extension to DSASuite's name lists. The conversion script support star-prefixed keywords in the `---Nachnamen---` section of DSASuite's `.dat` files. In `DSASuite/Namen/Thorwal.dat` you can add the following lines after `---Nachnamen---`:
 ```
 *postfixM son
 *postfixW dottir
@@ -68,7 +63,15 @@ In `DSASuite/Namen/Zwerge.dat` you can add the following lines after `---Nachnam
 *prefixW groschna 
 *postfixW xin
 ```
-Mind the traling space after `groscho` and `groschna`. Now rerun the conversion script for the names.
+Mind the traling space after `groscho` and `groschna`.
+
+Now run the conversion scripts:
+```
+  python dsasuitenames2xml.py DSASuite/Namen >names.xml
+  python dsasuiteprs2xml.py DSASuite/Daten >persons.xml
+  python dsasuiteholidays2xml.py DSASuite/Daten/feiertage.dat >holidays.xml
+```
+Since I didn't figure out DSASuite's format in its entirety, you have to correct two entries in `holidays.xml` after conversion: "Immanmeisterschaften" and "Sklavenauktion in Al'Anfa" begin at the second weekday in the month, thus you have to set the `number` attribute of the `day` tag to `2` for these two entries.
 
 The desktop version of RPGAssistant expects the data files in the same folder as the executable. For the Android version they are packed into the APK.
 

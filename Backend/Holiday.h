@@ -15,12 +15,7 @@
 
 #pragma once
 
-#include "../config.h"
-
-#ifdef RPG_SYSTEM_TDE_AVENTURIA
-#include "TDECalendar.h"
-using namespace TDECalendar;
-#endif
+#include "Calendar.h"
 
 #include <QString>
 

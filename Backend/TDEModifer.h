@@ -20,8 +20,6 @@
 
 #pragma once
 
-#include "../config.h"
-
 #ifdef RPG_SYSTEM_TDE_AVENTURIA
 
 namespace TDEModifier {

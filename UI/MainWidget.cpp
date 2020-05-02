@@ -1,6 +1,5 @@
 #include "MainWidget.h"
 #include "ui_MainWidget.h"
-#include "../version.h"
 
 #include <QSettings>
 
@@ -25,7 +24,7 @@ MainWidget::~MainWidget()
 void MainWidget::SetupUi()
 {
     // Set up version information.
-    m_ui->labelVersion->setText(tr("Version ").append(VERSION_STR));
+    m_ui->labelVersion->setText(tr("Version ").append(VERSION " build " __DATE__));
 
     // Set up tools.
     m_turn_order_widget = new TurnOrderWidget();

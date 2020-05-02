@@ -1,3 +1,22 @@
+# Project file and global configuration for the Role Playing Game Assistant.
+#
+# Copyright (c) 2019, 2020 Andreas Schneider (andreas underscore schn at web dot de)
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3
+# as published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+VERSION = 0.0.8git
+
+# Please select here for which roleplaying system and fanatasy world to build.
+DEFINES += RPG_SYSTEM_TDE_AVENTURIA
+
+
 QT       += core gui svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -14,6 +33,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+DEFINES += VERSION=\\\"$$VERSION\\\"
 
 SOURCES += \
     Backend/DataXmlReader.cpp \
@@ -35,6 +56,7 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
+    Backend/Calendar.h \
     Backend/DataXmlReader.h \
     Backend/Diary.h \
     Backend/DiceFormula.h \
@@ -51,9 +73,7 @@ HEADERS += \
     UI/MainWidget.h \
     UI/NPCGeneratorWidget.h \
     UI/TurnOrderWidget.h \
-    UI/Utils.h \
-    config.h \
-    version.h
+    UI/Utils.h
 
 FORMS += \
     UI/CalendarWidget.ui \

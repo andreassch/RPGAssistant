@@ -1,7 +1,7 @@
 /**
  * User interface of the calendar module of the Role Playing Game Assistant.
  * The actual calendar computations are in a separate module. Select the one
- * for the world you play in in config.h in the top level directory.
+ * for the world you play in in rpgassistant.pro in the top level directory.
  *
  * Copyright (c) 2020 Andreas Schneider (andreas underscore schn at web dot de)
  *
@@ -17,14 +17,10 @@
 
 #pragma once
 
-#include "../config.h"
 #include "../Backend/Holiday.h"
 #include "../Backend/Diary.h"
 
-#ifdef RPG_SYSTEM_TDE_AVENTURIA
-#include "../Backend/TDECalendar.h"
-using namespace TDECalendar;
-#endif
+#include "../Backend/Calendar.h"
 
 #include <QWidget>
 #include <QTableWidgetItem>

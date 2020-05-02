@@ -15,8 +15,6 @@
 
 #pragma once
 
-#include "../config.h"
-
 #include <QWidget>
 #include "Backend/Names.h"
 #include "Backend/Person.h"

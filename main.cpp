@@ -1,5 +1,4 @@
 #include "UI/MainWidget.h"
-#include "version.h"
 #include "Backend/Utils.h"
 
 #include <QApplication>
@@ -11,7 +10,7 @@ int main(int argc, char *argv[])
 
     QCoreApplication::setOrganizationName("andreassch");
     QCoreApplication::setApplicationName("rpgassistant");
-    QCoreApplication::setApplicationVersion(VERSION_STR);
+    QCoreApplication::setApplicationVersion(VERSION);
 
     QTranslator app_translator;
 #ifdef ANDROID

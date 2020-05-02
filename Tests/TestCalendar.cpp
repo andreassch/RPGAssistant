@@ -1,8 +1,4 @@
-#include "../config.h"
-
-#ifdef RPG_SYSTEM_TDE_AVENTURIA
-#include "../Backend/TDECalendar.h"
-#endif
+#include "../Backend/Calendar.h"
 #include "../Backend/Holiday.h"
 
 #include <QtDebug>
