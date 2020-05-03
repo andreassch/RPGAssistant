@@ -2,6 +2,54 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de">
 <context>
+    <name>AboutWidget</name>
+    <message>
+        <location filename="../UI/AboutWidget.ui" line="14"/>
+        <source>About RPG Assistant</source>
+        <translation>Über Rollenspielassistent</translation>
+    </message>
+    <message>
+        <location filename="../UI/AboutWidget.ui" line="47"/>
+        <source>The source code of this app (without data) can be found at
+https://github.com/andreassch/rpgassistant</source>
+        <translation>Der Quelltext dieser App (ohne die Daten) ist verfügbar auf
+https://github.com/andreassch/rpgassistant</translation>
+    </message>
+    <message>
+        <location filename="../UI/AboutWidget.ui" line="64"/>
+        <source>This app uses the LGPL version of the Qt toolkit.
+You may re-link it to a different version of the Qt library. The source code of Qt is avaiable from the author of this app on request or can alternatively be obtained from code.qt.io.</source>
+        <translation>Diese App nutzt die LGPL-Version des Qt Toolkits.
+Die App darf mit einer anderen Version von Qt gelinkt werden. Der Quelltext von Qt ist auf Anfrage beim Autor dieser App verfügbar oder kann von code.qt.io bezogen werden.</translation>
+    </message>
+    <message>
+        <location filename="../UI/AboutWidget.cpp" line="25"/>
+        <source>Roleplaying Game Assistant
+Version for %1
+© 2020 Andreas Schneider
+andreas_schn@web.de</source>
+        <translation>Rollenspielassistent
+Version für %1
+© 2020 Andreas Schneider
+andreas_schn@web.de</translation>
+    </message>
+    <message>
+        <location filename="../UI/AboutWidget.cpp" line="44"/>
+        <source>The Dark Eye, its respective logos, as well as Aventuria, Dere, Myranor, Riesland, Tharun and Uthuria, and their respective logos, are trademarks of Ulisses Spiele GmbH, Waldems.</source>
+        <translation>DAS SCHWARZE AUGE, AVENTURIEN, DERE, MYRANOR, THARUN, UTHURIA, RIESLAND und THE DARK EYE sind eingetragene Marken der Ulisses Spiele GmbH, Waldems.</translation>
+    </message>
+    <message>
+        <location filename="../UI/AboutWidget.cpp" line="58"/>
+        <source>The Dark Eye/Aventuria</source>
+        <translation>Das Schwarze Auge/Aventurien</translation>
+    </message>
+    <message>
+        <location filename="../UI/AboutWidget.cpp" line="60"/>
+        <source>general role playing system</source>
+        <translation>allgemeines Rollenspielsystem</translation>
+    </message>
+</context>
+<context>
     <name>CalendarWidget</name>
     <message>
         <location filename="../UI/CalendarWidget.ui" line="20"/>
@@ -177,7 +225,7 @@
         <translation>Version </translation>
     </message>
     <message>
-        <location filename="../UI/MainWidget.cpp" line="40"/>
+        <location filename="../UI/MainWidget.cpp" line="42"/>
         <source>D%1</source>
         <translation>W%1</translation>
     </message>
@@ -256,7 +304,8 @@
         <location filename="../Backend/DataXmlReader.cpp" line="31"/>
         <source>%1
 Line %2, column %3</source>
-        <translation>%1\nZeile %2, Spalte %3</translation>
+        <translation>%1
+Zeile %2, Spalte %3</translation>
     </message>
     <message>
         <location filename="../UI/TurnOrderWidget.cpp" line="384"/>

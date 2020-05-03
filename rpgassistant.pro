@@ -17,6 +17,7 @@ VERSION = 0.0.8git
 DEFINES += RPG_SYSTEM_TDE_AVENTURIA
 
 
+# Required Qt modules.
 QT       += core gui svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -49,6 +50,7 @@ SOURCES += \
     Backend/TDECalendar.cpp \
     Backend/TDEModifer.cpp \
     Backend/Utils.cpp \
+    UI/AboutWidget.cpp \
     UI/CalendarWidget.cpp \
     UI/MainWidget.cpp \
     UI/TurnOrderWidget.cpp \
@@ -69,6 +71,7 @@ HEADERS += \
     Backend/TDECalendar.h \
     Backend/TDEModifer.h \
     Backend/Utils.h \
+    UI/AboutWidget.h \
     UI/CalendarWidget.h \
     UI/MainWidget.h \
     UI/NPCGeneratorWidget.h \
@@ -76,6 +79,7 @@ HEADERS += \
     UI/Utils.h
 
 FORMS += \
+    UI/AboutWidget.ui \
     UI/CalendarWidget.ui \
     UI/MainWidget.ui \
     UI/NPCGeneratorWidget.ui \
@@ -83,6 +87,14 @@ FORMS += \
 
 RESOURCES += \
     graphics.qrc
+android {
+    RESOURCES += logo-mr.qrc
+} else {
+    RESOURCES += logo-lr.qrc
+}
+contains(DEFINES, RPG_SYSTEM_TDE_AVENTURIA) {
+    exists(tde.pro) { include(tde.pro) } # optional non-free resources
+}
 
 LANGUAGES = de
 

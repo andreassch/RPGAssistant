@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/Logo">
+        <file alias="rpgassistant.ico">Graphics/rpgassistant.ico</file>
+        <file alias="rpgassistant.png">Graphics/rpgassistant_300x300.png</file>
+    </qresource>
+</RCC>

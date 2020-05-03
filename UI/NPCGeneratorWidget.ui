@@ -14,8 +14,8 @@
    <string>NPC Generator</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../graphics.qrc">
-    <normaloff>:/Graphics/rpgassistant.ico</normaloff>:/Graphics/rpgassistant.ico</iconset>
+   <iconset resource="../logo-lr.qrc">
+    <normaloff>:/Logo/rpgassistant.ico</normaloff>:/Logo/rpgassistant.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -116,7 +116,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../graphics.qrc"/>
+  <include location="../logo-lr.qrc"/>
  </resources>
  <connections/>
 </ui>

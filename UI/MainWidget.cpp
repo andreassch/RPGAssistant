@@ -18,13 +18,16 @@ MainWidget::~MainWidget()
     delete(m_turn_order_widget);
     delete(m_npc_generator_widget);
     delete(m_calendar_widget);
+    delete(m_about_widget);
     delete m_ui;
 }
 
 void MainWidget::SetupUi()
 {
-    // Set up version information.
-    m_ui->labelVersion->setText(tr("Version ").append(VERSION " build " __DATE__));
+    // Set up version information and connect about dialog.
+    m_ui->buttonAbout->setText(tr("Version ").append(VERSION " build " __DATE__));
+    m_about_widget = new AboutWidget();
+    connect(m_ui->buttonAbout, &QPushButton::clicked, this, &MainWidget::onAbout);
 
     // Set up tools.
     m_turn_order_widget = new TurnOrderWidget();
@@ -130,5 +133,11 @@ void MainWidget::saveDiceSettings()
     settings.setValue("Dices/count", m_ui->spinDiceNumber->value());
     settings.setValue("Dices/faces", m_dices[m_ui->comboDice->currentIndex()]);
     settings.setValue("Dices/offset", m_ui->spinConstant->value());
+    return;
+}
+
+void MainWidget::onAbout()
+{
+    m_about_widget->show();
     return;
 }

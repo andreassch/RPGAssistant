@@ -14,8 +14,8 @@
    <string>RPG Assistant</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../graphics.qrc">
-    <normaloff>:/Graphics/rpgassistant.ico</normaloff>:/Graphics/rpgassistant.ico</iconset>
+   <iconset resource="../logo-lr.qrc">
+    <normaloff>:/Logo/rpgassistant.ico</normaloff>:/Logo/rpgassistant.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -132,19 +132,19 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="labelVersion">
+    <widget class="QPushButton" name="buttonAbout">
      <property name="text">
       <string/>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="../graphics.qrc"/>
+  <include location="../logo-lr.qrc"/>
  </resources>
  <connections/>
 </ui>

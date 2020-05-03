@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     QCoreApplication::setOrganizationName("andreassch");
+    QCoreApplication::setOrganizationDomain("andreassch.github.com");
     QCoreApplication::setApplicationName("rpgassistant");
     QCoreApplication::setApplicationVersion(VERSION);
 

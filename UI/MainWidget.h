@@ -20,6 +20,7 @@
 #include "TurnOrderWidget.h"
 #include "NPCGeneratorWidget.h"
 #include "CalendarWidget.h"
+#include "AboutWidget.h"
 
 namespace Ui {
 class MainWidget;
@@ -44,6 +45,8 @@ private:
     void onRollD20();
     void onRoll3D20();
 
+    void onAbout();
+
 private:
     void saveDiceSettings();
     void loadDiceSettings();
@@ -53,4 +56,5 @@ private:
     NPCGeneratorWidget* m_npc_generator_widget;
     CalendarWidget* m_calendar_widget;
     const int m_dices[6] = {4, 6, 8, 10, 12, 20};
+    AboutWidget* m_about_widget;
 };
